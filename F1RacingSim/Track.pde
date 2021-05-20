@@ -52,4 +52,14 @@ public class Track {
   public double tireWear() {
     return tireWear;
   }
+  /**@return The horizontal length of the track.
+  */
+  public int trackXLength() {
+    return track.width;
+  }
+  /**@return The vertical length of the track.
+  */
+  public int trackYLength() {
+    return track.height;
+  }
 }
