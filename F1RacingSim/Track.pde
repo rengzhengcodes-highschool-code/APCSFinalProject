@@ -19,5 +19,14 @@ public class Track {
     track = img;
   }
   
-  
+  /**
+    *@param x The x-cord of the center of the area of the track you want to focus on.
+    *@param y The y-cord of the center of the area of the track you want to focus on.
+  */
+  public PImage getTrackArea(int x, int y) {
+    x += width/2;
+    y -= height/2;
+    
+    return track.get(x, y, width, height);
+  }
 }
