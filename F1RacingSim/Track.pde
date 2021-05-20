@@ -8,11 +8,15 @@ public class Track {
   /** The rate tires degrade in the track.
   */
   final public double tireWear;
+  /** The image that represents the track.
+  */
+  final public PImage track;
   
-  public Track (double grip, double slideGrip, double wear) {
+  public Track (double grip, double slideGrip, double wear, PImage img) {
     trackGrip = grip;
     trackSlideGrip = slideGrip;
     tireWear = wear;
+    track = img;
   }
   
   
