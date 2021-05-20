@@ -1,16 +1,16 @@
 public class Track {
   /** The static friction coefficient of the track.
   */
-  final public double trackGrip;
+  final private double trackGrip;
   /** The nonstatic friction coefficient of the track.
   */
-  final public double trackSlideGrip;
+  final private double trackSlideGrip;
   /** The rate tires degrade in the track.
   */
-  final public double tireWear;
+  final private double tireWear;
   /** The image that represents the track.
   */
-  final public PImage track;
+  final private PImage track;
   /**
     *@param grip Track static friction coefficient.
     *@param slideGrip Track nonstatic friction coefficient.
