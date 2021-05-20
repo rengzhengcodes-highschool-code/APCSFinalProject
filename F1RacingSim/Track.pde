@@ -22,6 +22,7 @@ public class Track {
   /**
     *@param x The x-cord of the center of the area of the track you want to focus on.
     *@param y The y-cord of the center of the area of the track you want to focus on.
+    *@return A PImage of the area of the track we are at.
   */
   public PImage getTrackArea(int x, int y) {
     x += width/2;
