@@ -58,5 +58,6 @@ public class Car{
     double speed = Math.sqrt(finx*finx + finy*finy);
     double finAngle = (180.0/Math.PI)*Math.atan(finy/finx);
     double[] result = new double {speed, finAngle};
+    return result;
   }
 }
