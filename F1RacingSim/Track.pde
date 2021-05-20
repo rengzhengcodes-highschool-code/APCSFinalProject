@@ -27,12 +27,29 @@ public class Track {
   /**
     *@param x The x-cord of the center of the area of the track you want to focus on.
     *@param y The y-cord of the center of the area of the track you want to focus on.
+    *@param w The width we want the view to be.
+    *@param h The height we want the view to be.
     *@return A PImage of the area of the track we are at.
   */
-  public PImage getTrackCamera(int x, int y) {
-    x += width/2;
-    y -= height/2;
+  public PImage getTrackCamera(int x, int y, int w, int h) {
+    x += w/2;
+    y -= h/2;
     
-    return track.get(x, y, width, height);
+    return track.get(x, y, w, h);
+  }
+  /**@return The track static friction coefficient.
+  */
+  public double getTrackGrip() {
+    return trackGrip;
+  }
+  /**@return The track nonstatic friction coefficient.
+  */
+  public double getTrackSlideGrip() {
+    return trackSlideGrip;
+  }
+  /**@return The current track tire wear.
+  */
+  public double tireWear() {
+    return tireWear;
   }
 }

@@ -10,11 +10,14 @@ public class TrackCamera {
     *@param x X coord of the center of the camera.
     *@param y Y coord of the center of the camera.
   */
-  public static ArrayList<Car> carsOnCam(ArrayList<Car> cars, int x, int y) {
+  public static ArrayList<Car> carsOnCam(ArrayList<Car> cars, int x, int y, int w, int h) {
     ArrayList<Car> carsOnCam = new ArrayList<Car>();
+    w /= 2;
+    h /= 2;
     
     for (Car car: cars) {
-      if (/*car on screen*/) {
+      if (Math.abs(x - cars.getX()) < w &&
+          Math.abs(y - cars.getY()) < h) {//car is in bounds of the camera check
         carsOnCam.add(car);
       }
     }
