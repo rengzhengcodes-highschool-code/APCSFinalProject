@@ -48,7 +48,7 @@ public class Car{
     return driftSpeed;
   }
   //calculate the vector for actuall direction of movement by adding the vectors
-  public double[] moveVector(){
+  public double[] moveVector() {
     double x1 = frontSpeed * Math.cos((angle*Math.PI)/180);
     double x2 = driftSpeed * Math.cos((driftAngle*Math.PI)/180);
     double y1 = frontSpeed * Math.sin((angle*Math.PI)/180);

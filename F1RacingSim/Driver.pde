@@ -35,4 +35,25 @@ public class Driver {
     name = "Default";
     reactionTime = 1;
     consistency = 1;
+  }
+  
+  public Car getCar() {
+    return car;
+  }
+  
+  public String getName() {
+    return name;
+  }
+  
+  public double getTireWear() {
+    return tireWear;
+  }
+  
+  public double getReactionTime() {
+    return reactionTime;
+  }
+  
+  public double getConsistency() {
+    return consistency;
+  }
 }
