@@ -1,16 +1,3 @@
-# APCSFinalF1RacingSim
+# APCSFinalProject
 
-Car stats:
-  mass
-  acceleration
-  deceleration
-  handling (delay between steering input and actual turn)
-  top speed
-  
-Track stats:
-  material (used in grip calculation)
-  path (the actual path of the track)
-  
-Opponent stats (drivers not cars):
-  brains (accelerating on straights and slowing down for turns)
-  gusto (how much they try to avoid crashing)
+Doc: https://docs.google.com/document/d/178_OMngXy3z04lZC-P3XWcUrQYE7QrIQQOCVvnEeydw/edit?usp=sharing
