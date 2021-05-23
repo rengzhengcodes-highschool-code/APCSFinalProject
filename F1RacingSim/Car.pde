@@ -6,11 +6,12 @@ public class Car{
   //angle and magnitude of vector 1:
   //the direction the car is trying to go
   private double angle;
-  private double frontSpeed;
+  private double frontForce;
   //angle and magnitude of vector 2:
-  //the direction the car might be drifting
-  private double driftAngle;
-  private double driftSpeed;
+  //the direction the car is actually moving
+  //the velocity in m/s
+  private double moveAngle;
+  private double velocity;
 
   public Car(double x, double y, double m, double tS, double a, double fS, double dA, double dS){
     xCor = x;
@@ -18,9 +19,9 @@ public class Car{
     mass = m;
     topSpeed = tS;
     angle = a;
-    frontSpeed = fS;
-    driftAngle = dA;
-    driftSpeed = dS;
+    frontForce = fS;
+    moveAngle = dA;
+    velocity = dS;
   }
 
   public double getX(){
@@ -38,26 +39,27 @@ public class Car{
   public double getAngle(){
     return angle;
   }
-  public double getFrontSpeed(){
-    return frontSpeed;
+  public double getFrontForce(){
+    return frontForce;
   }
-  public double getDriftAngle(){
-    return driftAngle;
+  public double getMoveAngle(){
+    return moveAngle;
   }
-  public double getDriftSpeed(){
-    return driftSpeed;
+  public double getVelocity(){
+    return velocity;
   }
-  //calculate the vector for actuall direction of movement by adding the vectors
-  public double[] moveVector(){
-    double x1 = frontSpeed * Math.cos((angle*Math.PI)/180);
-    double x2 = driftSpeed * Math.cos((driftAngle*Math.PI)/180);
-    double y1 = frontSpeed * Math.sin((angle*Math.PI)/180);
-    double y2 = driftSpeed * Math.sin((driftAngle*Math.PI)/180);
-    double finx = x1+x2;
-    double finy = y1+y2;
-    double speed = Math.sqrt(finx*finx + finy*finy);
-    double finAngle = (180.0/Math.PI)*Math.atan(finy/finx);
-    double[] result = new double {speed, finAngle};
-    return result;
-  }
+  public void display(double x, double y){}
+  //antiquated code
+  ////calculate the vector for actuall direction of movement by adding the vectors
+  //public double[] moveVector(){
+  //  double x1 = frontForce * Math.cos((angle*Math.PI)/180);
+  //  double x2 = driftForce * Math.cos((driftAngle*Math.PI)/180);
+  //  double y1 = frontForce * Math.sin((angle*Math.PI)/180);
+  //  double y2 = driftForce * Math.sin((driftAngle*Math.PI)/180);
+  //  double finx = x1+x2;
+  //  double finy = y1+y2;
+  //  double speed = Math.sqrt(finx*finx + finy*finy);
+  //  double finAngle = (180.0/Math.PI)*Math.atan(finy/finx);
+  //  return result;
+  //}
 }
