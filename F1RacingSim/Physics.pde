@@ -6,7 +6,7 @@ public static class Physics{
     *@return The actual magnitude of the acceleration of the car
   */
   public double resolve(Car car, Track track){
-    return resolve(car, track.getTrackGrip(), track.getSlideTrackGrip());
+    return resolve(car, track.getTrackGrip(), track.getTrackSlideGrip());
   }
   /**
     *@param car The car being driven.
