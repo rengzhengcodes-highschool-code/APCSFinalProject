@@ -1,4 +1,4 @@
-# APCSFinalProject: Unamed F1 Simulation
+# APCSFinalProject: Unnamed F1 Simulation
 ## By: Jordan Maragakis and Renggeng Zheng
 Doc: https://docs.google.com/document/d/178_OMngXy3z04lZC-P3XWcUrQYE7QrIQQOCVvnEeydw/edit?usp=sharing
 
