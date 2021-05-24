@@ -59,19 +59,7 @@ public class Car{
   public double getVelocity(){
     return velocity;
   }
-  //calculate the vector for actuall direction of movement by adding the vectors
-  //public double[] moveVector() {
-  //  double x1 = frontSpeed * Math.cos((angle*Math.PI)/180);
-  //  double x2 = driftSpeed * Math.cos((driftAngle*Math.PI)/180);
-  //  double y1 = frontSpeed * Math.sin((angle*Math.PI)/180);
-  //  double y2 = driftSpeed * Math.sin((driftAngle*Math.PI)/180);
-  //  double finx = x1+x2;
-  //  double finy = y1+y2;
-  //  double speed = Math.sqrt(finx*finx + finy*finy);
-  //  double finAngle = (180.0/Math.PI)*Math.atan(finy/finx);
-  //  double[] result = new double {speed, finAngle};
-  //  return result;
-  //}
+  
   public void display(double x, double y){}
   public void display(){
     stroke(0);
