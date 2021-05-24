@@ -13,7 +13,9 @@ public class Car{
   private double moveAngle;
   private double velocity;
 
-  public Car(double x, double y, double m, double tS, double a, double fS, double dA, double dS){
+  public Car(double x, double y, double m, 
+             double tS, double a, double fS, 
+             double dA, double dS) {
     xCor = x;
     yCor = y;
     mass = m;
@@ -24,7 +26,7 @@ public class Car{
     velocity = dS;
   }
   
-  public Car(){
+  public Car() {
     xCor = 200;
     yCor = 200;
     mass = 900;
@@ -35,32 +37,36 @@ public class Car{
     velocity = 0;
   }
 
-  public double getX(){
+  public double getX() {
     return xCor;
   }
-  public double getY(){
+  public double getY() {
     return yCor;
   }
-  public double getMass(){
+  public double getMass() {
     return mass;
   }
-  public double getTopSpeed(){
+  public double getTopSpeed() {
     return topSpeed;
   }
-  public double getAngle(){
+  public double getAngle() {
     return angle;
   }
-  public double getFrontForce(){
+  public double getFrontForce() {
     return frontForce;
   }
-  public double getMoveAngle(){
+  public double getMoveAngle() {
     return moveAngle;
   }
-  public double getVelocity(){
+  public double getVelocity() {
     return velocity;
   }
+<<<<<<< HEAD
+=======
+  
+>>>>>>> 2ce9e30d6d40cb40cd0baf6b7e5b070f06ad0250
   public void display(double x, double y){}
-  public void display(){
+  public void display() {
     stroke(0);
     fill(255,0,0);
     float x = (float)xCor;
@@ -72,17 +78,17 @@ public class Car{
     frontForce = acc;
   }
   
-  public void shiftAngle(double theta){
+  public void shiftAngle(double theta) {
     angle = theta;
   }
   
-  public void move(){
+  public void move() {
     double[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
     xCor += shift[0];
     yCor += shift[1];
   }
   
-  public void setVelocity(double mag, double theta){
+  public void setVelocity(double mag, double theta) {
     velocity = mag;
     moveAngle = theta;
   }
