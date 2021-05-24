@@ -20,9 +20,12 @@ public static class CartesianPolarMath {
   */
   public static double[] cartesianToPolar(double x, double y) {
     double[] coords = new double[2];
-    coords[1] = Math.atan(y/x);
     coords[0] = Math.sqrt(x*x + y*y);
-    //coords[1] = dist(0, 0, x, y);//dist is just pythagorean theorem, which is also what you use for vectors
+    if(y < 0){
+      coords[1] = -Math.acos(x/coords[0]);
+    }else{
+      coords[1] = Math.acos(x/coords[0]);
+    }
     return coords;
   }
 }
