@@ -10,5 +10,6 @@ Requires Processing version 3: https://processing.org/download/
 ## Dev Log (YYYY-MM-DD|Initials)
 2021-05-22|RZ - Created get methods and instance variables for the Car, Track, TrackCamera class. Created untested class for conversion between Cartesian and polar coordinates.
 
-2021-05-24|RZ - Prototype/development plan created. Documentation framework begun as well as the UML.
+2021-05-23|RZ - Prototype/development plan created. Documentation framework begun as well as the UML.
 
+2021-05-24|RZ - Resolved some repetitive code from initial development.
