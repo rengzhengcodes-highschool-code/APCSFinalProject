@@ -38,7 +38,7 @@ void keyPressed(){
   if(keyCode == 40){
     for(Car c : cars){
       c.shiftAngle(0);
-      c.setFrontForce(0);
+      c.setFrontForce(-10);
       double acc = Physics.resolve(c, 0.90, 0.68);
       double facingAngle = c.getAngle();
       //System.out.println("" + c.getAngle());
