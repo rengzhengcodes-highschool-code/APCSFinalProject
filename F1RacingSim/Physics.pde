@@ -1,8 +1,9 @@
 public static class Physics{
+  final static double g = 9.81;
   //the result is the actual magnitude of the acceleration of the car:
   public double resolve(Car car, Track track){
     double acceleration = 0;
-    double normalForce = 9.8 * car.getMass();
+    double normalForce = g * car.getMass();
     if(car.getFrontForce() <= normalForce * track.getTrackGrip()){
       acceleration = car.getMass()/car.getFrontForce();
     }else{
@@ -13,7 +14,7 @@ public static class Physics{
   
   public static double resolve(Car car, double statGrip, double kenGrip){
     double acceleration = 0;
-    double normalForce = 9.8 * car.getMass();
+    double normalForce = g * car.getMass();
     if(car.getFrontForce() <= normalForce * statGrip){
       acceleration = car.getFrontForce()/car.getMass();
     }else{
