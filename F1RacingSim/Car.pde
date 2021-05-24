@@ -81,11 +81,13 @@ public class Car{
 	}
 
 	public PImage rotatePImage(PImage src, float theta) {
-		PImage nu = createImage(src.width, src.height, RGB);
+		PImage nu = createImage(Math.abs((int)(src.width * cos(theta) + src.height * sin(theta))),
+														Math.abs((int)(src.height * -sin(theta) + src.width * cos(theta))), ARGB);
 
 		for (int x = 0; x < src.width; x++) {
 			for (int y = 0; y < src.height; y++) {
-				nu.set(x, y, color(0));
+				nu.set(Math.abs((int)(x * cos(theta) + y * sin(theta))),
+							Math.abs((int)(x * -sin(theta) + y * cos(theta))), src.get(x,y));
 			}
 		}
 

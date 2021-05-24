@@ -7,7 +7,7 @@ void setup(){
 
 void draw(){
 	background(200);
-	for(Car c : cars){
+	for(Car c : cars) {
 		c.move();
 		c.display();
 		//System.out.println("X: " + c.getX());
