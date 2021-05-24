@@ -12,6 +12,7 @@ public class Car{
   //the velocity in m/s
   private double moveAngle;
   private double velocity;
+  private PImage car = loadImage("RaceCar.png");
   /**
     *@param x X coord of the car.
     *@param y Y coord of the car.
@@ -23,8 +24,8 @@ public class Car{
     *@param dS The starting velocity.
     *@postcondition The instance variables are set.
   */
-  public Car(double x, double y, double m, 
-             double tS, double a, double fS, 
+  public Car(double x, double y, double m,
+             double tS, double a, double fS,
              double dA, double dS) {
     xCor = x;
     yCor = y;
@@ -72,30 +73,30 @@ public class Car{
   public double getVelocity() {
     return velocity;
   }
-  
+
   public void display(double x, double y){}
   public void display() {
-    stroke(0);
-    fill(255,0,0);
-    float x = (float)xCor;
-    float y = (float)yCor;
-    rect(x, y, 10, 5.0);
+    imageMode(CENTER);
+    translate(0,0);
+    rotate((float)moveAngle);
+		image(car, (float)xCor, (float)yCor);
+		System.out.println(angle);
   }
-  
+
   public void setFrontForce(double acc) {
     frontForce = acc;
   }
-  
+
   public void shiftAngle(double theta) {
     angle = theta;
   }
-  
+
   public void move() {
     double[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
     xCor += shift[0];
     yCor += shift[1];
   }
-  
+
   public void setVelocity(double mag, double theta) {
     velocity = mag;
     moveAngle = theta;
