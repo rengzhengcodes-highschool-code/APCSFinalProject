@@ -39,7 +39,7 @@ void keyPressed(){
   }
   if(keyCode == 40){
     for(Car c : cars){
-      c.shiftAngle(Math.PI/2);
+      c.shiftAngle((float)Math.PI/2);
       c.setFrontForce(10);
       float acc = Physics.resolve(c, 0.90, 0.68);
       float facingAngle = c.getAngle();

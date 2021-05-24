@@ -78,18 +78,18 @@ public class Car{
   public void display() {
     imageMode(CENTER);
     translate(-xCor,-yCor);
-    rotate((moveAngle);
+    rotate(moveAngle);
 		image(car, xCor, yCor);
 		System.out.println(angle);
-    translate((xCor, yCor);
+    translate(xCor, yCor);
   }
 
   public void setFrontForce(float acc) {
     frontForce = acc;
   }
 
-  public void shiftAngle(float theta) {
-    angle = theta;
+  public void shiftAngle(double theta) {
+    angle = (float)theta;
   }
 
   public void move() {
