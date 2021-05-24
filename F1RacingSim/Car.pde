@@ -77,10 +77,19 @@ public class Car{
   public void display(float x, float y){}
   public void display() {
     imageMode(CENTER);
-    rotate(moveAngle);
-		image(car, 0, 0);
-    translate(xCor, yCor);
-		System.out.println(angle);
+		image(rotatePImage(car, angle), xCor, yCor);
+  }
+
+  public PImage rotatePImage(PImage src, float theta) {
+    PImage nu = createImage(src.width, src.height, RGB);
+    
+    for (int x = 0; x < src.width; x++) {
+      for (int y = 0; y < src.height; y++) {
+        nu.set(x, y, color(0));
+      }
+    }
+
+    return nu;
   }
 
   public void setFrontForce(float acc) {
