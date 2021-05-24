@@ -25,8 +25,8 @@ public class Car{
   }
   
   public Car(){
-    xCor = 0;
-    yCor = 0;
+    xCor = 200;
+    yCor = 200;
     mass = 900;
     topSpeed = 104;
     angle = 0;
@@ -73,4 +73,30 @@ public class Car{
   //  return result;
   //}
   public void display(double x, double y){}
+  public void display(){
+    stroke(0);
+    fill(255,0,0);
+    float x = (float)xCor;
+    float y = (float)yCor;
+    rect(x, y, 5.0, 10.0);
+  }
+  
+  public void setFrontForce(double acc){
+    frontForce = acc;
+  }
+  
+  public void shiftAngle(double theta){
+    angle = theta;
+  }
+  
+  public void move(){
+    double[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
+    xCor += shift[0];
+    yCor += shift[1];
+  }
+  
+  public void setVelocity(double mag, double theta){
+    velocity = mag;
+    moveAngle = theta;
+  }
 }
