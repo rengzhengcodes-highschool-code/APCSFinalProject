@@ -7,13 +7,13 @@ public class Driver {
   private String name;
   /**How light/heavy people go on the tires.
   */
-  private double tireWear;
+  private float tireWear;
   /**The reaction time/handling bonus of the driver.
   */
-  private double reactionTime;
+  private float reactionTime;
   /**How consistent is their good performance? How bad are their off days?
   */
-  private double consistency;
+  private float consistency;
   /**
     *@param c The car the driver drives.
     *@param aName The name of the driver.
@@ -21,7 +21,7 @@ public class Driver {
     *@param rT The reaction time of the driver.
     *@param consist The consistency of the driver.
   */
-  public Driver(Car c, String aName, double tW, double rT, double consist) {
+  public Driver(Car c, String aName, float tW, float rT, float consist) {
     car = c;
     name = aName;
     reactionTime = rT;
@@ -45,15 +45,15 @@ public class Driver {
     return name;
   }
   
-  public double getTireWear() {
+  public float getTireWear() {
     return tireWear;
   }
   
-  public double getReactionTime() {
+  public float getReactionTime() {
     return reactionTime;
   }
   
-  public double getConsistency() {
+  public float getConsistency() {
     return consistency;
   }
 }

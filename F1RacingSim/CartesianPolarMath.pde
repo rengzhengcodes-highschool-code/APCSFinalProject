@@ -5,10 +5,10 @@ public static class CartesianPolarMath {
   /**
     *@param r Radius/magnitude of the vector.
     *@param theta Angle of the vector.
-    *@returns A double array where double[0] is the x coord and double[1] is the y coord.
+    *@returns A float array where float[0] is the x coord and float[1] is the y coord.
   */
-  public static double[] polarToCartesian(double r, double theta) {
-    double[] coords = new double[2];
+  public static float[] polarToCartesian(float r, float theta) {
+    float[] coords = new float[2];
     coords[0] = r * Math.cos(theta);
     coords[1] = r * Math.sin(theta);
     return coords;
@@ -16,10 +16,10 @@ public static class CartesianPolarMath {
   /**
     *@param x X vector magnitude.
     *@param y Y vector magnitude.
-    *@returns double[] where double[0] is the magnitude and double[1] is the angle.
+    *@returns float[] where float[0] is the magnitude and float[1] is the angle.
   */
-  public static double[] cartesianToPolar(double x, double y) {
-    double[] coords = new double[2];
+  public static float[] cartesianToPolar(float x, float y) {
+    float[] coords = new float[2];
     coords[0] = Math.sqrt(x*x + y*y);
     if(y < 0){
       coords[1] = -Math.acos(x/coords[0]);

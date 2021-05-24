@@ -1,13 +1,13 @@
 public class Track {
   /** The static friction coefficient of the track.
   */
-  final private double trackGrip;
+  final private float trackGrip;
   /** The nonstatic friction coefficient of the track.
   */
-  final private double trackSlideGrip;
+  final private float trackSlideGrip;
   /** The rate tires degrade in the track.
   */
-  final private double tireWear;
+  final private float tireWear;
   /** The image that represents the track.
   */
   final private PImage track;
@@ -18,7 +18,7 @@ public class Track {
     *@param img The image representing the track.
     *@postcondition All the constants for this track are set.
   */
-  public Track (double grip, double slideGrip, double wear, PImage img) {
+  public Track (float grip, float slideGrip, float wear, PImage img) {
     trackGrip = grip;
     trackSlideGrip = slideGrip;
     tireWear = wear;
@@ -39,17 +39,17 @@ public class Track {
   }
   /**@return The track static friction coefficient.
   */
-  public double getTrackGrip() {
+  public float getTrackGrip() {
     return trackGrip;
   }
   /**@return The track nonstatic friction coefficient.
   */
-  public double getTrackSlideGrip() {
+  public float getTrackSlideGrip() {
     return trackSlideGrip;
   }
   /**@return The current track tire wear.
   */
-  public double tireWear() {
+  public float tireWear() {
     return tireWear;
   }
   /**@return The horizontal length of the track.

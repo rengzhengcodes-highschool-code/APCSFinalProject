@@ -1,17 +1,17 @@
 public class Car{
-  private double xCor;
-  private double yCor;
-  private double mass;
-  private double topSpeed;
+  private float xCor;
+  private float yCor;
+  private float mass;
+  private float topSpeed;
   //angle and magnitude of vector 1:
   //the direction the car is trying to go
-  private double angle;
-  private double frontForce;
+  private float angle;
+  private float frontForce;
   //angle and magnitude of vector 2:
   //the direction the car is actually moving
   //the velocity in m/s
-  private double moveAngle;
-  private double velocity;
+  private float moveAngle;
+  private float velocity;
   private PImage car = loadImage("RaceCar.png");
   /**
     *@param x X coord of the car.
@@ -24,9 +24,9 @@ public class Car{
     *@param dS The starting velocity.
     *@postcondition The instance variables are set.
   */
-  public Car(double x, double y, double m,
-             double tS, double a, double fS,
-             double dA, double dS) {
+  public Car(float x, float y, float m,
+             float tS, float a, float fS,
+             float dA, float dS) {
     xCor = x;
     yCor = y;
     mass = m;
@@ -49,55 +49,56 @@ public class Car{
     velocity = 0;
   }
   /*Get Methods. Self explanatory*/
-  public double getX() {
+  public float getX() {
     return xCor;
   }
-  public double getY() {
+  public float getY() {
     return yCor;
   }
-  public double getMass() {
+  public float getMass() {
     return mass;
   }
-  public double getTopSpeed() {
+  public float getTopSpeed() {
     return topSpeed;
   }
-  public double getAngle() {
+  public float getAngle() {
     return angle;
   }
-  public double getFrontForce() {
+  public float getFrontForce() {
     return frontForce;
   }
-  public double getMoveAngle() {
+  public float getMoveAngle() {
     return moveAngle;
   }
-  public double getVelocity() {
+  public float getVelocity() {
     return velocity;
   }
 
-  public void display(double x, double y){}
+  public void display(float x, float y){}
   public void display() {
     imageMode(CENTER);
-    translate(0,0);
-    rotate((float)moveAngle);
-		image(car, (float)xCor, (float)yCor);
+    translate(-xCor,-yCor);
+    rotate((moveAngle);
+		image(car, xCor, yCor);
 		System.out.println(angle);
+    translate((xCor, yCor);
   }
 
-  public void setFrontForce(double acc) {
+  public void setFrontForce(float acc) {
     frontForce = acc;
   }
 
-  public void shiftAngle(double theta) {
+  public void shiftAngle(float theta) {
     angle = theta;
   }
 
   public void move() {
-    double[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
+    float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
     xCor += shift[0];
     yCor += shift[1];
   }
 
-  public void setVelocity(double mag, double theta) {
+  public void setVelocity(float mag, float theta) {
     velocity = mag;
     moveAngle = theta;
   }

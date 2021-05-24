@@ -24,13 +24,13 @@ void keyPressed(){
     for(Car c : cars){
       c.shiftAngle(0);
       c.setFrontForce(10);
-      double acc = Physics.resolve(c, 0.90, 0.68);
-      double facingAngle = c.getAngle();
+      float acc = Physics.resolve(c, 0.90, 0.68);
+      float facingAngle = c.getAngle();
       //System.out.println("" + c.getAngle());
       //System.out.println("" + c.getVelocity());
-      double speed = c.getVelocity();
-      double moveAngle = c.getMoveAngle();
-      double[] newMoveVector = Physics.addVector(acc, facingAngle, speed, moveAngle);
+      float speed = c.getVelocity();
+      float moveAngle = c.getMoveAngle();
+      float[] newMoveVector = Physics.addVector(acc, facingAngle, speed, moveAngle);
       c.setVelocity(newMoveVector[0],newMoveVector[1]);
       //System.out.println("" + newMoveVector[0]);
       //System.out.println("" + newMoveVector[1]);
@@ -41,13 +41,13 @@ void keyPressed(){
     for(Car c : cars){
       c.shiftAngle(Math.PI/2);
       c.setFrontForce(10);
-      double acc = Physics.resolve(c, 0.90, 0.68);
-      double facingAngle = c.getAngle();
+      float acc = Physics.resolve(c, 0.90, 0.68);
+      float facingAngle = c.getAngle();
       //System.out.println("" + c.getAngle());
       //System.out.println("" + c.getVelocity());
-      double speed = c.getVelocity();
-      double moveAngle = c.getMoveAngle();
-      double[] newMoveVector = Physics.addVector(acc, facingAngle, speed, moveAngle);
+      float speed = c.getVelocity();
+      float moveAngle = c.getMoveAngle();
+      float[] newMoveVector = Physics.addVector(acc, facingAngle, speed, moveAngle);
       c.setVelocity(newMoveVector[0],newMoveVector[1]);
       //System.out.println("" + newMoveVector[0]);
       System.out.println("-------");
@@ -57,15 +57,15 @@ void keyPressed(){
     for(Car c : cars){
       c.shiftAngle(Math.PI);
       c.setFrontForce(10);
-      double acc = Physics.resolve(c, 0.90, 0.68);
-      double facingAngle = c.getAngle();
+      float acc = Physics.resolve(c, 0.90, 0.68);
+      float facingAngle = c.getAngle();
       //System.out.println("" + c.getAngle());
       //System.out.println("" + c.getVelocity());
-      double speed = c.getVelocity();
-      double moveAngle = c.getMoveAngle();
+      float speed = c.getVelocity();
+      float moveAngle = c.getMoveAngle();
       //System.out.println("Acc:" + acc);
       //System.out.println("facing angle:" + facingAngle);
-      double[] newMoveVector = Physics.addVector(acc, facingAngle, speed, moveAngle);
+      float[] newMoveVector = Physics.addVector(acc, facingAngle, speed, moveAngle);
       //System.out.println("" + newMoveVector[0]);
       //System.out.println("" + newMoveVector[1]);
       c.setVelocity(newMoveVector[0],newMoveVector[1]);
@@ -76,13 +76,13 @@ void keyPressed(){
     for(Car c : cars){
       c.shiftAngle(Math.PI*1.5);
       c.setFrontForce(10);
-      double acc = Physics.resolve(c, 0.90, 0.68);
-      double facingAngle = c.getAngle();
+      float acc = Physics.resolve(c, 0.90, 0.68);
+      float facingAngle = c.getAngle();
       //System.out.println("" + c.getAngle());
       //System.out.println("" + c.getVelocity());
-      double speed = c.getVelocity();
-      double moveAngle = c.getMoveAngle();
-      double[] newMoveVector = Physics.addVector(acc, facingAngle, speed, moveAngle);
+      float speed = c.getVelocity();
+      float moveAngle = c.getMoveAngle();
+      float[] newMoveVector = Physics.addVector(acc, facingAngle, speed, moveAngle);
       c.setVelocity(newMoveVector[0],newMoveVector[1]);
       //System.out.println("" + newMoveVector[0]);
       System.out.println("-------");
