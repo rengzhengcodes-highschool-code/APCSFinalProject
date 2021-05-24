@@ -61,10 +61,7 @@ public class Car{
   public double getVelocity() {
     return velocity;
   }
-<<<<<<< HEAD
-=======
-  
->>>>>>> 2ce9e30d6d40cb40cd0baf6b7e5b070f06ad0250
+
   public void display(double x, double y){}
   public void display() {
     stroke(0);
