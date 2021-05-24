@@ -10,8 +10,8 @@ void draw(){
   for(Car c : cars){
     c.move();
     c.display();
-    //System.out.println("X: " + c.getX());
-    //System.out.println("Y: " + c.getY());
+    System.out.println("X: " + c.getX());
+    System.out.println("Y: " + c.getY());
   }
   fill(0);
   textSize(20);
@@ -37,8 +37,8 @@ void keyPressed(){
   }
   if(keyCode == 40){
     for(Car c : cars){
-      c.shiftAngle(0);
-      c.setFrontForce(-10);
+      c.shiftAngle(Math.PI);
+      c.setFrontForce(10);
       double acc = Physics.resolve(c, 0.90, 0.68);
       double facingAngle = c.getAngle();
       //System.out.println("" + c.getAngle());

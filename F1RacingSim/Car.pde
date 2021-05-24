@@ -78,7 +78,8 @@ public class Car{
     fill(255,0,0);
     float x = (float)xCor;
     float y = (float)yCor;
-    rect(x, y, 5.0, 10.0);
+    rotate((float)angle);
+    rect(x, y, 10, 5.0);
   }
   
   public void setFrontForce(double acc){
