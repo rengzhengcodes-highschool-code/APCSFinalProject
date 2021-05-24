@@ -77,11 +77,10 @@ public class Car{
   public void display(float x, float y){}
   public void display() {
     imageMode(CENTER);
-    translate(-xCor,-yCor);
     rotate(moveAngle);
-		image(car, xCor, yCor);
-		System.out.println(angle);
+		image(car, 0, 0);
     translate(xCor, yCor);
+		System.out.println(angle);
   }
 
   public void setFrontForce(float acc) {

@@ -9,8 +9,8 @@ public static class CartesianPolarMath {
   */
   public static float[] polarToCartesian(float r, float theta) {
     float[] coords = new float[2];
-    coords[0] = r * Math.cos(theta);
-    coords[1] = r * Math.sin(theta);
+    coords[0] = (float)(r * Math.cos(theta));
+    coords[1] = (float)(r * Math.sin(theta));
     return coords;
   }
   /**
@@ -20,11 +20,11 @@ public static class CartesianPolarMath {
   */
   public static float[] cartesianToPolar(float x, float y) {
     float[] coords = new float[2];
-    coords[0] = Math.sqrt(x*x + y*y);
+    coords[0] = (float)Math.sqrt(x*x + y*y);
     if(y < 0){
-      coords[1] = -Math.acos(x/coords[0]);
+      coords[1] = (float)(-Math.acos(x/coords[0]));
     }else{
-      coords[1] = Math.acos(x/coords[0]);
+      coords[1] = (float)(Math.acos(x/coords[0]));
     }
     return coords;
   }
