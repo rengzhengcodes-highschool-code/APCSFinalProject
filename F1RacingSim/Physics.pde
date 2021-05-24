@@ -29,6 +29,7 @@ public static class Physics{
     *@ang1 Angle of the first force vector.
     *@mag2 Magnitude of the second force vector.
     *@ang2 Angle of the second force vector.
+    *@return The sum of the two force vectors.
   */
   public static double[] addVector(double mag1, double ang1, double mag2, double ang2){
     double[] xy1 = CartesianPolarMath.polarToCartesian(mag1, ang1);
