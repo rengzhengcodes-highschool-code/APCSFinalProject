@@ -1,19 +1,22 @@
 public static class Physics{
-  //the result is the actual magnitude of the acceleration of the car:
+  final static double g = 9.81;
+  /**
+    *@param car The car being driven.
+    *@param track The track being driven on.
+    *@return The actual magnitude of the acceleration of the car
+  */
   public double resolve(Car car, Track track){
-    double acceleration = 0;
-    double normalForce = 9.8 * car.getMass();
-    if(car.getFrontForce() <= normalForce * track.getTrackGrip()){
-      acceleration = car.getMass()/car.getFrontForce();
-    }else{
-      acceleration = car.getMass()/(car.getFrontForce() * track.getTrackSlideGrip());
-    }
-    return acceleration;
+    return resolve(car, track.getTrackGrip(), track.getSlideTrackGrip());
   }
-  
+  /**
+    *@param car The car being driven.
+    *@param statGrip The static coefficient of friction.
+    *@param kenGrip The nonstatic coefficient of friction.
+    *@return The actual magnitude of the acceleration of the car
+  */
   public static double resolve(Car car, double statGrip, double kenGrip){
     double acceleration = 0;
-    double normalForce = 9.8 * car.getMass();
+    double normalForce = g * car.getMass();
     if(car.getFrontForce() <= normalForce * statGrip){
       acceleration = car.getFrontForce()/car.getMass();
     }else{
