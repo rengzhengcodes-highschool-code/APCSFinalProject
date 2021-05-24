@@ -12,7 +12,17 @@ public class Car{
   //the velocity in m/s
   private double moveAngle;
   private double velocity;
-
+  /**
+    *@param x X coord of the car.
+    *@param y Y coord of the car.
+    *@param m Mass of the car.
+    *@param tS Top speed of the car.
+    *@param a Starting angle of the car.
+    *@param fS Front force of the car.
+    *@param dA moveAngle The starting angle delta.
+    *@param dS The starting velocity.
+    *@postcondition The instance variables are set.
+  */
   public Car(double x, double y, double m, 
              double tS, double a, double fS, 
              double dA, double dS) {
@@ -25,7 +35,8 @@ public class Car{
     moveAngle = dA;
     velocity = dS;
   }
-  
+  /**The default car constructor.
+  */
   public Car() {
     xCor = 200;
     yCor = 200;
@@ -36,7 +47,7 @@ public class Car{
     moveAngle = 0;
     velocity = 0;
   }
-
+  /*Get Methods. Self explanatory*/
   public double getX() {
     return xCor;
   }
@@ -61,7 +72,7 @@ public class Car{
   public double getVelocity() {
     return velocity;
   }
-
+  
   public void display(double x, double y){}
   public void display() {
     stroke(0);
@@ -71,7 +82,7 @@ public class Car{
     rect(x, y, 10, 5.0);
   }
   
-  public void setFrontForce(double acc){
+  public void setFrontForce(double acc) {
     frontForce = acc;
   }
   
