@@ -12,7 +12,7 @@ public class Car{
 	//the velocity in m/s
 	private float moveAngle;
 	private float velocity;
-	private PImage car = loadImage("RaceCar.png");
+	private PImage car = loadImage("RaceCar.png");//from https://www.vectorstock.com/royalty-free-vector/top-view-a-racing-car-vector-15938905
 	private PImageProcessor rotateProcess = new PImageProcessor(
 			new float[][] {
 				{1./9, 1./9, 1./9},
