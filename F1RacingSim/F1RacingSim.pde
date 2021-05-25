@@ -46,7 +46,7 @@ void keyPressed() {
 	}
 
 	if(keyCode == 39){
-		theta += radians(20);
+		theta += radians(10);
 	}
 	if(keyCode == 40){
 		c.setFrontForce(10);
@@ -54,7 +54,7 @@ void keyPressed() {
 		acceleration = Physics.resolve(c, t);
 	}
 	if(keyCode == 37){
-		theta -= radians(20);
+		theta -= radians(10);
 	}
 
 	theta %= 2*Math.PI;

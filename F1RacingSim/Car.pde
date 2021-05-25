@@ -60,7 +60,7 @@ public class Car{
 	public void display() {
 		float scalingFactor = 0.2;
 		imageMode(CENTER);
-		PImage rotated = rotateProcess.rotate(car, moveAngle + (float)Math.PI/2);
+		PImage rotated = rotateProcess.rotate(car, angle + (float)Math.PI/2);
 		rotated.resize((int)(rotated.width * scalingFactor), (int)(rotated.height * scalingFactor));
 		image(rotated, xCor, yCor);
 	}
