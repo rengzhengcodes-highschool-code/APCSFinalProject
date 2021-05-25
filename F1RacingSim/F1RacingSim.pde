@@ -46,18 +46,18 @@ void keyPressed() {
 	}
 
 	if(keyCode == 39){
-		theta += radians(90);
+		theta += radians(20);
 	}
 	if(keyCode == 40){
 		c.setFrontForce(10);
 		theta += Math.PI;
-		theta %= (2*Math.PI);
 		acceleration = Physics.resolve(c, t);
 	}
 	if(keyCode == 37){
-		theta -= radians(90);
+		theta -= radians(20);
 	}
 
+	theta %= 2*Math.PI;
 	float[] newV = Physics.addVector(c.getVelocity(), c.getMoveAngle(), acceleration, theta);
 	c.setVelocity(newV[0], newV[1]);
 	c.setAngle(theta);
