@@ -86,8 +86,16 @@ public class Car{
 
 		for (int x = 0; x < src.width; x++) {
 			for (int y = 0; y < src.height; y++) {
-				nu.set(Math.abs((int)(x * cos(theta) + y * sin(theta))),
-							Math.abs((int)(x * -sin(theta) + y * cos(theta))), src.get(x,y));
+				float nuX = x * cos(theta) + y * sin(theta);
+				float nuY = x * -sin(theta) + y * cos(theta);
+				if (nuX < 0) {
+					nuX = src.width - 1 - nuX;//negative X value compensation
+				}
+				if (nuY < 0) {
+					nuY = src.height - 1 - nuY;//negative Y value compensation
+				}
+
+				nu.set((int)nuX, (int) nuY, src.get(x,y));
 			}
 		}
 
