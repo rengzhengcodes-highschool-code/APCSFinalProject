@@ -1,8 +1,10 @@
 ArrayList<Car> cars;
+Track t;
 void setup(){
 	size(1000, 800);
 	cars = new ArrayList<Car>();
 	cars.add(new Car());
+	t = new Track(1, 0.8, 0, loadImage("Monaco.jpg"));
 }
 
 void draw(){
