@@ -13,6 +13,7 @@ public class Car{
 	private float moveAngle;
 	private float velocity;
 	private PImage car = loadImage("RaceCar.png");
+	private PImageProcessor imgProcess = new PImageProcessor();
 	/**
 		*@param x X coord of the car.
 		*@param y Y coord of the car.
@@ -52,7 +53,7 @@ public class Car{
 	public void display(float x, float y){}
 	public void display() {
 		imageMode(CENTER);
-		image(PImage.rotate(car, moveAngle + (float)Math.PI/2), xCor, yCor);
+		image(imgProcess.rotate(car, moveAngle + (float)Math.PI/2), xCor, yCor);
 	}
 
 	public void setFrontForce(float acc) {

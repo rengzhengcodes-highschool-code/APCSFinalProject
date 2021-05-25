@@ -1,4 +1,4 @@
-public class PImageProcessing {
+public class PImageProcessor {
 	public PImage rotate(PImage src, float theta) {
 		int radiusFromCenterToCorner = Math.round(dist(0, 0, src.width / 2, src.height / 2));
 
