@@ -21,6 +21,7 @@ void draw() {
 	fill(0);
 	textSize(20);
 	text("FPS: "+frameRate,0,20);
+	System.out.println(cars.get(0).toString());
 }
 
 void decelerateCar(Car c) {
@@ -37,15 +38,14 @@ void decelerateCar(Car c) {
 void keyPressed() {
 	Car c = cars.get(0);
 	keyPressed = true;
-	float acceleration = 0;
+	c.setFrontForce(10);
 	float theta = c.getAngle();
 	System.out.println("" + keyCode);
 	if(keyCode == 38) {
 		c.setFrontForce(10);
 		acceleration = Physics.resolve(c, t);
 	}
-
-	if(keyCode == 39){
+	if(keyCode == 39) {
 		theta += radians(10);
 	}
 	if(keyCode == 40){
