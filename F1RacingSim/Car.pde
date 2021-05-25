@@ -77,6 +77,8 @@ public class Car{
 		float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
 		xCor += shift[0];
 		yCor += shift[1];
+
+		screenEdgeDetection();
 	}
 
 	public void setVelocity(float mag, float theta) {
@@ -114,4 +116,31 @@ public class Car{
 	public float getVelocity() {
 		return velocity;
 	}
+	/**
+		*prevents car from going off the edge of the screen
+	*/
+	public void screenEdgeDetection() {
+		boolean onEdge = false;
+		if (xCor < 0) {//x axis detection
+			xCor = 0;
+			onEdge = true;
+		} else if (xCor >= width) {
+			xCor = width - 1;
+			onEdge = true;
+		}
+
+		if (yCor < 0) {//y axis detection
+			yCor = 0;
+			onEdge = true;
+		} else if (yCor >= width) {
+			yCor = width - 1;
+			onEdge = true;
+		}
+
+		if (onEdge) {
+			moveAngle = -moveAngle;
+			velocity = 0;
+		}
+	}
+
 }
