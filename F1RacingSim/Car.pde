@@ -84,6 +84,11 @@ public class Car{
 		moveAngle = theta;
 	}
 
+	public void accelerate(float mag, float theta) {
+		float[] vector = Physics.addVector(velocity, moveAngle, mag, theta);
+		this.setVelocity(vector[0], vector[1]);
+	}
+
 	/*Get Methods. Self explanatory*/
 	public float getX() {
 		return xCor;
