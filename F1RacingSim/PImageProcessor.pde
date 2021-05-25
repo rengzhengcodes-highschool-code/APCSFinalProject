@@ -17,8 +17,8 @@ public class PImageProcessor {
 	public PImage rotate(PImage src, float theta) {
 		int radiusFromCenterToCorner = Math.round(dist(0, 0, src.width / 2, src.height / 2));
 
-		PImage nu = createImage(radiusFromCenterToCorner * 2,
-														radiusFromCenterToCorner * 2, ARGB);
+		PImage nu = createImage(radiusFromCenterToCorner * 2 + 2,
+														radiusFromCenterToCorner * 2 + 2, ARGB);//the plus twos are for diagonal compensation.
 		//compensation values for translating middle of image array to 0, 0.
 		int xComp = src.width / 2;
 		int yComp = src.height / 2;
@@ -32,11 +32,14 @@ public class PImageProcessor {
 				nuX += nu.width / 2;
 				nuY += nu.height / 2;
 
-				nu.set((int)nuX, (int) nuY, src.get(x + xComp,y + yComp));//undoes compensation for get
+				for (int xOff = -1; xOff <= 1; xOff++) {
+					for (int yOff = -1; yOff <= 1; yOff++) {
+						nu.set((int)nuX + xOff, (int)nuY + yOff, src.get(x + xComp, y + yComp));//undoes compensation for the for loop.
+					}
+				}
 			}
 		}
 
-		nu.filter(BLUR);
 		return nu;
 	}
 }
