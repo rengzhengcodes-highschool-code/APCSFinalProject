@@ -58,8 +58,11 @@ public class Car{
 
 	public void display(float x, float y){}
 	public void display() {
+		float scalingFactor = 0.5;
 		imageMode(CENTER);
-		image(rotateProcess.rotate(car, moveAngle + (float)Math.PI/2), xCor, yCor);
+		PImage rotated = rotateProcess.rotate(car, moveAngle + (float)Math.PI/2);
+		rotated.resize((int)(rotated.width * scalingFactor), (int)(rotated.height * scalingFactor));
+		image(rotated, xCor, yCor);
 	}
 
 	public void setFrontForce(float acc) {
