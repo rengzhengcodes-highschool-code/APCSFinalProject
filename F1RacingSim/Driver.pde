@@ -36,23 +36,23 @@ public class Driver {
 		reactionTime = 1;
 		consistency = 1;
 	}
-	
+	/*Get Methods. Self explanatory*/
 	public Car getCar() {
 		return car;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public float getTireWear() {
 		return tireWear;
 	}
-	
+
 	public float getReactionTime() {
 		return reactionTime;
 	}
-	
+
 	public float getConsistency() {
 		return consistency;
 	}

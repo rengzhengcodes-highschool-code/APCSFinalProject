@@ -25,10 +25,10 @@ public static class Physics{
 		return acceleration;
 	}
 	/**
-		*@mag1 Magnitude of the first force vector.
-		*@ang1 Angle of the first force vector.
-		*@mag2 Magnitude of the second force vector.
-		*@ang2 Angle of the second force vector.
+		*@param mag1 Magnitude of the first force vector.
+		*@param ang1 Angle of the first force vector.
+		*@param mag2 Magnitude of the second force vector.
+		*@param ang2 Angle of the second force vector.
 		*@return The sum of the two force vectors.
 	*/
 	public static float[] addVector(float mag1, float ang1, float mag2, float ang2){

@@ -48,31 +48,6 @@ public class Car{
 		moveAngle = 0;
 		velocity = 0;
 	}
-	/*Get Methods. Self explanatory*/
-	public float getX() {
-		return xCor;
-	}
-	public float getY() {
-		return yCor;
-	}
-	public float getMass() {
-		return mass;
-	}
-	public float getTopSpeed() {
-		return topSpeed;
-	}
-	public float getAngle() {
-		return angle;
-	}
-	public float getFrontForce() {
-		return frontForce;
-	}
-	public float getMoveAngle() {
-		return moveAngle;
-	}
-	public float getVelocity() {
-		return velocity;
-	}
 
 	public void display(float x, float y){}
 	public void display() {
@@ -122,5 +97,31 @@ public class Car{
 	public void setVelocity(float mag, float theta) {
 		velocity = mag;
 		moveAngle = theta;
+	}
+
+	/*Get Methods. Self explanatory*/
+	public float getX() {
+		return xCor;
+	}
+	public float getY() {
+		return yCor;
+	}
+	public float getMass() {
+		return mass;
+	}
+	public float getTopSpeed() {
+		return topSpeed;
+	}
+	public float getAngle() {
+		return angle;
+	}
+	public float getFrontForce() {
+		return frontForce;
+	}
+	public float getMoveAngle() {
+		return moveAngle;
+	}
+	public float getVelocity() {
+		return velocity;
 	}
 }
