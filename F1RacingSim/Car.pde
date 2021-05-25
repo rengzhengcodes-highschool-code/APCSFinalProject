@@ -77,7 +77,7 @@ public class Car{
 	public void display(float x, float y){}
 	public void display() {
 		imageMode(CENTER);
-		image(rotatePImage(car, angle + (float)Math.PI/2), xCor, yCor);
+		image(rotatePImage(car, moveAngle + (float)Math.PI/2), xCor, yCor);
 	}
 
 	public PImage rotatePImage(PImage src, float theta) {
