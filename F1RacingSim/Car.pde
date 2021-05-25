@@ -77,15 +77,17 @@ public class Car{
 	public void display(float x, float y){}
 	public void display() {
 		imageMode(CENTER);
-		image(rotatePImage(car, angle), xCor, yCor);
+		image(rotatePImage(car, angle + (float)Math.PI/2), xCor, yCor);
 	}
 
 	public PImage rotatePImage(PImage src, float theta) {
 		PImage nu = createImage(Math.abs((int)(src.width * cos(theta) + src.height * sin(theta))),
 														Math.abs((int)(src.height * -sin(theta) + src.width * cos(theta))), ARGB);
-
-		for (int x = 0; x < src.width; x++) {
-			for (int y = 0; y < src.height; y++) {
+		//compensation values for translating middle of image array to 0, 0.
+		int xComp = src.width - 1;
+		int yComp = src.height - 1;
+		for (int x = -xComp / 2; x < src.width / 2; x++) {//sets origin of coords to 0, 0
+			for (int y = -yComp / 2; y < src.height / 2; y++) {//sets origin of coords to 0, 0
 				float nuX = x * cos(theta) + y * sin(theta);
 				float nuY = x * -sin(theta) + y * cos(theta);
 				if (nuX < 0) {
@@ -95,7 +97,7 @@ public class Car{
 					nuY = src.height - 1 - nuY;//negative Y value compensation
 				}
 
-				nu.set((int)nuX, (int) nuY, src.get(x,y));
+				nu.set((int)nuX, (int) nuY, src.get(x + xComp,y + yComp));//undoes compensation for get
 			}
 		}
 
