@@ -14,10 +14,10 @@ void draw() {
 	for(Car c : cars) {
 		c.move();
 		c.display();
-		if (!keyPressed) {
-			if (c.getVelocity() > c.getFrontForce()) {
-				c.setVelocity(-Physics.resolve(c, t), c.getMoveAngle());
-			} else {
+		if (!keyPressed) {//if its not currently accelerating
+			if (c.getVelocity() > c.getFrontForce() / 10) {//if the velocity is greater than a tenth of the front force
+				c.setVelocity(-Physics.resolve(c, t) / 10, c.getMoveAngle());//apply currently arbitrary drag acceleration.
+			} else {//if not, set the acceleration to 0
 				c.setVelocity(0, c.getMoveAngle());
 			}
 		}
