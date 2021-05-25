@@ -39,7 +39,7 @@ void keyPressed() {
 	//System.out.println("" + keyCode);
 	if(keyCode == 39){
 		for(Car c : cars){
-			c.shiftAngle(0);
+			c.setAngle(0);
 			c.setFrontForce(10);
 			float acc = Physics.resolve(c, t);
 			float facingAngle = c.getAngle();
@@ -56,7 +56,7 @@ void keyPressed() {
 	}
 	if(keyCode == 40){
 		for(Car c : cars){
-			c.shiftAngle((float)Math.PI/2);
+			c.setAngle((float)Math.PI/2);
 			c.setFrontForce(10);
 			float acc = Physics.resolve(c, t);
 			float facingAngle = c.getAngle();
@@ -72,7 +72,7 @@ void keyPressed() {
 	}
 	if(keyCode == 37){
 		for(Car c : cars){
-			c.shiftAngle(Math.PI);
+			c.setAngle(Math.PI);
 			c.setFrontForce(10);
 			float acc = Physics.resolve(c, t);
 			float facingAngle = c.getAngle();
@@ -91,7 +91,7 @@ void keyPressed() {
 	}
 	if(keyCode == 38){
 		for(Car c : cars){
-			c.shiftAngle(Math.PI*1.5);
+			c.setAngle(Math.PI*1.5);
 			c.setFrontForce(10);
 			float acc = Physics.resolve(c, t);
 			float facingAngle = c.getAngle();

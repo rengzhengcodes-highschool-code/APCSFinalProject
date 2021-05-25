@@ -69,7 +69,7 @@ public class Car{
 		frontForce = acc;
 	}
 
-	public void shiftAngle(double theta) {
+	public void setAngle(double theta) {
 		angle = (float)theta;
 	}
 
