@@ -14,7 +14,7 @@ void draw() {
 	for(Car c : cars) {
 		c.move();
 		c.display();
-		decelerateCars();
+		decelerateCar(c);
 		//System.out.println("X: " + c.getX());
 		//System.out.println("Y: " + c.getY());
 	}
@@ -23,7 +23,7 @@ void draw() {
 	text("FPS: "+frameRate,0,20);
 }
 
-void decelerateCars() {
+void decelerateCar(Car c) {
 	float acceleration = Physics.resolve(c, t);
 	if (!keyPressed) {//if its not currently accelerating
 		if (c.getVelocity() > acceleration) {//if the velocity is greater than a tenth of the front force
