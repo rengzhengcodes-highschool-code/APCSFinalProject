@@ -38,7 +38,7 @@ void decelerateCar(Car c) {
 void keyPressed() {
 	Car c = cars.get(0);
 	keyPressed = true;
-	c.setFrontForce(10);
+	float acceleration = 0;
 	float theta = c.getAngle();
 	System.out.println("" + keyCode);
 	if(keyCode == 38) {
