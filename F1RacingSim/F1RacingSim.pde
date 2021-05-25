@@ -4,11 +4,12 @@ void setup(){
 	size(1000, 800);
 	cars = new ArrayList<Car>();
 	cars.add(new Car());
-	t = new Track(1, 0.8, 0, loadImage("Monaco.jpg"));
+	t = new Track(1, 0.8, 0, loadImage("Monaco.png"));
 }
 
 void draw(){
 	background(200);
+	t.display();
 	for(Car c : cars) {
 		c.move();
 		c.display();
