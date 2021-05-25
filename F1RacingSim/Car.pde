@@ -73,6 +73,10 @@ public class Car{
 		angle = (float)theta;
 	}
 
+	public void shiftAngle(double theta) {
+		angle += (float)theta;
+	}
+
 	public void move() {
 		float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
 		xCor += shift[0];

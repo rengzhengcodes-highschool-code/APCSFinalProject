@@ -35,76 +35,32 @@ void decelerateCar(Car c) {
 }
 
 void keyPressed() {
+	Car c = cars.get(0);
 	keyPressed = true;
-	//System.out.println("" + keyCode);
+	float acceleration = 0;
+	float theta = c.getAngle();
+	System.out.println("" + keyCode);
+	if(keyCode == 38) {
+		c.setFrontForce(10);
+		acceleration = Physics.resolve(c, t);
+	}
+
 	if(keyCode == 39){
-		for(Car c : cars){
-			c.setAngle(0);
-			c.setFrontForce(10);
-			float acc = Physics.resolve(c, t);
-			float facingAngle = c.getAngle();
-			//System.out.println("" + c.getAngle());
-			//System.out.println("" + c.getVelocity());
-			float speed = c.getVelocity();
-			float moveAngle = c.getMoveAngle();
-			float[] newMoveVector = Physics.addVector(acc, facingAngle, speed, moveAngle);
-			c.setVelocity(newMoveVector[0],newMoveVector[1]);
-			//System.out.println("" + newMoveVector[0]);
-			//System.out.println("" + newMoveVector[1]);
-			System.out.println("-------");
-		}
+		theta += radians(90);
 	}
 	if(keyCode == 40){
-		for(Car c : cars){
-			c.setAngle((float)Math.PI/2);
-			c.setFrontForce(10);
-			float acc = Physics.resolve(c, t);
-			float facingAngle = c.getAngle();
-			//System.out.println("" + c.getAngle());
-			//System.out.println("" + c.getVelocity());
-			float speed = c.getVelocity();
-			float moveAngle = c.getMoveAngle();
-			float[] newMoveVector = Physics.addVector(acc, facingAngle, speed, moveAngle);
-			c.setVelocity(newMoveVector[0],newMoveVector[1]);
-			//System.out.println("" + newMoveVector[0]);
-			System.out.println("-------");
-		}
+		c.setFrontForce(10);
+		theta += Math.PI;
+		theta %= (2*Math.PI);
+		acceleration = Physics.resolve(c, t);
 	}
 	if(keyCode == 37){
-		for(Car c : cars){
-			c.setAngle(Math.PI);
-			c.setFrontForce(10);
-			float acc = Physics.resolve(c, t);
-			float facingAngle = c.getAngle();
-			//System.out.println("" + c.getAngle());
-			//System.out.println("" + c.getVelocity());
-			float speed = c.getVelocity();
-			float moveAngle = c.getMoveAngle();
-			//System.out.println("Acc:" + acc);
-			//System.out.println("facing angle:" + facingAngle);
-			float[] newMoveVector = Physics.addVector(acc, facingAngle, speed, moveAngle);
-			//System.out.println("" + newMoveVector[0]);
-			//System.out.println("" + newMoveVector[1]);
-			c.setVelocity(newMoveVector[0],newMoveVector[1]);
-			System.out.println("-----");
-		}
+		theta -= radians(90);
 	}
-	if(keyCode == 38){
-		for(Car c : cars){
-			c.setAngle(Math.PI*1.5);
-			c.setFrontForce(10);
-			float acc = Physics.resolve(c, t);
-			float facingAngle = c.getAngle();
-			//System.out.println("" + c.getAngle());
-			//System.out.println("" + c.getVelocity());
-			float speed = c.getVelocity();
-			float moveAngle = c.getMoveAngle();
-			float[] newMoveVector = Physics.addVector(acc, facingAngle, speed, moveAngle);
-			c.setVelocity(newMoveVector[0],newMoveVector[1]);
-			//System.out.println("" + newMoveVector[0]);
-			System.out.println("-------");
-		}
-	}
+
+	float[] newV = Physics.addVector(c.getVelocity(), c.getMoveAngle(), acceleration, theta);
+	c.setVelocity(newV[0], newV[1]);
+	c.setAngle(theta);
 }
 
 void keyReleased() {
