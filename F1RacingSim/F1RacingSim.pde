@@ -38,6 +38,18 @@ void decelerateCar(Car c) {
 void keyPressed() {
 	Car c = cars.get(0);
 	keyPressed = true;
+	drive(c);
+}
+
+void keyReleased() {
+  keyPressed = false;
+}
+
+/**
+	*@param c The car being driven.
+	*@postcondition The car has accelerated and turned.
+*/
+void drive(Car c) {
 	float acceleration = 0;
 	float theta = c.getAngle();
 	System.out.println("" + keyCode);
@@ -56,13 +68,12 @@ void keyPressed() {
 	if(keyCode == 37){
 		theta -= radians(10);
 	}
-
-	theta %= 2*Math.PI;
-	float[] newV = Physics.addVector(c.getVelocity(), c.getMoveAngle(), acceleration, theta);
-	c.setVelocity(newV[0], newV[1]);
-	c.setAngle(theta);
-}
-
-void keyReleased() {
-  keyPressed = false;
+	if (acceleration == 0 && c.getVelocity() == 0) {//if both magnitudes are 0 CartesianPolarMath will return NaN when converting between the two because of how acos and asin work.
+		c.setAngle(theta);
+	} else {
+		theta %= 2*Math.PI;
+		float[] newV = Physics.addVector(c.getVelocity(), c.getMoveAngle(), acceleration, theta);
+		c.setVelocity(newV[0], newV[1]);
+		c.setAngle(theta);
+	}
 }
