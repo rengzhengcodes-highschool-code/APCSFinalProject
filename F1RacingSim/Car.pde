@@ -1,4 +1,5 @@
 public class Car{
+  private boolean skid;
 	private float xCor;
 	private float yCor;
 	private float mass;
@@ -27,7 +28,7 @@ public class Car{
 	*/
 	public Car(float x, float y, float m,
 						 float tS, float a, float fS,
-						 float dA, float dS) {
+						 float dA, float dS, boolean skd) {
 		xCor = x;
 		yCor = y;
 		mass = m;
@@ -36,6 +37,7 @@ public class Car{
 		frontForce = fS;
 		moveAngle = dA;
 		velocity = dS;
+    skid = skd;
 	}
 	/**The default car constructor.
 	*/
@@ -43,11 +45,12 @@ public class Car{
 		xCor = 200;
 		yCor = 200;
 		mass = 900;
-		topSpeed = 104;
+		topSpeed = 10;
 		angle = 0;
 		frontForce = 0;
 		moveAngle = 0;
 		velocity = 0;
+    skid = false;
 	}
 
 	public void display(float x, float y){}
@@ -63,8 +66,13 @@ public class Car{
 		frontForce = acc;
 	}
 
+<<<<<<< HEAD
+	public void shiftAngle(double theta) {
+		angle += (float)theta;
+=======
 	public void setAngle(double theta) {
 		angle = (float)theta;
+>>>>>>> 9e6e3e0e5fbe0efac5c88857637a046ed48e3ecd
 	}
 
 	public void shiftAngle(double theta) {
@@ -72,6 +80,9 @@ public class Car{
 	}
 
 	public void move() {
+    if(velocity > topSpeed){
+      velocity = topSpeed;
+    }
 		float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
 		xCor += shift[0];
 		yCor += shift[1];
@@ -84,10 +95,16 @@ public class Car{
 		moveAngle = theta;
 	}
 
+<<<<<<< HEAD
+  public boolean isSkidding(){
+    return skid;
+  }
+=======
 	public void accelerate(float mag, float theta) {
 		float[] vector = Physics.addVector(velocity, moveAngle, mag, theta);
 		this.setVelocity(vector[0], vector[1]);
 	}
+>>>>>>> 9e6e3e0e5fbe0efac5c88857637a046ed48e3ecd
 
 	/*Get Methods. Self explanatory*/
 	public float getX() {
