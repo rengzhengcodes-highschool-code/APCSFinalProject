@@ -10,6 +10,11 @@ void draw(){
 	for(Car c : cars) {
 		c.move();
 		c.display();
+    if(c.getVelocity() != 0){
+      Physics.driftSlow(c, 0.25, 0.10);
+    }
+    //Physics.resolve(c, 0.90, 0.68);
+    //Physics.driftSlow(c, 0.90, 68);
 		//System.out.println("X: " + c.getX());
 		//System.out.println("Y: " + c.getY());
 	}
@@ -19,11 +24,16 @@ void draw(){
 }
 
 void keyPressed(){
+  if(keyCode == 32){
+    for(Car c: cars){
+      Physics.driftSlow(c, 0.90, 0.68);
+    }
+  }
 	//System.out.println("" + keyCode);
 	if(keyCode == 39){
 		for(Car c : cars){
-			c.shiftAngle(0);
-			c.setFrontForce(10);
+			c.shiftAngle(Math.PI/2);
+			//c.setFrontForce(10);
 			float acc = Physics.resolve(c, 0.90, 0.68);
 			float facingAngle = c.getAngle();
 			//System.out.println("" + c.getAngle());
@@ -34,13 +44,13 @@ void keyPressed(){
 			c.setVelocity(newMoveVector[0],newMoveVector[1]);
 			//System.out.println("" + newMoveVector[0]);
 			//System.out.println("" + newMoveVector[1]);
-			System.out.println("-------");
+			//System.out.println("-------");
 		}
 	}
 	if(keyCode == 40){
 		for(Car c : cars){
-			c.shiftAngle((float)Math.PI/2);
-			c.setFrontForce(10);
+			//c.shiftAngle((float)Math.PI/2);
+			c.setFrontForce(-10);
 			float acc = Physics.resolve(c, 0.90, 0.68);
 			float facingAngle = c.getAngle();
 			//System.out.println("" + c.getAngle());
@@ -50,13 +60,13 @@ void keyPressed(){
 			float[] newMoveVector = Physics.addVector(acc, facingAngle, speed, moveAngle);
 			c.setVelocity(newMoveVector[0],newMoveVector[1]);
 			//System.out.println("" + newMoveVector[0]);
-			System.out.println("-------");
+			//System.out.println("-------");
 		}
 	}
 	if(keyCode == 37){
 		for(Car c : cars){
-			c.shiftAngle(Math.PI);
-			c.setFrontForce(10);
+			c.shiftAngle(-Math.PI/2);
+			//c.setFrontForce(10);
 			float acc = Physics.resolve(c, 0.90, 0.68);
 			float facingAngle = c.getAngle();
 			//System.out.println("" + c.getAngle());
@@ -69,12 +79,12 @@ void keyPressed(){
 			//System.out.println("" + newMoveVector[0]);
 			//System.out.println("" + newMoveVector[1]);
 			c.setVelocity(newMoveVector[0],newMoveVector[1]);
-			System.out.println("-----");
+			//System.out.println("-----");
 		}
 	}
 	if(keyCode == 38){
 		for(Car c : cars){
-			c.shiftAngle(Math.PI*1.5);
+			//c.shiftAngle(Math.PI*1.5);
 			c.setFrontForce(10);
 			float acc = Physics.resolve(c, 0.90, 0.68);
 			float facingAngle = c.getAngle();
@@ -85,7 +95,7 @@ void keyPressed(){
 			float[] newMoveVector = Physics.addVector(acc, facingAngle, speed, moveAngle);
 			c.setVelocity(newMoveVector[0],newMoveVector[1]);
 			//System.out.println("" + newMoveVector[0]);
-			System.out.println("-------");
+			//System.out.println("-------");
 		}
 	}
 }
