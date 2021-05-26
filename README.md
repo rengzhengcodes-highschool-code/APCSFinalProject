@@ -16,3 +16,5 @@ Requires Processing version 3: https://processing.org/download/
 
 2021-05-24|RZ - Resolved some repetitive code from initial development. Implemented a rotate function that is used to display a PImage of the car facing the direction of movement.
 2021-05-24|JM - finished basic omnidirectional movement with the Car and Physics classes. Also fixed the cartesian to polar conversion method that had been causing some problems.
+
+2021-05-24|RZ - Screen edge collision implemented. Added unrealistic friction physics (realism to be implemented, is a proof of concept).

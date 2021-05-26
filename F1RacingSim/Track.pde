@@ -23,6 +23,7 @@ public class Track {
 		trackSlideGrip = slideGrip;
 		tireWear = wear;
 		track = img;
+		track.resize(width, height);
 	}
 	/**
 		*@param x The x-cord of the center of the area of the track you want to focus on.
@@ -34,9 +35,17 @@ public class Track {
 	public PImage getTrackCamera(int x, int y, int w, int h) {
 		x += w/2;
 		y -= h/2;
-		
+
 		return track.get(x, y, w, h);
 	}
+
+	public void display() {
+		imageMode(CORNER);
+		image(track, 0, 0);
+	}
+
+	/*Get Statements. Self explanatory*/
+
 	/**@return The track static friction coefficient.
 	*/
 	public float getTrackGrip() {

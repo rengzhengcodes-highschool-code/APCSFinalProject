@@ -5,7 +5,7 @@ public static class Physics{
 		*@param track The track being driven on.
 		*@return The actual magnitude of the acceleration of the car
 	*/
-	public float resolve(Car car, Track track){
+	public static float resolve(Car car, Track track) {
 		return resolve(car, track.getTrackGrip(), track.getTrackSlideGrip());
 	}
 	/**
