@@ -26,7 +26,7 @@ public class Track {
 		track = img;
 		track.resize(width, height);
 		trackEdge = track.copy();
-		
+
 	}
 	/**
 		*@param x The x-cord of the center of the area of the track you want to focus on.
@@ -45,6 +45,11 @@ public class Track {
 	public void display() {
 		imageMode(CORNER);
 		image(track, 0, 0);
+	}
+
+	public void displayEdge() {
+		imageMode(CORNER);
+		image(trackEdge, 0, 0);
 	}
 
 	/*Get Statements. Self explanatory*/
