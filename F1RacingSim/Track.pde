@@ -11,6 +11,7 @@ public class Track {
 	/** The image that represents the track.
 	*/
 	final private PImage track;
+	final private PImage trackEdge;
 	/**
 		*@param grip Track static friction coefficient.
 		*@param slideGrip Track nonstatic friction coefficient.
@@ -24,6 +25,8 @@ public class Track {
 		tireWear = wear;
 		track = img;
 		track.resize(width, height);
+		trackEdge = track.copy();
+		
 	}
 	/**
 		*@param x The x-cord of the center of the area of the track you want to focus on.
