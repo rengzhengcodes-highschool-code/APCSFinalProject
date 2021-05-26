@@ -93,7 +93,7 @@ public class Car{
   public boolean isSkidding(){
     return skid;
   }
-	
+
 	public void accelerate(float mag, float theta) {
 		float[] vector = Physics.addVector(velocity, moveAngle, mag, theta);
 		this.setVelocity(vector[0], vector[1]);
@@ -140,8 +140,8 @@ public class Car{
 		if (yCor < 0) {//y axis detection
 			yCor = 0;
 			onEdge = true;
-		} else if (yCor >= width) {
-			yCor = width - 1;
+		} else if (yCor >= height) {
+			yCor = height - 1;
 			onEdge = true;
 		}
 
