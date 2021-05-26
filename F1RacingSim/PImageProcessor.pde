@@ -1,17 +1,5 @@
 public class PImageProcessor {
-	Kernel k;
-
-	public PImageProcessor(float[][] kernel) {
-		this.k = new Kernel(kernel);
-	}
-
 	public PImageProcessor() {
-		k = new Kernel(new float[][] {
-					{0, 0, 0},
-					{0, 1, 0},
-					{0, 0, 0},
-				}
-			);
 	}
 
 	public PImage rotate(PImage src, float theta) {
