@@ -1,4 +1,5 @@
 public class Car{
+  private boolean skid;
 	private float xCor;
 	private float yCor;
 	private float mass;
@@ -33,7 +34,7 @@ public class Car{
 	*/
 	public Car(float x, float y, float m,
 						 float tS, float a, float fS,
-						 float dA, float dS) {
+						 float dA, float dS, boolean skd) {
 		xCor = x;
 		yCor = y;
 		mass = m;
@@ -42,6 +43,7 @@ public class Car{
 		frontForce = fS;
 		moveAngle = dA;
 		velocity = dS;
+    skid = skd;
 	}
 	/**The default car constructor.
 	*/
@@ -49,18 +51,19 @@ public class Car{
 		xCor = 200;
 		yCor = 200;
 		mass = 900;
-		topSpeed = 104;
+		topSpeed = 10;
 		angle = 0;
 		frontForce = 0;
 		moveAngle = 0;
 		velocity = 0;
+    skid = false;
 	}
 
 	public void display(float x, float y){}
 	public void display() {
 		float scalingFactor = 0.5;
 		imageMode(CENTER);
-		PImage rotated = rotateProcess.rotate(car, moveAngle + (float)Math.PI/2);
+		PImage rotated = rotateProcess.rotate(car, angle + (float)Math.PI/2);
 		rotated.resize((int)(rotated.width * scalingFactor), (int)(rotated.height * scalingFactor));
 		image(rotated, xCor, yCor);
 	}
@@ -70,10 +73,13 @@ public class Car{
 	}
 
 	public void shiftAngle(double theta) {
-		angle = (float)theta;
+		angle += (float)theta;
 	}
 
 	public void move() {
+    if(velocity > topSpeed){
+      velocity = topSpeed;
+    }
 		float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
 		xCor += shift[0];
 		yCor += shift[1];
@@ -83,6 +89,10 @@ public class Car{
 		velocity = mag;
 		moveAngle = theta;
 	}
+
+  public boolean isSkidding(){
+    return skid;
+  }
 
 	/*Get Methods. Self explanatory*/
 	public float getX() {
