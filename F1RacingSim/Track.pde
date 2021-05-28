@@ -81,4 +81,9 @@ public class Track {
 	public int trackYLength() {
 		return track.height;
 	}
+	/**@return The track edge view.
+	*/
+	public PImage getTrackEdge() {
+		return trackEdge;
+	}
 }
