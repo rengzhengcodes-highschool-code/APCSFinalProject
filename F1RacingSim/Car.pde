@@ -154,6 +154,6 @@ public class Car{
 	public String toString() {
 		return "Coords: (" + xCor + ", " + yCor + ") | Velocity: ("
 						+ velocity + ", " + moveAngle + ") | Car Angle: " + angle +
-						"frontForce: " + frontForce;
+						" frontForce: " + frontForce;
 	}
 }
