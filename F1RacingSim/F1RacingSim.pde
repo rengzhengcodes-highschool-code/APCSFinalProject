@@ -10,7 +10,7 @@ void setup() {
 
 void draw() {
 	background(200);
-	t.display();
+	t.displayEdge();
 	for(Car c : cars) {
 		c.move();
 		c.display();
@@ -67,6 +67,11 @@ void drive(Car c) {
 	if(keyCode == 37){
 		theta -= radians(10);
 	}
+	if (keyCode == 40) {
+		c.setFrontForce(10);
+		acceleration = -Physics.resolve(c, t);
+	}
+
 	if (acceleration == 0 && c.getVelocity() == 0) {//if both magnitudes are 0 CartesianPolarMath will return NaN when converting between the two because of how acos and asin work.
 		c.setAngle(theta);
 	} else {

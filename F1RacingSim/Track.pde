@@ -26,6 +26,8 @@ public class Track {
 		track = img;
 		track.resize(width, height);
 		trackEdge = track.copy();
+		PImageProcessor p = new PImageProcessor();
+		p.edgeDetection(track, trackEdge);
 
 	}
 	/**
