@@ -66,9 +66,6 @@ public class AIDriver extends Driver {
 			} else if (dL > dR) {
 				theta -= radians(1);
 			}
-
-			c.setFrontForce(10);
-			a = Physics.resolve(c, t);
 		} else {
 			float[] bound = closestBound(sightRange, theta, t.getTrackEdge());
 			int turnDirection = 1;
@@ -77,10 +74,17 @@ public class AIDriver extends Driver {
 				turnDirection = -1;
 			}
 
-			for (int i = 360; i > 0 && (10 > dist(0, 0, bound[0], bound[1])); i--) {
+			for (int i = 360; i > 0 && (15 > dist(0, 0, bound[0], bound[1])); i--) {
 				theta += radians(1) * turnDirection;
 				bound = closestBound(sightRange, theta, t.getTrackEdge());
 			}
+		}
+		c.setFrontForce(10);
+		a = Physics.resolve(c, t);
+
+		if (d < 2) {
+			c.setFrontForce(100000);
+			a = Physics.resolve(c, t);
 		}
 
 		theta %= Math.PI * 2;
