@@ -15,6 +15,7 @@ void draw() {
 		Car c = ai.getCar();
 		c.move();
 		c.display();
+		ai.displayLineOfSight();
 		if(c.getVelocity() != 0) {
 			Physics.driftSlow(c, 0.25, 0.10);
 		}
