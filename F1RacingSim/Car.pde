@@ -62,6 +62,10 @@ public class Car{
 		imageMode(CENTER);
 		image(car, 0, 0);
 		popMatrix();
+
+		float[] closestBound = closestBound(50, t.getTrackEdge());
+		stroke(255);
+		line(xCor, yCor, xCor + closestBound[0], yCor + closestBound[1]);
 	}
 
 	public void setFrontForce(float acc) {
@@ -158,5 +162,27 @@ public class Car{
 		return "Coords: (" + xCor + ", " + yCor + ") | Velocity: ("
 						+ velocity + ", " + moveAngle + ") | Car Angle: " + angle +
 						" frontForce: " + frontForce;
+	}
+
+	public float distanceToBounds() {
+		float[] boundPixelOffset = closestBound(50, t.getTrackEdge());
+		return dist(0, 0, boundPixelOffset[0], boundPixelOffset[1]);
+	}
+
+	private float[] closestBound(float visualRange, PImage bound) {
+		float xOff = 0;
+		float yOff = 0;
+
+		for (int i = 0; i < visualRange; i++) {
+			if (color(0) != bound.get((int)(xCor + xOff),
+				              	        (int)(yCor + yOff))) {
+				return new float[] {xOff, yOff};
+			} else {
+				xOff += cos(moveAngle);
+				yOff += sin(moveAngle);
+			}
+		}
+
+		return new float[] {xOff, yOff};
 	}
 }
