@@ -51,17 +51,13 @@ public class Car{
 	public void display(float x, float y){}
 	public void display() {
 		pushMatrix();
-		translate(xCor,yCor);
+		translate(xCor, yCor);
 		rotate(angle + (float)Math.PI/2);
 		imageMode(CENTER);
 		image(car, 0, 0);
 		popMatrix();
-
-		float[] closestBound = closestBound(50, t.getTrackEdge());
-		stroke(255);
-		line(xCor, yCor, xCor + closestBound[0], yCor + closestBound[1]);
 	}
-
+	/*Set methods. Self explanatory*/
 	public void setFrontForce(float acc) {
 		frontForce = acc;
 	}
@@ -70,10 +66,20 @@ public class Car{
 		angle = (float)theta;
 	}
 
+	public void setVelocity(float mag, float theta) {
+		velocity = mag;
+		moveAngle = theta;
+	}
+	/*Movement methods*/
+	/**
+		*@param theta The angle you want to shift the car by in radians.
+	*/
 	public void shiftAngle(double theta) {
 		angle += (float)theta;
 	}
-
+	/**
+		*@postcondition Car moves by its given velocity vector.
+	*/
 	public void move() {
 		if(velocity > topSpeed){
 			velocity = topSpeed;
@@ -85,16 +91,11 @@ public class Car{
 		System.out.println(CartesianPolarMath.cartesianToPolar(shift[0], shift[1])[0]);
 		screenEdgeDetection();
 	}
-
-	public void setVelocity(float mag, float theta) {
-		velocity = mag;
-		moveAngle = theta;
-	}
-
-	public boolean isSkidding(){
-		return skid;
-	}
-
+	/**
+		*@param mag The magnitude of the acceleration.
+		*@param theta The direction of the acceleration.
+		*@postcondition Velocity changes according to the acceleration vector.
+	*/
 	public void accelerate(float mag, float theta) {
 		float[] vector = Physics.addVector(velocity, moveAngle, mag, theta);
 		this.setVelocity(vector[0], vector[1]);
@@ -124,6 +125,10 @@ public class Car{
 	}
 	public float getVelocity() {
 		return velocity;
+	}
+
+	public boolean isSkidding() {
+		return skid;
 	}
 	/**
 		*prevents car from going off the edge of the screen
@@ -158,12 +163,19 @@ public class Car{
 						+ velocity + ", " + moveAngle + ") | Car Angle: " + angle +
 						" frontForce: " + frontForce;
 	}
-
-	public float distanceToBounds() {
-		float[] boundPixelOffset = closestBound(50, t.getTrackEdge());
+	/**
+		*@param visualRange The range you want to detect up to.
+		*@return The length of the line between the center of the car and the direction its moving until the closest bound point within visualRange.
+	*/
+	public float distanceToBounds(float visualRange) {
+		float[] boundPixelOffset = closestBound(visualRange, t.getTrackEdge());
 		return dist(0, 0, boundPixelOffset[0], boundPixelOffset[1]);
 	}
-
+	/**
+		*@param visualRange The range you want to detect up to.
+		*@param bound The PImage representing the movement boundary.
+		*@return A float in Cartesian form representing the x and y offsets from the car center to get to the bound.
+	*/
 	private float[] closestBound(float visualRange, PImage bound) {
 		float xOff = 0;
 		float yOff = 0;
