@@ -20,7 +20,7 @@ public class Kernel {
       float rTotal = 0;
       float gTotal = 0;
       float bTotal = 0;
-      
+
       for (float[] row: kernel) {
         for (float weight: row) {//columns now
           color c = img.get(x + xOffset, y + yOffset);
@@ -32,7 +32,7 @@ public class Kernel {
         xOffset = -(kernel.length / 2);
         yOffset++;
       }
-      
+
       //System.out.println(rTotal + " " + gTotal + " " + bTotal);
       return color(rTotal, gTotal, bTotal);
     }
@@ -48,10 +48,5 @@ public class Kernel {
         destination.set(x, y, calcNewColor(source, x, y));
       }
     }
-  }
-
-  void edgeDetection(PImage source, PImage destination) {
-    apply(source, destination);
-    destination.filter(GRAY);
   }
 }

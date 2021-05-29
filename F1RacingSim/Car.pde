@@ -71,9 +71,15 @@ public class Car{
     frontForce = acc;
   }
 
+<<<<<<< HEAD
   public void setAngle(double theta) {
     angle = (float)theta;
   }
+=======
+	public void setAngle(double theta) {
+		angle = (float)theta;
+	}
+>>>>>>> de342deac596150bde63f4c1350570d0cc49584b
 
   public void shiftAngle(double theta) {
     angle += (float)theta;
@@ -99,11 +105,19 @@ public class Car{
   public boolean isSkidding(){
     return skid;
   }
+<<<<<<< HEAD
   
   public void accelerate(float mag, float theta) {
     float[] vector = Physics.addVector(velocity, moveAngle, mag, theta);
     this.setVelocity(vector[0], vector[1]);
   }
+=======
+
+	public void accelerate(float mag, float theta) {
+		float[] vector = Physics.addVector(velocity, moveAngle, mag, theta);
+		this.setVelocity(vector[0], vector[1]);
+	}
+>>>>>>> de342deac596150bde63f4c1350570d0cc49584b
 
   /*Get Methods. Self explanatory*/
   public float getX() {
@@ -143,6 +157,7 @@ public class Car{
       onEdge = true;
     }
 
+<<<<<<< HEAD
     if (yCor < 0) {//y axis detection
       yCor = 0;
       onEdge = true;
@@ -150,6 +165,15 @@ public class Car{
       yCor = width - 1;
       onEdge = true;
     }
+=======
+		if (yCor < 0) {//y axis detection
+			yCor = 0;
+			onEdge = true;
+		} else if (yCor >= height) {
+			yCor = height - 1;
+			onEdge = true;
+		}
+>>>>>>> de342deac596150bde63f4c1350570d0cc49584b
 
     if (onEdge) {
       moveAngle = -moveAngle;
@@ -157,9 +181,17 @@ public class Car{
     }
   }
 
+<<<<<<< HEAD
   public String toString() {
     return "Coords: (" + xCor + ", " + yCor + ") | Velocity: ("
             + velocity + ", " + moveAngle + ") | Car Angle: " + angle +
             " frontForce: " + frontForce;
   }
+=======
+	public String toString() {
+		return "Coords: (" + xCor + ", " + yCor + ") | Velocity: ("
+						+ velocity + ", " + moveAngle + ") | Car Angle: " + angle +
+						" frontForce: " + frontForce;
+	}
+>>>>>>> de342deac596150bde63f4c1350570d0cc49584b
 }

@@ -18,3 +18,7 @@ Requires Processing version 3: https://processing.org/download/
 2021-05-24|JM - finished basic omnidirectional movement with the Car and Physics classes. Also fixed the cartesian to polar conversion method that had been causing some problems.
 
 2021-05-24|RZ - Screen edge collision implemented. Added unrealistic friction physics (realism to be implemented, is a proof of concept).
+
+2021-05-25|RZ - Implemented track image importing. Found some bugs in the movement code like the car disappearing when both vectors had magnitudes of 0.
+
+2021-05-26|RZ - Merged code between Jordan and I. Began the beginnings of the edge detection algorithm of the track by using kernel processing to find the track edge.
