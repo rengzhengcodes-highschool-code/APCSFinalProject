@@ -25,28 +25,28 @@ public static class Physics{
 		return acceleration;
 	}
 
-  public static void driftSlow(Car car, float statGrip, float kenGrip){
-    //float[] oldMoveVector = CartesianPolarMath.polarToCartesian(car.getVelocity(),car.getMoveAngle());
-    //float difAngle = car.getAngle() - car.getMoveAngle();
-    float[] fakeVector = CartesianPolarMath.polarToCartesian(car.getVelocity(), car.getMoveAngle()-car.getAngle());
-    if(Math.abs(fakeVector[1]) <= g*car.getMass()*statGrip){
-      fakeVector[1] = 0;
-    }else{
-      if(fakeVector[1] < 0 && fakeVector[1] <= g*car.getMass()*kenGrip){
-        fakeVector[1] += g*car.getMass()*kenGrip;
-      }else{
-        if(fakeVector[1] > 0 && fakeVector[1] >= g*car.getMass()*kenGrip){
-          fakeVector[1] -= g*car.getMass()*kenGrip;
-        }else{
-          fakeVector[1] = 0;
-        }
-      }
-    }
-    float[] fakeV2 = CartesianPolarMath.cartesianToPolar(fakeVector[0], fakeVector[1]);
-    //fakeV2[1] += difAngle;
-    float[] res = addVector(fakeV2[0], fakeV2[1]+car.getAngle(), car.getVelocity(), car.getMoveAngle());
-    car.setVelocity(res[0], res[1]);
-  }
+	public static void driftSlow(Car car, float statGrip, float kenGrip){
+		//float[] oldMoveVector = CartesianPolarMath.polarToCartesian(car.getVelocity(),car.getMoveAngle());
+		//float difAngle = car.getAngle() - car.getMoveAngle();
+		float[] fakeVector = CartesianPolarMath.polarToCartesian(car.getVelocity(), car.getMoveAngle()-car.getAngle());
+		if(Math.abs(fakeVector[1]) <= g*car.getMass()*statGrip){
+			fakeVector[1] = 0;
+		}else{
+			if(fakeVector[1] < 0 && fakeVector[1] <= g*car.getMass()*kenGrip){
+				fakeVector[1] += g*car.getMass()*kenGrip;
+			}else{
+				if(fakeVector[1] > 0 && fakeVector[1] >= g*car.getMass()*kenGrip){
+					fakeVector[1] -= g*car.getMass()*kenGrip;
+				}else{
+					fakeVector[1] = 0;
+				}
+			}
+		}
+		float[] fakeV2 = CartesianPolarMath.cartesianToPolar(fakeVector[0], fakeVector[1]);
+		//fakeV2[1] += difAngle;
+		float[] res = addVector(fakeV2[0], fakeV2[1]+car.getAngle(), car.getVelocity(), car.getMoveAngle());
+		car.setVelocity(res[0], res[1]);
+	}
 	/**
 		*@param mag1 Magnitude of the first force vector.
 		*@param ang1 Angle of the first force vector.

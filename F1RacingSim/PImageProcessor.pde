@@ -6,7 +6,7 @@ public class PImageProcessor {
 		int radiusFromCenterToCorner = Math.round(dist(0, 0, src.width / 2, src.height / 2));
 
 		PImage nu = createImage(radiusFromCenterToCorner * 2 + 2,
-		                        radiusFromCenterToCorner * 2 + 2, ARGB);//the plus twos are for diagonal compensation.
+														radiusFromCenterToCorner * 2 + 2, ARGB);//the plus twos are for diagonal compensation.
 		//compensation values for translating middle of image array to 0, 0.
 		int xComp = src.width / 2;
 		int yComp = src.height / 2;
@@ -33,13 +33,13 @@ public class PImageProcessor {
 
 
 
-  void edgeDetection(PImage source, PImage destination) {
+	void edgeDetection(PImage source, PImage destination) {
 		Kernel k = new Kernel(new float[][] {
 				{-1/8.,-1/8.,-1/8.},
 				{-1/8., 1,-1/8.},
 				{-1/8.,-1/8.,-1/8.},
 			});
-    k.apply(source, destination);
-    destination.filter(GRAY);
-  }
+		k.apply(source, destination);
+		destination.filter(GRAY);
+	}
 }
