@@ -42,7 +42,7 @@ public class Car{
 	/**The default car constructor.
 	*/
 	public Car() {
-		car.resize((int)(0.2*car.width), (int)(0.2*car.height));
+		car.resize((int)(0.05*car.width), (int)(0.05*car.height));
 		xCor = 200;
 		yCor = 200;
 		mass = 900;
