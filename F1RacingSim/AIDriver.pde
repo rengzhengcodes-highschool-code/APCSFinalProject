@@ -77,6 +77,22 @@ public class AIDriver extends Driver {
 			}
 		}
 
+		if (d < 5) {
+			if (dL > dR) {
+				theta -= radians(13);
+			} else if (dL < dR) {
+				theta += radians(13);
+			}
+		}
+
+		if (d < 2) {
+			if (dL > dR) {
+				theta -= radians(23);
+			} else if (dL < dR) {
+				theta += radians(23);
+			}
+		}
+
 		theta %= Math.PI * 2;
 		if (a == 0 && c.getVelocity() == 0) {//if both magnitudes are 0 CartesianPolarMath will return NaN when converting between the two because of how acos and asin work.
 			c.setAngle(theta);
