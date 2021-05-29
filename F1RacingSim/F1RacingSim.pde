@@ -6,7 +6,6 @@ void setup() {
 	cars = new ArrayList<Car>();
 	cars.add(new Car());
 	t = new Track(0.9, 0.68, 0, loadImage("Monaco.png"));
-	frameRate(10);
 }
 
 void draw() {
