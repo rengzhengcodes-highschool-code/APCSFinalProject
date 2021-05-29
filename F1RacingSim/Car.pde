@@ -153,7 +153,8 @@ public class Car{
 		}
 
 		if (onEdge) {
-			moveAngle = -moveAngle;
+			angle = moveAngle + (float)Math.PI;
+			angle %= 2*Math.PI;
 			velocity = 0;
 		}
 	}
