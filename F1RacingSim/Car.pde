@@ -55,16 +55,12 @@ public class Car{
 
   public void display(float x, float y){}
   public void display() {
+		pushMatrix();
     translate(xCor,yCor);
-    rotate(angle);
-    stroke(0);
-    fill(255,0,0);
-    rect(0, 0, 10,5);
-    //float scalingFactor = 0.2;
-    //imageMode(CENTER);
-    //PImage rotated = rotateProcess.rotate(car, angle + (float)Math.PI/2);
-    //rotated.resize((int)(rotated.width * scalingFactor), (int)(rotated.height * scalingFactor));
-    //image(rotated, xCor, yCor);
+    rotate(angle + (float)Math.PI/2);
+		imageMode(CENTER);
+		image(car, 0, 0);
+		popMatrix();
   }
 
   public void setFrontForce(float acc) {
