@@ -22,3 +22,7 @@ Requires Processing version 3: https://processing.org/download/
 2021-05-25|RZ - Implemented track image importing. Found some bugs in the movement code like the car disappearing when both vectors had magnitudes of 0.
 
 2021-05-26|RZ - Merged code between Jordan and I. Began the beginnings of the edge detection algorithm of the track by using kernel processing to find the track edge.
+
+2021-05-28|RZ - Isolated issue of car drift to the PImage rotation algorithm. Currently isolating portion of PImage rotation algorithm that is affecting xCor and yCor of Car despite it being private.
+
+2021-05-29|RZ - Scrapped PImage rotation algorithm due to unidentifiable complications. Took Mr. K's suggestion of using rotate(), translate(), and push and popMatrix() to do rotations instead. Implemented and code merged.
