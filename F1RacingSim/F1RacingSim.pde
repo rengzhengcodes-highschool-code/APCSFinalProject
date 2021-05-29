@@ -5,7 +5,7 @@ void setup() {
 	size(1000, 800);
 	cars = new ArrayList<Car>();
 	cars.add(new Car());
-	t = new Track(0.9, 0.68, 0, loadImage("Monaco.png"));
+	t = new Track(0.9, 0.68, 0, loadImage("Monaco.png"), loadImage("MonacoEdge.png"));
 }
 
 void draw() {
