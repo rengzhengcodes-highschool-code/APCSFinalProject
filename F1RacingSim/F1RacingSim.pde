@@ -1,17 +1,18 @@
-ArrayList<Car> cars;
+ArrayList<AIDriver> ais;
 Track t;
 boolean keyPressed = false;
 void setup() {
 	size(1000, 800);
-	cars = new ArrayList<Car>();
-	cars.add(new Car());
+	ais = new ArrayList<AIDriver>();
+	ais.add(new AIDriver());
 	t = new Track(0.9, 0.68, 0, loadImage("Monaco.png"), loadImage("MonacoEdge.png"));
 }
 
 void draw() {
 	background(200);
 	t.displayEdge();
-	for(Car c : cars) {
+	for(AIDriver ai : ais) {
+		Car c = ai.getCar();
 		c.move();
 		c.display();
 		if(c.getVelocity() != 0) {
@@ -25,7 +26,6 @@ void draw() {
 	fill(0);
 	textSize(20);
 	text("FPS: "+frameRate,0,20);
-	System.out.println(cars.get(0).toString());
 }
 
 void decelerateCar(Car c) {
@@ -43,7 +43,8 @@ void decelerateCar(Car c) {
 	*@postcondition The car has accelerated and turned.
 */
 void keyPressed() {
-	for(Car c : cars){
+	for(AIDriver ai : ais) {
+		Car c = ai.getCar();
 		float acceleration = 0;
 		float theta = c.getAngle();
 		//System.out.println("" + keyCode);
