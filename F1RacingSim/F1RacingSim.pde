@@ -74,10 +74,10 @@ void keyPressed() {
 	    acceleration = Physics.resolve(c, t);
 	  }
 	  if(keyCode == 39) {
-	    theta += radians(45);
+	    theta += radians(10);
 	  }
 	  if(keyCode == 37){
-	    theta -= radians(45);
+	    theta -= radians(10);
 	  }
 	  if (acceleration == 0 && c.getVelocity() == 0) {//if both magnitudes are 0 CartesianPolarMath will return NaN when converting between the two because of how acos and asin work.
 	    c.setAngle(theta);
