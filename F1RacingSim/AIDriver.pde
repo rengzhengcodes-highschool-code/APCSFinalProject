@@ -72,7 +72,7 @@ public class AIDriver extends Driver {
 		} else {
 			if (dL > dR) {
 				theta -= radians(30);
-			} else {
+			} else if (dL < dR) {
 				theta += radians(30);
 			}
 		}
