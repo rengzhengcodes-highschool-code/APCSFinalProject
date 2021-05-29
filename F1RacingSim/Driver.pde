@@ -31,10 +31,7 @@ public class Driver {
 		*@postcondition A driver with the stats of a perfect default driver.
 	*/
 	public Driver() {
-		car = new Car();
-		name = "Default";
-		reactionTime = 1;
-		consistency = 1;
+		this(new Car(), "Default", 0, 1, 1);
 	}
 	/*Get Methods. Self explanatory*/
 	public Car getCar() {
