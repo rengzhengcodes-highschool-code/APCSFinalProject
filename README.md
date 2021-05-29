@@ -18,13 +18,18 @@ Requires Processing version 3: https://processing.org/download/
 2021-05-24|JM - finished basic omnidirectional movement with the Car and Physics classes. Also fixed the cartesian to polar conversion method that had been causing some problems.
 
 2021-05-24|RZ - Screen edge collision implemented. Added unrealistic friction physics (realism to be implemented, is a proof of concept).
+2021-05-24|JM - Started work on Physics for drifting accurately as well as properly implementing and debugging the old physics-based movement code.
 
 2021-05-25|RZ - Implemented track image importing. Found some bugs in the movement code like the car disappearing when both vectors had magnitudes of 0.
+2021-05-25|JM - Finished the drifting method, did some general debugging, and implemented the drifing into the general driving code.
 
 2021-05-26|RZ - Merged code between Jordan and I. Began the beginnings of the edge detection algorithm of the track by using kernel processing to find the track edge.
+2021-05-26|JM - Helped resolve merge. Also started research into F1 car properties to prepare for 4 wheel and rigid body physics as well as angular momentum.
 
 2021-05-28|RZ - Isolated issue of car drift to the PImage rotation algorithm. Currently isolating portion of PImage rotation algorithm that is affecting xCor and yCor of Car despite it being private.
+2021-05-28|JM - Figured out that rotation was causing a problem with the car displaying, started writing a new rotation algorythm.
 
 2021-05-29|RZ - Scrapped PImage rotation algorithm due to unidentifiable complications. Took Mr. K's suggestion of using rotate(), translate(), and push and popMatrix() to do rotations instead. Implemented and code merged.
 
 2021-05-29|RZ - Changed constructors to use constructors with more parameter options to streamline potential changes.
+2021-05-29|JM - Worked out rotation for a rectangle that alligned with the actual car movements, started work on four wheel physics and the necessary rigid body physics.
