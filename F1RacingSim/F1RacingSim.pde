@@ -10,7 +10,7 @@ void setup() {
 
 void draw() {
 	background(200);
-	t.display();
+	t.displayEdge();
 	for(Car c : cars) {
 		c.move();
 		c.display();
@@ -38,28 +38,6 @@ void decelerateCar(Car c) {
 		}
 	}
 }
-
-//void decelerateCar(Car c) {
-//	float acceleration = Physics.resolve(c, t);
-//	if (!keyPressed) {//if its not currently accelerating
-//		if (c.getVelocity() > acceleration) {//if the velocity is greater than a tenth of the front force
-//			c.accelerate(-acceleration, c.getMoveAngle());//apply currently arbitrary drag acceleration.
-//		} else {//if not, set the acceleration to 0
-//			c.setVelocity(0, c.getMoveAngle());
-//		}
-//	}
-//}
-
-//void keyPressed() {
-//	Car c = cars.get(0);
-//	keyPressed = true;
-//	drive(c);
-//}
-
-//void keyReleased() {
-//	keyPressed = false;
-//}
-
 /**
 	*@param c The car being driven.
 	*@postcondition The car has accelerated and turned.
