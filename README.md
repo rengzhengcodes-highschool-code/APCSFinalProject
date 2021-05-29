@@ -31,5 +31,5 @@ Requires Processing version 3: https://processing.org/download/
 
 2021-05-29|RZ - Scrapped PImage rotation algorithm due to unidentifiable complications. Took Mr. K's suggestion of using rotate(), translate(), and push and popMatrix() to do rotations instead. Implemented and code merged.
 
-2021-05-29|RZ - Changed constructors to use constructors with more parameter options to streamline potential changes.
+2021-05-29|RZ - Changed constructors to use constructors with more parameter options to streamline potential changes. Have a working AI with cheats, working on removing cheats and still having the AI follow the track.
 2021-05-29|JM - Worked out rotation for a rectangle that alligned with the actual car movements, started work on four wheel physics and the necessary rigid body physics.
