@@ -44,7 +44,7 @@ public class Car{
 	*/
 	public Car() {
 		this(200, 200, 900,
-		     10, 0, 0,
+		     2, 0, 0,
 				 0, 0, false);
 	}
 
