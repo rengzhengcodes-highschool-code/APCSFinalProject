@@ -10,7 +10,7 @@ void setup() {
 
 void draw() {
 	background(200);
-	t.displayEdge();
+	t.display();
 	for(Car c : cars) {
 		c.move();
 		c.display();
