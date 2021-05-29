@@ -49,7 +49,42 @@ public class AIDriver extends Driver {
 		/**distance between the car and the wall
 		*/
 		float d = findDistToWall();
+		/**distance to leftWall
+		*/
+		float dL = findLeftWallDist();
+		/**distance to rightWall
+		*/
+		float dR = findRightWallDist();
+		Car c = getCar();
 
+		float a = 0;
+		float theta = c.getAngle();
 
+		if (d > 10) {
+			if (dL > dR) {//compensates for drifting to one side of the track
+				theta += radians(1);
+			} else if (dL > dR) {
+				theta -= radians(1);
+			}
+
+			c.setFrontForce(10);
+			a = Physics.resolve(c, t);
+		} else {
+			if (dL > dR) {
+				theta -= radians(45);
+			} else {
+				theta += radians(45);
+			}
+		}
+
+		theta %= Math.PI * 2;
+		if (a == 0 && c.getVelocity() == 0) {//if both magnitudes are 0 CartesianPolarMath will return NaN when converting between the two because of how acos and asin work.
+			c.setAngle(theta);
+		} else {
+			theta %= 2*Math.PI;
+			float[] newV = Physics.addVector(c.getVelocity(), c.getMoveAngle(), a, theta);
+			c.setVelocity(newV[0], newV[1]);
+			c.setAngle(theta);
+		}
 	}
 }
