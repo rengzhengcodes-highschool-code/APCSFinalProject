@@ -13,16 +13,13 @@ void draw() {
 	t.displayEdge();
 	for(AIDriver ai : ais) {
 		Car c = ai.getCar();
+		ai.drive();
 		c.move();
 		c.display();
 		ai.displayLineOfSight();
 		if(c.getVelocity() != 0) {
 			Physics.driftSlow(c, 0.25, 0.10);
 		}
-		//Physics.resolve(c, t);
-		//Physics.driftSlow(c, 0.90, 68);
-		//System.out.println("X: " + c.getX());
-		//System.out.println("Y: " + c.getY());
 	}
 	fill(0);
 	textSize(20);
