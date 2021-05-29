@@ -29,6 +29,7 @@ public class Car{
 	public Car(float x, float y, float m,
 						 float tS, float a, float fS,
 						 float dA, float dS, boolean skd) {
+		car.resize((int)(0.05*car.width), (int)(0.05*car.height));
 		xCor = x;
 		yCor = y;
 		mass = m;
@@ -42,16 +43,9 @@ public class Car{
 	/**The default car constructor.
 	*/
 	public Car() {
-		car.resize((int)(0.05*car.width), (int)(0.05*car.height));
-		xCor = 200;
-		yCor = 200;
-		mass = 900;
-		topSpeed = 10;
-		angle = 0;
-		frontForce = 0;
-		moveAngle = 0;
-		velocity = 0;
-		skid = false;
+		this(200, 200, 900,
+		     10, 0, 0,
+				 0, 0, false);
 	}
 
 	public void display(float x, float y){}
