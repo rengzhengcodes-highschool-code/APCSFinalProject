@@ -20,15 +20,19 @@ public class Track {
 		*@postcondition All the constants for this track are set.
 	*/
 	public Track (float grip, float slideGrip, float wear, PImage img) {
+		this(grip, slideGrip, wear, img, img.copy());
+	}
+
+	public Track (float grip, float slideGrip, float wear, PImage display, PImage edgeImage) {
 		trackGrip = grip;
 		trackSlideGrip = slideGrip;
 		tireWear = wear;
-		track = img;
+		track = display;
 		track.resize(width, height);
-		trackEdge = track.copy();
+		trackEdge = edgeImage.copy();
 		PImageProcessor p = new PImageProcessor();
-		p.edgeDetection(track, trackEdge);
-
+		p.edgeDetection(edgeImage, trackEdge);
+		trackEdge.resize(width, height);
 	}
 	/**
 		*@param x The x-cord of the center of the area of the track you want to focus on.
