@@ -60,21 +60,15 @@ public class AIDriver extends Driver {
 		float a = 0;
 		float theta = c.getAngle();
 
-		if (d > 10) {//if there's nothing clear for 10 pixels, go. Might need to up the 10.
-			if (dL > dR) {//compensates for drifting to one side of the track
-				theta += radians(1);
-			} else if (dL > dR) {
-				theta -= radians(1);
-			}
-		} else {
-			float[] bound = closestBound(sightRange, theta, t.getTrackEdge());
-			int turnDirection = 1;
 
-			if (dL > dR) {//if my default assumption of you need to turn right is wrong, turn left.
-				turnDirection = -1;//multiplier to make it turn the other way
-			}
+		float[] bound = closestBound(sightRange, theta, t.getTrackEdge());
+		int turnDirection = 1;
 
-			for (int i = 360; i > 0 && (15 > dist(0, 0, bound[0], bound[1]));//the 15 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
+		if (dL > dR) {//if my default assumption of you need to turn right is wrong, turn left.
+			turnDirection = -1;//multiplier to make it turn the other way
+		}
+		if (d != 0) {
+			for (int i = 360; i > 0 && (17 > dist(0, 0, bound[0], bound[1]));//the 15 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
 			    i--) {
 				theta += radians(1) * turnDirection;
 				bound = closestBound(sightRange, theta, t.getTrackEdge());
