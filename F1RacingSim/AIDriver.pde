@@ -70,26 +70,16 @@ public class AIDriver extends Driver {
 			c.setFrontForce(10);
 			a = Physics.resolve(c, t);
 		} else {
-			if (dL > dR) {
-				theta -= radians(30);
-			} else if (dL < dR) {
-				theta += radians(30);
-			}
-		}
+			float[] bound = closestBound(sightRange, theta, t.getTrackEdge());
+			int turnDirection = 1;
 
-		if (d < 5) {
 			if (dL > dR) {
-				theta -= radians(13);
-			} else if (dL < dR) {
-				theta += radians(13);
+				turnDirection = -1;
 			}
-		}
 
-		if (d < 2) {
-			if (dL > dR) {
-				theta -= radians(23);
-			} else if (dL < dR) {
-				theta += radians(23);
+			for (int i = 360; i > 0 && (10 > dist(0, 0, bound[0], bound[1])); i--) {
+				theta += radians(1) * turnDirection;
+				bound = closestBound(sightRange, theta, t.getTrackEdge());
 			}
 		}
 
