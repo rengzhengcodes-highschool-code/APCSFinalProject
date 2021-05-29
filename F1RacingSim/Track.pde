@@ -11,6 +11,8 @@ public class Track {
 	/** The image that represents the track.
 	*/
 	final private PImage track;
+	/** The image that represents the track edge.
+	*/
 	final private PImage trackEdge;
 	/**
 		*@param grip Track static friction coefficient.
@@ -22,7 +24,14 @@ public class Track {
 	public Track (float grip, float slideGrip, float wear, PImage img) {
 		this(grip, slideGrip, wear, img, img.copy());
 	}
-
+	/**
+		*@param grip Track static friction coefficient.
+		*@param slideGrip Track nonstatic friction coefficient.
+		*@param wear Tire wear of the track.
+		*@param display The image that will be displayed as the track.
+		*@param edgeImage The image that will be put through the edge detection algorithm to find the track edge.
+		*@postcondition All the constants for this track are set.
+	*/
 	public Track (float grip, float slideGrip, float wear, PImage display, PImage edgeImage) {
 		trackGrip = grip;
 		trackSlideGrip = slideGrip;
