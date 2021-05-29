@@ -74,7 +74,7 @@ public class Car{
 	/**
 		*@param theta The angle you want to shift the car by in radians.
 	*/
-	public void shiftAngle(double theta) {
+	public void turn(double theta) {
 		angle += (float)theta;
 	}
 	/**
