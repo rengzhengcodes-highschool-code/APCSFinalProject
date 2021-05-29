@@ -20,7 +20,7 @@ public class Car{
 		*@param y Y coord of the car.
 		*@param m Mass of the car.
 		*@param tS Top speed of the car.
-		*@param a Starting angle of the car.
+		*@param a Starting angle of the car in radians.
 		*@param fS Front force of the car.
 		*@param dA moveAngle The starting angle delta.
 		*@param dS The starting velocity.
@@ -43,8 +43,8 @@ public class Car{
 	/**The default car constructor.
 	*/
 	public Car() {
-		this(200, 200, 900,
-		     2, 0, 0,
+		this(225, 200, 900,
+		     2, radians(-45), 0,
 				 0, 0, false);
 	}
 
