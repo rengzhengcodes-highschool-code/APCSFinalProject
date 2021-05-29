@@ -44,8 +44,8 @@ public class Car{
 	*/
 	public Car() {
 		this(225, 200, 900,
-		     2, radians(-45), 0,
-				 0, 0, false);
+		     2, radians(-50), 0,
+				 radians(-50), 0, false);
 	}
 
 	public void display(float x, float y){}
