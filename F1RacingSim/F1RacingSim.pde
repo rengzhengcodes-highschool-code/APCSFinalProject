@@ -28,17 +28,6 @@ void draw() {
 	textSize(20);
 	text("FPS: "+frameRate,0,20);
 }
-
-void decelerateCar(Car c) {
-	float acceleration = Physics.resolve(c, t);
-	if (!keyPressed) {//if its not currently accelerating
-		if (c.getVelocity() > acceleration) {//if the velocity is greater than a tenth of the front force
-			c.accelerate(-acceleration, c.getMoveAngle());//apply currently arbitrary drag acceleration.
-		} else {//if not, set the acceleration to 0
-			c.setVelocity(0, c.getMoveAngle());
-		}
-	}
-}
 /**
 	*@param c The car being driven.
 	*@postcondition The car has accelerated and turned.
