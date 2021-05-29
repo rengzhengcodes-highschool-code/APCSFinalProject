@@ -71,9 +71,9 @@ public class AIDriver extends Driver {
 			a = Physics.resolve(c, t);
 		} else {
 			if (dL > dR) {
-				theta -= radians(45);
+				theta -= radians(30);
 			} else {
-				theta += radians(45);
+				theta += radians(30);
 			}
 		}
 
