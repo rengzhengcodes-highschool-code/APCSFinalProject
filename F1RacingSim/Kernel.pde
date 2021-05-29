@@ -34,7 +34,7 @@ public class Kernel {
 			}
 
 			//System.out.println(rTotal + " " + gTotal + " " + bTotal);
-			return color(rTotal, gTotal, bTotal);
+			return color(Math.abs(rTotal), Math.abs(gTotal), Math.abs(bTotal));
 		}
 	}
 
