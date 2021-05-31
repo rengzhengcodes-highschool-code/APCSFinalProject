@@ -29,9 +29,9 @@ Requires Processing version 3: https://processing.org/download/
 2021-05-28|RZ - Isolated issue of car drift to the PImage rotation algorithm. Currently isolating portion of PImage rotation algorithm that is affecting xCor and yCor of Car despite it being private.\
 2021-05-28|JM - Figured out that rotation was causing a problem with the car displaying, started writing a new rotation algorythm.
 
-2021-05-29|RZ - Scrapped PImage rotation algorithm due to unidentifiable complications. Took Mr. K's suggestion of using rotate(), translate(), and push and popMatrix() to do rotations instead. Implemented and code merged.\
+2021-05-29|RZ - Scrapped PImage rotation algorithm due to unidentifiable complications. Took Mr. K's suggestion of using rotate(), translate(), and push and popMatrix() to do rotations instead. Implemented and code merged.
 
 2021-05-29|RZ - Changed constructors to use constructors with more parameter options to streamline potential changes. Have a working AI with cheats, working on removing cheats and still having the AI follow the track.
 2021-05-29|JM - Worked out rotation for a rectangle that alligned with the actual car movements, started work on four wheel physics and the necessary rigid body physics.\
 
-2021-05-31|RZ - Changed algorithmic edge detection to a manual one because it was easier for the pathfinding to handle compared to the spotty edge detection (manual is using the paintbucket tool in photoshop to make the track and not track parts distinct solid colored blocks). Reworked AI to handle tight corners better so that it can now complete indefinite amounts of laps without error.\
+2021-05-31|RZ - Changed algorithmic edge detection to a manual one because it was easier for the pathfinding to handle compared to the spotty edge detection (manual is using the paintbucket tool in photoshop to make the track and not track parts distinct solid colored blocks). Reworked AI to handle tight corners better so that it can now complete indefinite amounts of laps without error.
