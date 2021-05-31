@@ -163,33 +163,4 @@ public class Car{
 						+ velocity + ", " + moveAngle + ") | Car Angle: " + angle +
 						" frontForce: " + frontForce;
 	}
-	/**
-		*@param visualRange The range you want to detect up to.
-		*@return The length of the line between the center of the car and the direction its moving until the closest bound point within visualRange.
-	*/
-	public float distanceToBounds(float visualRange) {
-		float[] boundPixelOffset = closestBound(visualRange, t.getTrackEdge());
-		return dist(0, 0, boundPixelOffset[0], boundPixelOffset[1]);
-	}
-	/**
-		*@param visualRange The range you want to detect up to.
-		*@param bound The PImage representing the movement boundary.
-		*@return A float in Cartesian form representing the x and y offsets from the car center to get to the bound.
-	*/
-	private float[] closestBound(float visualRange, PImage bound) {
-		float xOff = 0;
-		float yOff = 0;
-
-		for (int i = 0; i < visualRange; i++) {
-			if (color(0) != bound.get((int)(xCor + xOff),
-				              	        (int)(yCor + yOff))) {
-				return new float[] {xOff, yOff};
-			} else {
-				xOff += cos(moveAngle);
-				yOff += sin(moveAngle);
-			}
-		}
-
-		return new float[] {xOff, yOff};
-	}
 }
