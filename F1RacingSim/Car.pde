@@ -14,7 +14,6 @@ public class Car{
 	private float moveAngle;
 	private float velocity;
 	private PImage car = loadImage("RaceCar.png");//from https://www.vectorstock.com/royalty-free-vector/top-view-a-racing-car-vector-15938905
-	private PImageProcessor rotateProcess = new PImageProcessor();
 	/**
 		*@param x X coord of the car.
 		*@param y Y coord of the car.
