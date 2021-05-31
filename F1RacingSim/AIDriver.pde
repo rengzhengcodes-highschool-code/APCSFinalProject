@@ -40,7 +40,7 @@ public class AIDriver extends Driver {
 		Car c = getCar();
 		for (int i = -1; i <= 1; i++) {
 			float[] closestBound = closestBound(sightRange, c.getMoveAngle() + (float)Math.PI/2 * i, t.getTrackEdge());
-			stroke(122);
+			stroke(255, 0, 0);
 			line(c.getX(), c.getY(), c.getX() + closestBound[0], c.getY() + closestBound[1]);
 		}
 	}
