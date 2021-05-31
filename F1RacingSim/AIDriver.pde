@@ -70,13 +70,13 @@ public class AIDriver extends Driver {
 			turnDirection = -1;//multiplier to make it turn the other way
 		}
 		if (d != 0) {
-			for (int i = 360; i > 0 && (17 > dist(0, 0, bound[0], bound[1]));//the 15 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
+			for (int i = 360; i > 0 && (17 > dist(0, 0, bound[0], bound[1]));//the 17 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
 			    i--) {
 				theta += radians(1) * turnDirection;
 				bound = closestBound(sightRange, theta, t.getTrackEdge());
 			}
 		} else {
-			for (int i = 360; i > 0 && (20 > dist(0, 0, bound[0], bound[1]));//the 15 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
+			for (int i = 360; i > 0 && (20 > dist(0, 0, bound[0], bound[1]));//the 20 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
 			    i--) {
 				theta += radians(1) * turnDirection;
 				bound = closestBound(sightRange, theta, t.getTrackEdge());
