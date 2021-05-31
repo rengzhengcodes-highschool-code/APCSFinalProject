@@ -60,7 +60,7 @@ public class AIDriver extends Driver {
 		Car c = getCar();
 
 		float a = 0;
-		float theta = c.getAngle();
+		float theta = c.getMoveAngle();
 
 
 		float[] bound = closestBound(sightRange, theta, t.getTrackEdge());
