@@ -5,6 +5,14 @@ void setup() {
 	size(1000, 800);
 	ais = new ArrayList<AIDriver>();
 	ais.add(new AIDriver());
+	for (int i = 1; i < 4; i++) {
+		Car c = new Car(225 - i * 10, 200 + i * 10, 900,
+										2, radians(-50), 0,
+										radians(-50), 0, false);
+		AIDriver ai = new AIDriver();
+		ai.setCar(c);
+		ais.add(ai);
+	}
 	t = new Track(0.9, 0.68, 0, loadImage("Monaco.png"), loadImage("MonacoBW.png"));
 }
 
