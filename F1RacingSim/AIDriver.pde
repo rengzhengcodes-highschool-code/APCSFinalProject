@@ -24,7 +24,7 @@ public class AIDriver extends Driver {
 		float yOff = 0;
 
 		for (int i = 0; i < visualRange; i++) {
-			if (color(0) != bound.get((int)(c.getX() + xOff),
+			if (color(0) == bound.get((int)(c.getX() + xOff),
 				              	        (int)(c.getY() + yOff))) {
 				return new float[] {xOff, yOff};
 			} else {
@@ -40,7 +40,7 @@ public class AIDriver extends Driver {
 		Car c = getCar();
 		for (int i = -1; i <= 1; i++) {
 			float[] closestBound = closestBound(sightRange, c.getMoveAngle() + (float)Math.PI/2 * i, t.getTrackEdge());
-			stroke(255);
+			stroke(122);
 			line(c.getX(), c.getY(), c.getX() + closestBound[0], c.getY() + closestBound[1]);
 		}
 	}

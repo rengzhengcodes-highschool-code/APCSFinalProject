@@ -5,7 +5,7 @@ void setup() {
 	size(1000, 800);
 	ais = new ArrayList<AIDriver>();
 	ais.add(new AIDriver());
-	t = new Track(0.9, 0.68, 0, loadImage("Monaco.png"), loadImage("MonacoEdge.png"));
+	t = new Track(0.9, 0.68, 0, loadImage("Monaco.png"), loadImage("MonacoBW.png"), true);
 }
 
 void draw() {

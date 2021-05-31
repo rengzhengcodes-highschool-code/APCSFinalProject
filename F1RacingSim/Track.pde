@@ -44,6 +44,24 @@ public class Track {
 		trackEdge.resize(width, height);
 	}
 	/**
+		*@param grip Track static friction coefficient.
+		*@param slideGrip Track nonstatic friction coefficient.
+		*@param wear Tire wear of the track.
+		*@param display The image that will be displayed as the track.
+		*@param edgeImage The image that has already been edgeDetected.
+		*@param detected Serves to differentiate from the other constructor when overloading.
+		*@postcondition All the constants for this track are set.
+	*/
+	public Track (float grip, float slideGrip, float wear, PImage display, PImage edgeImage, boolean detected) {
+		trackGrip = grip;
+		trackSlideGrip = slideGrip;
+		tireWear = wear;
+		track = display;
+		track.resize(width, height);
+		trackEdge = edgeImage.copy();
+		trackEdge.resize(width, height);
+	}
+	/**
 		*@param x The x-cord of the center of the area of the track you want to focus on.
 		*@param y The y-cord of the center of the area of the track you want to focus on.
 		*@param w The width we want the view to be.
