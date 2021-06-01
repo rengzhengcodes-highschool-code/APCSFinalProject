@@ -1,6 +1,6 @@
 ArrayList<AIDriver> ais;
 Track t;
-boolean keyPressed = false;
+TrackCamera tc = new TrackCamera();
 void setup() {
 	size(1000, 800);
 	ais = new ArrayList<AIDriver>();
@@ -38,28 +38,4 @@ void draw() {
 	*@postcondition The car has accelerated and turned.
 */
 void keyPressed() {
-	for(AIDriver ai : ais) {
-		Car c = ai.getCar();
-		float acceleration = 0;
-		float theta = c.getAngle();
-		//System.out.println("" + keyCode);
-		if(keyCode == 38) {
-			c.setFrontForce(10);
-			acceleration = Physics.resolve(c, t);
-		}
-		if(keyCode == 39) {
-			theta += radians(10);
-		}
-		if(keyCode == 37){
-			theta -= radians(10);
-		}
-		if (acceleration == 0 && c.getVelocity() == 0) {//if both magnitudes are 0 CartesianPolarMath will return NaN when converting between the two because of how acos and asin work.
-			c.setAngle(theta);
-		} else {
-			theta %= 2*Math.PI;
-			float[] newV = Physics.addVector(c.getVelocity(), c.getMoveAngle(), acceleration, theta);
-			c.setVelocity(newV[0], newV[1]);
-			c.setAngle(theta);
-		}
-	}
 }
