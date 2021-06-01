@@ -7,6 +7,11 @@ The project will be a simulation of a car’s efficacy on a given F1 track, assu
 ## Instructions for Compiling and Running
 Requires Processing version 3: https://processing.org/download/
 
+Download the contents of the git repo.\
+Open F1RacingSim.pde in Processing 3. Do not move any of the files or subfolders of F1RacingSim.\
+Once open in Processing 3, do not touch any of the code. Simply press ctrl + R to run.\
+Tada! The simulation should be working.
+
 ## Dev Log (YYYY-MM-DD|Initials)
 2021-05-22|RZ - Created get methods and instance variables for the Car, Track, TrackCamera class. Created untested class for conversion between Cartesian and polar coordinates.\
 2021-05-22|JM - Planned the interaction between classes and created the Car and Physics classes. Added instance vars and get methods to various classes.
