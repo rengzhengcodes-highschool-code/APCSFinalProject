@@ -15,7 +15,7 @@ void setup() {
 		ai.setCar(c);
 		ais.add(ai);
 	}
-	t = new Track(0.9, 0.68, 0, loadImage("Monaco.png"), loadImage("MonacoBW.png"));
+	t = new Track(0.9, 0.68, 0, loadImage("Monaco.jpg"), loadImage("MonacoBW.png"));
 }
 
 void draw() {
