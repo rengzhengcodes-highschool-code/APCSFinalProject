@@ -24,12 +24,7 @@ public static class Physics{
 		}
 		return acceleration;
 	}
-	/**The physics of car drift.
-		*@param car The car which is being drifted.
-		*@param statGrip The static friction coefficient between car and track.
-		*@param kenGrip The kinetic friction coefficient between car and track.
-		*@postcondition The car velocity vector is modified by the drift.
-	*/
+
 	public static void driftSlow(Car car, float statGrip, float kenGrip){
 		//float[] oldMoveVector = CartesianPolarMath.polarToCartesian(car.getVelocity(),car.getMoveAngle());
 		//float difAngle = car.getAngle() - car.getMoveAngle();
