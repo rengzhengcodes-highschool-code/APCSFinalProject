@@ -1,6 +1,7 @@
 ArrayList<AIDriver> ais;
 Track t;
 TrackCamera tc = new TrackCamera();
+byte cameraMode = 0;
 void setup() {
 	size(1000, 800);
 	ais = new ArrayList<AIDriver>();
@@ -38,5 +39,5 @@ void draw() {
 	*@postcondition The car has accelerated and turned.
 */
 void keyPressed() {
-	System.out.println(keyCode);
+	if (48 <= keyCode && keyCode <= 57) cameraMode = Byte.parseByte("" + key);//if the key pressed is a number, set the cameramode to the key pressed
 }
