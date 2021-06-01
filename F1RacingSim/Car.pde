@@ -28,7 +28,7 @@ public class Car{
 	public Car(float x, float y, float m,
 						 float tS, float a, float fS,
 						 float dA, float dS, boolean skd) {
-		car.resize((int)(0.05*car.width), (int)(0.05*car.height));
+		car.resize((int)(0.07*car.width), (int)(0.07*car.height));
 		xCor = x;
 		yCor = y;
 		mass = m;
