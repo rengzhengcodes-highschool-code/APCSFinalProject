@@ -22,13 +22,14 @@ void draw() {
 	fill(0);
 	textSize(20);
 	text("FPS: "+frameRate,0,20);
-	
+
 	if (cameraMode != 0) {//If camera is not in default track view.
 		try {
 			Car tracked = ais.get(cameraMode - 1).getCar();
 			tC.trackCar(tracked);
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("There is no driver " + cameraMode);
+			cameraMode = 0;
 		}
 	}
 
