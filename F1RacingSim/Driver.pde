@@ -53,4 +53,8 @@ public class Driver {
 	public float getConsistency() {
 		return consistency;
 	}
+	/*Set methods. Self explanatory.*/
+	public void setCar(Car c) {
+		car = c;
+	}
 }
