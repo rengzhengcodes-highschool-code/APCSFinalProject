@@ -30,6 +30,16 @@ void draw() {
 			Physics.driftSlow(c, 0.25, 0.10);
 		}
 	}
+
+	if (cameraMode != 0) {//If camera is not in default track view.
+		try {
+			Car tracked = ais.get(cameraMode - 1).getCar();
+
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("There is no driver " + cameraMode);
+		}
+	}
+
 	fill(0);
 	textSize(20);
 	text("FPS: "+frameRate,0,20);
