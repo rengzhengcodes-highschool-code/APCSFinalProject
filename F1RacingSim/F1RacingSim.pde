@@ -1,6 +1,6 @@
 ArrayList<AIDriver> ais;
 Track t;
-TrackCamera tc = new TrackCamera();
+TrackCamera tC = new TrackCamera();
 byte cameraMode = 0;
 void setup() {
 	size(1000, 800);
@@ -19,7 +19,7 @@ void setup() {
 
 void draw() {
 	background(200);
-	t.displayEdge();
+	t.display();
 	for(AIDriver ai : ais) {
 		Car c = ai.getCar();
 		ai.drive();
@@ -34,7 +34,7 @@ void draw() {
 	if (cameraMode != 0) {//If camera is not in default track view.
 		try {
 			Car tracked = ais.get(cameraMode - 1).getCar();
-
+			tC.trackCar(tracked);
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("There is no driver " + cameraMode);
 		}
