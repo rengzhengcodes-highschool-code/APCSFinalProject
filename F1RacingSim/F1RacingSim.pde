@@ -19,6 +19,10 @@ void setup() {
 
 void draw() {
 	background(200);
+	fill(0);
+	textSize(20);
+	text("FPS: "+frameRate,0,20);
+	
 	if (cameraMode != 0) {//If camera is not in default track view.
 		try {
 			Car tracked = ais.get(cameraMode - 1).getCar();
@@ -39,10 +43,6 @@ void draw() {
 			Physics.driftSlow(c, 0.25, 0.10);
 		}
 	}
-
-	fill(0);
-	textSize(20);
-	text("FPS: "+frameRate,0,20);
 }
 /**
 	*@param c The car being driven.
