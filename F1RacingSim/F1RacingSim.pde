@@ -19,6 +19,15 @@ void setup() {
 
 void draw() {
 	background(200);
+	if (cameraMode != 0) {//If camera is not in default track view.
+		try {
+			Car tracked = ais.get(cameraMode - 1).getCar();
+			tC.trackCar(tracked);
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("There is no driver " + cameraMode);
+		}
+	}
+
 	t.display();
 	for(AIDriver ai : ais) {
 		Car c = ai.getCar();
@@ -28,15 +37,6 @@ void draw() {
 		ai.displayLineOfSight();
 		if(c.getVelocity() != 0) {
 			Physics.driftSlow(c, 0.25, 0.10);
-		}
-	}
-
-	if (cameraMode != 0) {//If camera is not in default track view.
-		try {
-			Car tracked = ais.get(cameraMode - 1).getCar();
-			tC.trackCar(tracked);
-		} catch (IndexOutOfBoundsException e) {
-			System.out.println("There is no driver " + cameraMode);
 		}
 	}
 
