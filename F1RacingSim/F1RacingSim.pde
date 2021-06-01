@@ -2,6 +2,7 @@ ArrayList<AIDriver> ais;
 Track t;
 TrackCamera tC = new TrackCamera();
 byte cameraMode = 0;
+float scaleFactor = 5;
 void setup() {
 	size(1000, 800);
 	ais = new ArrayList<AIDriver>();
