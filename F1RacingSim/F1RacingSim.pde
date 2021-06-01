@@ -38,4 +38,5 @@ void draw() {
 	*@postcondition The car has accelerated and turned.
 */
 void keyPressed() {
+	System.out.println(keyCode);
 }

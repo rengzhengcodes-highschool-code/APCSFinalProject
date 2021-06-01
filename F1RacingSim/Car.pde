@@ -47,7 +47,6 @@ public class Car{
 				 radians(-50), 0, false);
 	}
 
-	public void display(float x, float y){}
 	public void display() {
 		pushMatrix();
 		translate(xCor, yCor);
@@ -87,7 +86,6 @@ public class Car{
 		xCor += shift[0];
 		yCor += shift[1];
 
-		System.out.println(CartesianPolarMath.cartesianToPolar(shift[0], shift[1])[0]);
 		screenEdgeDetection();
 	}
 	/**
