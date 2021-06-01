@@ -1,49 +1,45 @@
-ArrayList<Car> cars;
+ArrayList<AIDriver> ais;
 Track t;
 boolean keyPressed = false;
 void setup() {
 	size(1000, 800);
-	cars = new ArrayList<Car>();
-	cars.add(new Car());
-	t = new Track(0.9, 0.68, 0, loadImage("Monaco.png"), loadImage("MonacoEdge.png"));
+	ais = new ArrayList<AIDriver>();
+	ais.add(new AIDriver());
+	for (int i = 1; i < 4; i++) {
+		Car c = new Car(225 - i * 10, 200 + i * 10, 900,
+										2, radians(-50), 0,
+										radians(-50), 0, false);
+		AIDriver ai = new AIDriver();
+		ai.setCar(c);
+		ais.add(ai);
+	}
+	t = new Track(0.9, 0.68, 0, loadImage("Monaco.png"), loadImage("MonacoBW.png"));
 }
 
 void draw() {
 	background(200);
 	t.displayEdge();
-	for(Car c : cars) {
+	for(AIDriver ai : ais) {
+		Car c = ai.getCar();
+		ai.drive();
 		c.move();
 		c.display();
+		ai.displayLineOfSight();
 		if(c.getVelocity() != 0) {
 			Physics.driftSlow(c, 0.25, 0.10);
 		}
-		//Physics.resolve(c, t);
-		//Physics.driftSlow(c, 0.90, 68);
-		//System.out.println("X: " + c.getX());
-		//System.out.println("Y: " + c.getY());
 	}
 	fill(0);
 	textSize(20);
 	text("FPS: "+frameRate,0,20);
-	System.out.println(cars.get(0).toString());
-}
-
-void decelerateCar(Car c) {
-	float acceleration = Physics.resolve(c, t);
-	if (!keyPressed) {//if its not currently accelerating
-		if (c.getVelocity() > acceleration) {//if the velocity is greater than a tenth of the front force
-			c.accelerate(-acceleration, c.getMoveAngle());//apply currently arbitrary drag acceleration.
-		} else {//if not, set the acceleration to 0
-			c.setVelocity(0, c.getMoveAngle());
-		}
-	}
 }
 /**
 	*@param c The car being driven.
 	*@postcondition The car has accelerated and turned.
 */
 void keyPressed() {
-	for(Car c : cars){
+	for(AIDriver ai : ais) {
+		Car c = ai.getCar();
 		float acceleration = 0;
 		float theta = c.getAngle();
 		//System.out.println("" + keyCode);
