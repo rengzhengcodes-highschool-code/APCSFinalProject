@@ -3,6 +3,7 @@ Track t;
 TrackCamera tC = new TrackCamera();
 byte cameraMode = 0;
 float scaleFactor = 5;
+String map = "Monaco";
 void setup() {
 	size(1000, 800);
 	ais = new ArrayList<AIDriver>();
@@ -15,7 +16,7 @@ void setup() {
 		ai.setCar(c);
 		ais.add(ai);
 	}
-	t = new Track(0.9, 0.68, 0, loadImage("Monaco.jpg"), loadImage("MonacoBW.png"));
+	t = new Track(0.9, 0.68, 0, loadImage(map + ".png"), loadImage(map + "BW.png"));
 }
 
 void draw() {
