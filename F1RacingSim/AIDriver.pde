@@ -93,7 +93,7 @@ public class AIDriver extends Driver {
 			theta %= 2*Math.PI;
 			float[] newV = Physics.addVector(c.getVelocity(), c.getMoveAngle(), a, theta);
 			c.setVelocity(newV[0], newV[1]);
-			c.setAngle(theta);
+			c.turn(theta - c.getMoveAngle());
 		}
 	}
 }

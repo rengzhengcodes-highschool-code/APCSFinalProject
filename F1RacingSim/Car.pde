@@ -2,8 +2,10 @@ public class Car{
 	private boolean skid;
 	private float xCor;
 	private float yCor;
+	//changeable vars
 	private float mass;
 	private float topSpeed;
+	private float handling;//the max degrees you can turn in a frame
 	//angle and magnitude of vector 1:
 	//the direction the car is trying to go
 	private float angle;
@@ -19,6 +21,7 @@ public class Car{
 		*@param y Y coord of the car.
 		*@param m Mass of the car.
 		*@param tS Top speed of the car.
+		*@param h The max turning angle per frame in radians.
 		*@param a Starting angle of the car in radians.
 		*@param fS Front force of the car.
 		*@param dA moveAngle The starting angle delta.
@@ -26,13 +29,14 @@ public class Car{
 		*@postcondition The instance variables are set.
 	*/
 	public Car(float x, float y, float m,
-						 float tS, float a, float fS,
+						 float tS, float h, float a, float fS,
 						 float dA, float dS, boolean skd) {
 		car.resize((int)(0.07*car.width), (int)(0.07*car.height));
 		xCor = x;
 		yCor = y;
 		mass = m;
 		topSpeed = tS;
+		handling = h;
 		angle = a;
 		frontForce = fS;
 		moveAngle = dA;
@@ -43,7 +47,7 @@ public class Car{
 	*/
 	public Car() {
 		this(225, 200, 900,
-		     2, radians(-50), 0,
+		     2, radians(360), radians(-50), 0,
 				 radians(-50), 0, false);
 	}
 
@@ -73,6 +77,7 @@ public class Car{
 		*@param theta The angle you want to shift the car by in radians.
 	*/
 	public void turn(double theta) {
+		if (theta > handling) theta = handling;
 		angle += (float)theta;
 	}
 	/**
