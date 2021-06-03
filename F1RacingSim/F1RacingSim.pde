@@ -6,7 +6,7 @@ Track t;
 TrackCamera tC = new TrackCamera();
 byte cameraMode = 0;
 float scaleFactor = 5;
-String map = "Monaco";
+String map = "Zandvoort";
 void setup() {
 	size(1000, 800);
 	defineStartPos();
