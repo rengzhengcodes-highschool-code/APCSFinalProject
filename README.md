@@ -42,3 +42,5 @@ Tada! The simulation should be working.
 2021-05-31|RZ - Changed algorithmic edge detection to a manual one because it was easier for the pathfinding to handle compared to the spotty edge detection (manual is using the paintbucket tool in photoshop to make the track and not track parts distinct solid colored blocks). Reworked AI to handle tight corners better so that it can now complete indefinite amounts of laps without error. Added multiple simultaneous drivers.
 
 2021-06-01|RZ - Implemented a TrackCamera that follows the car around as it moves. It uses button inputs and scales up the entire screen to make it more focused on the car.
+
+2021-06-02|RZ - Added another track called Zandvoort and made adding new tracks easier. Cleaned up some code and the file directories for neatness.
