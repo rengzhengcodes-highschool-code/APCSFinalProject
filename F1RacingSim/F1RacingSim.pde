@@ -35,6 +35,9 @@ void defineStartPos() {
 
 	mapStartPos.put("Zandvoort", new float[][] {
 		{260, 300},
+		{255, 310},
+		{250, 320},
+		{245, 330},
 	});
 	mapStartAngle.set("Zandvoort", radians(-65));
 }
