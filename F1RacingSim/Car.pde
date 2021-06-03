@@ -112,6 +112,9 @@ public class Car{
 	public float getTopSpeed() {
 		return topSpeed;
 	}
+	public float getHandling() {
+		return handling;
+	}
 	public float getAngle() {
 		return angle;
 	}

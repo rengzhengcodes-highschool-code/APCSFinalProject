@@ -71,17 +71,28 @@ public class AIDriver extends Driver {
 		if (dL > dR) {//if my default assumption of you need to turn right is wrong, turn left.
 			turnDirection = -1;//multiplier to make it turn the other way
 		}
+
+		boolean turned = false;
+		float nuTheta = theta;
 		if (d != 0) {
-			for (int i = 360; i > 0 && (17 > dist(0, 0, bound[0], bound[1]));//the 17 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
+			for (float i = degrees(c.getHandling()); i > 0 && !turned;//the 17 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
 			    i--) {
-				theta += radians(1) * turnDirection;
-				bound = closestBound(sightRange, theta, t.getTrackEdge());
+				nuTheta += radians(1) * turnDirection;
+				bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
+				if (17 < dist(0, 0, bound[0], bound[1])) {
+					turned = true;
+					theta = nuTheta;
+				}
 			}
 		} else {
-			for (int i = 360; i > 0 && (20 > dist(0, 0, bound[0], bound[1]));//the 20 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
+			for (float i = degrees(c.getHandling()); i > 0 && !turned;//the 20 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
 			    i--) {
-				theta += radians(1) * turnDirection;
-				bound = closestBound(sightRange, theta, t.getTrackEdge());
+				nuTheta += radians(1) * turnDirection;
+				bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
+				if (20 < dist(0, 0, bound[0], bound[1])) {
+					turned = true;
+					theta = nuTheta;
+				}
 			}
 		}
 		//default acceleration speed
