@@ -1,8 +1,6 @@
 import java.util.Map;
 
 HashMap<String, float[]> maps = new HashMap<String, float[]>();
-Map.maps.put("string", new float[] {200, 225});
-
 ArrayList<AIDriver> ais;
 Track t;
 TrackCamera tC = new TrackCamera();
@@ -11,10 +9,14 @@ float scaleFactor = 5;
 String map = "Monaco";
 void setup() {
 	size(1000, 800);
+	defineStartPos();
+	//adding ais to sim
 	ais = new ArrayList<AIDriver>();
 	ais.add(new AIDriver());
+	//giving the ais cars lined up at the right position
+	float[] p1 = maps.get(map);
 	for (int i = 1; i < 4; i++) {
-		Car c = new Car(225 - i * 10, 200 + i * 10, 900,
+		Car c = new Car(p1[0] - i * 10, p1[1] + i * 10, 900,
 										2, radians(-50), 0,
 										radians(-50), 0, false);
 		AIDriver ai = new AIDriver();
@@ -22,6 +24,11 @@ void setup() {
 		ais.add(ai);
 	}
 	t = new Track(0.9, 0.68, 0, loadImage(map + ".png"), loadImage(map + "BW.png"));
+}
+
+void defineStartPos() {
+	maps.put("Monaco", new float[] {225, 200});
+	maps.put("Zandvoort", new float[] {1, 1});
 }
 
 void draw() {
