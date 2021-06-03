@@ -2,18 +2,15 @@ import java.util.Map;
 
 HashMap<String, float[][]> mapStartPos = new HashMap<String, float[][]>();
 FloatDict mapStartAngle = new FloatDict();
-ArrayList<AIDriver> ais;
+ArrayList<AIDriver> ais = new ArrayList<AIDriver>();;
 Track t;
 TrackCamera tC = new TrackCamera();
 byte cameraMode = 0;
 float scaleFactor = 5;
-String map = "Monaco";
+String map = "Zandvoort";
 void setup() {
 	size(1000, 800);
 	defineStartPos();
-	//adding ais to sim
-	ais = new ArrayList<AIDriver>();
-	ais.add(new AIDriver());
 	//giving the ais cars lined up at the right position
 	float[][] positions = mapStartPos.get(map);
 	for (float[] position : positions) {
@@ -35,6 +32,11 @@ void defineStartPos() {
 		{195, 230},
 	});
 	mapStartAngle.set("Monaco", radians(-50));
+
+	mapStartPos.put("Zandvoort", new float[][] {
+		{260, 300},
+	});
+	mapStartAngle.set("Zandvoort", radians(-65));
 }
 
 void draw() {
