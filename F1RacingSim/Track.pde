@@ -59,19 +59,4 @@ public class Track {
 	public float tireWear() {
 		return tireWear;
 	}
-	/**@return The horizontal length of the track.
-	*/
-	public int trackXLength() {
-		return track.width;
-	}
-	/**@return The vertical length of the track.
-	*/
-	public int trackYLength() {
-		return track.height;
-	}
-	/**@return The track edge view.
-	*/
-	public PImage getTrackEdge() {
-		return trackEdge;
-	}
 }
