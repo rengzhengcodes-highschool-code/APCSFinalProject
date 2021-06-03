@@ -1,6 +1,6 @@
 import java.util.Map;
 //map start characteristics
-String map = "Monaco";//the map you load
+String map = "Zandvoort";//the map you load
 HashMap<String, float[][]> mapStartPosses = new HashMap<String, float[][]>();
 FloatDict mapStartAngles = new FloatDict();
 HashMap<String, float[]> mapFrictionCoeffs = new HashMap<String, float[]>();
@@ -38,7 +38,7 @@ void defineStartPos() {
 		{195, 230},
 	});
 	mapStartAngles.set("Monaco", radians(-50));
-	mapFrictionCoeffs.put("Monaco", new float[] {0.7, 0.4});//0.7 and 0.4 are default tire on asphalt coefficients, Monaco is a low grip track so IRL these are lower.
+	mapFrictionCoeffs.put("Monaco", new float[] {0.7, 0.4});//0.7 and 0.4 are default tire on asphalt coefficients, Monaco is a low grip track so IRL these are lower. It goes (statGrip, kenGrip)
 
 	mapStartPosses.put("Zandvoort", new float[][] {
 		{260, 300},
@@ -47,6 +47,7 @@ void defineStartPos() {
 		{245, 330},
 	});
 	mapStartAngles.set("Zandvoort", radians(-65));
+	mapFrictionCoeffs.put("Zandvoort", new float[] {0.8, 0.5});//Zandvoort has high grip due to its turns and the new rebuild of the track.
 }
 
 void draw() {
