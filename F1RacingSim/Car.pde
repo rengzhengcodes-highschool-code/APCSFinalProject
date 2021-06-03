@@ -64,10 +64,6 @@ public class Car{
 		frontForce = acc;
 	}
 
-	public void setAngle(double theta) {
-		angle = (float)theta;
-	}
-
 	public void setVelocity(float mag, float theta) {
 		velocity = mag;
 		moveAngle = theta;
@@ -76,9 +72,9 @@ public class Car{
 	/**
 		*@param theta The angle you want to shift the car by in radians.
 	*/
-	public void turn(double theta) {
-		if (theta > handling) theta = handling;
-		angle += (float)theta;
+	public void turn(float theta) {
+		if (Math.abs(theta) > handling) theta = handling * Math.signum(theta);
+		angle += theta;
 	}
 	/**
 		*@postcondition Car moves by its given velocity vector.
