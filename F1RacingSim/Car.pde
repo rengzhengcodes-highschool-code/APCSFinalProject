@@ -73,7 +73,7 @@ public class Car{
 		*@param theta The angle you want to shift the car to.
 	*/
 	public void turn(float theta) {
-		if (Math.abs(theta - angle) > handling) theta = handling * Math.signum(theta - angle);
+		if (Math.abs(theta - angle) > handling) theta = angle + handling * Math.signum(theta - angle);
 		angle = theta;
 	}
 	/**
