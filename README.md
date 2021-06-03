@@ -7,9 +7,9 @@ The project will be a simulation of a car’s efficacy on a given F1 track, assu
 ## Instructions for Compiling and Running
 Requires Processing version 3: https://processing.org/download/
 
-Download the contents of the git repo.\
-Open F1RacingSim.pde in Processing 3. Do not move any of the files or subfolders of F1RacingSim.\
-Once open in Processing 3, do not touch any of the code. Simply press ctrl + R to run.\
+1. Download the contents of the git repo.\
+2. Open F1RacingSim.pde in Processing 3. Do not move any of the files or subfolders of F1RacingSim.\
+3. Once open in Processing 3, do not touch any of the code. Simply press ctrl + R to run.\
 Tada! The simulation should be working.
 
 ## Dev Log (YYYY-MM-DD|Initials)
