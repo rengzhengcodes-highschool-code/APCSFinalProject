@@ -59,4 +59,9 @@ public class Track {
 	public float tireWear() {
 		return tireWear;
 	}
+	/**@return The track mask that is used for the edge detection in the AI.
+	*/
+	public PImage getTrackEdge() {
+		return trackEdge;
+	}
 }
