@@ -1,12 +1,13 @@
 import java.util.Map;
 
-HashMap<String, float[]> maps = new HashMap<String, float[]>();
+HashMap<String, float[][]> mapStartPos = new HashMap<String, float[][]>();
+FloatDict mapStartAngle = new FloatDict();
 ArrayList<AIDriver> ais;
 Track t;
 TrackCamera tC = new TrackCamera();
 byte cameraMode = 0;
 float scaleFactor = 5;
-String map = "Zandvoort";
+String map = "Monaco";
 void setup() {
 	size(1000, 800);
 	defineStartPos();
@@ -14,11 +15,11 @@ void setup() {
 	ais = new ArrayList<AIDriver>();
 	ais.add(new AIDriver());
 	//giving the ais cars lined up at the right position
-	float[] p1 = maps.get(map);
-	for (int i = 1; i < 4; i++) {
-		Car c = new Car(p1[0] - i * 10, p1[1] + i * 10, 900,
-										2, radians(-50), 0,
-										radians(-50), 0, false);
+	float[][] positions = mapStartPos.get(map);
+	for (float[] position : positions) {
+		Car c = new Car(position[0], position[1], 900,
+										2, mapStartAngle.get(map), 0,
+										mapStartAngle.get(map), 0, false);
 		AIDriver ai = new AIDriver();
 		ai.setCar(c);
 		ais.add(ai);
@@ -27,8 +28,13 @@ void setup() {
 }
 
 void defineStartPos() {
-	maps.put("Monaco", new float[] {225, 200});
-	maps.put("Zandvoort", new float[] {1, 1});
+	mapStartPos.put("Monaco", new float[][] {
+		{225, 200},
+		{215, 210},
+		{205, 220},
+		{195, 230},
+	});
+	mapStartAngle.set("Monaco", radians(-50));
 }
 
 void draw() {
