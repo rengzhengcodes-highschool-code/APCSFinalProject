@@ -1,8 +1,9 @@
 import java.util.Map;
 //map start characteristics
-String map = "Zandvoort";//the map you load
-HashMap<String, float[][]> mapStartPos = new HashMap<String, float[][]>();
-FloatDict mapStartAngle = new FloatDict();
+String map = "Monaco";//the map you load
+HashMap<String, float[][]> mapStartPosses = new HashMap<String, float[][]>();
+FloatDict mapStartAngles = new FloatDict();
+HashMap<String, float[]> mapFrictionCoeffs = new HashMap<String, float[]>();
 //ai Drivers
 ArrayList<AIDriver> ais = new ArrayList<AIDriver>();;
 //active track
@@ -15,34 +16,37 @@ void setup() {
 	size(1000, 800);
 	defineStartPos();
 	//giving the ais cars lined up at the right position
-	float[][] positions = mapStartPos.get(map);
+	float[][] positions = mapStartPosses.get(map);
 	for (float[] position : positions) {
 		Car c = new Car(position[0], position[1], 900,
-										2, mapStartAngle.get(map), 0,
-										mapStartAngle.get(map), 0, false);
+										2, mapStartAngles.get(map), 0,
+										mapStartAngles.get(map), 0, false);
 		AIDriver ai = new AIDriver();
 		ai.setCar(c);
 		ais.add(ai);
 	}
-	t = new Track(0.9, 0.68, 0, loadImage(map + ".png"), loadImage(map + "BW.png"));
+	//creates track
+	float[] frictionCoeffs = mapFrictionCoeffs.get(map);
+	t = new Track(frictionCoeffs[0], frictionCoeffs[1], 0, loadImage(map + ".png"), loadImage(map + "BW.png"));
 }
 
 void defineStartPos() {
-	mapStartPos.put("Monaco", new float[][] {
+	mapStartPosses.put("Monaco", new float[][] {
 		{225, 200},
 		{215, 210},
 		{205, 220},
 		{195, 230},
 	});
-	mapStartAngle.set("Monaco", radians(-50));
+	mapStartAngles.set("Monaco", radians(-50));
+	mapFrictionCoeffs.put("Monaco", new float[] {0.7, 0.4});//0.7 and 0.4 are default tire on asphalt coefficients, Monaco is a low grip track so IRL these are lower.
 
-	mapStartPos.put("Zandvoort", new float[][] {
+	mapStartPosses.put("Zandvoort", new float[][] {
 		{260, 300},
 		{255, 310},
 		{250, 320},
 		{245, 330},
 	});
-	mapStartAngle.set("Zandvoort", radians(-65));
+	mapStartAngles.set("Zandvoort", radians(-65));
 }
 
 void draw() {
