@@ -1,13 +1,16 @@
 import java.util.Map;
-
+//map start characteristics
+String map = "Zandvoort";//the map you load
 HashMap<String, float[][]> mapStartPos = new HashMap<String, float[][]>();
 FloatDict mapStartAngle = new FloatDict();
+//ai Drivers
 ArrayList<AIDriver> ais = new ArrayList<AIDriver>();;
+//active track
 Track t;
+//the camera characteristics
 TrackCamera tC = new TrackCamera();
-byte cameraMode = 0;
-float scaleFactor = 5;
-String map = "Zandvoort";
+byte cameraMode = 0;//which car is being followed
+float scaleFactor = 5;//scaling when following a car.
 void setup() {
 	size(1000, 800);
 	defineStartPos();
