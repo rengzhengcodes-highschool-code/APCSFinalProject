@@ -3,20 +3,22 @@ public class AIDriver extends Driver {
 	private final boolean DEBUG = false;
 
 	public float findFrontWallDist() {
-		float theta = getCar().getMoveAngle();
-		float[] boundPixelOffset = closestBound(sightRange, theta, t.getTrackEdge());
-		return dist(0, 0, boundPixelOffset[0], boundPixelOffset[1]);
+		return findWallAtAngleDist(0);
 	}
 
 	public float findLeftWallDist() {
-		float theta = getCar().getMoveAngle();
-		float[] boundPixelOffset = closestBound(sightRange, theta - radians(90), t.getTrackEdge());
-		return dist(0, 0, boundPixelOffset[0], boundPixelOffset[1]);
+		return findWallAtAngleDist(-radians(90));
 	}
 
 	public float findRightWallDist() {
+		return findWallAtAngleDist(radians(90));
+	}
+	/**
+		*@param angle Angle offset from move angle in radians.
+	*/
+	private float findWallAtAngleDist(float angle) {
 		float theta = getCar().getMoveAngle();
-		float[] boundPixelOffset = closestBound(sightRange, theta + radians(90), t.getTrackEdge());
+		float[] boundPixelOffset = closestBound(sightRange, theta + angle, t.getTrackEdge());
 		return dist(0, 0, boundPixelOffset[0], boundPixelOffset[1]);
 	}
 
