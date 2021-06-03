@@ -1,3 +1,8 @@
+import java.util.Map;
+
+HashMap<String, float[]> maps = new HashMap<String, float[]>();
+Map.maps.put("string", new float[] {200, 225});
+
 ArrayList<AIDriver> ais;
 Track t;
 TrackCamera tC = new TrackCamera();
