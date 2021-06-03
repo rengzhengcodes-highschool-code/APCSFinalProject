@@ -1,6 +1,6 @@
 import java.util.Map;
 //map start characteristics
-String map = "Zandvoort";//the map you load
+String map = "Monaco";//the map you load
 HashMap<String, float[][]> mapStartPosses = new HashMap<String, float[][]>();
 FloatDict mapStartAngles = new FloatDict();
 HashMap<String, float[]> mapFrictionCoeffs = new HashMap<String, float[]>();

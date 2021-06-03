@@ -73,8 +73,8 @@ public class Car{
 		*@param theta The angle you want to shift the car by in radians.
 	*/
 	public void turn(float theta) {
-		if (Math.abs(theta) > handling) theta = handling * Math.signum(theta);
-		angle += theta;
+		//if (Math.abs(theta) > handling) theta = handling * Math.signum(theta);
+		angle = theta;
 	}
 	/**
 		*@postcondition Car moves by its given velocity vector.
