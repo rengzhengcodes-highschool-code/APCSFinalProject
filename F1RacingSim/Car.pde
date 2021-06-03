@@ -70,10 +70,10 @@ public class Car{
 	}
 	/*Movement methods*/
 	/**
-		*@param theta The angle you want to shift the car by in radians.
+		*@param theta The angle you want to shift the car to.
 	*/
 	public void turn(float theta) {
-		//if (Math.abs(theta) > handling) theta = handling * Math.signum(theta);
+		if (Math.abs(theta - angle) > handling) theta = handling * Math.signum(theta - angle);
 		angle = theta;
 	}
 	/**
