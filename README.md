@@ -44,3 +44,5 @@ Tada! The simulation should be working.
 2021-06-01|RZ - Implemented a TrackCamera that follows the car around as it moves. It uses button inputs and scales up the entire screen to make it more focused on the car.
 
 2021-06-02|RZ - Added another track called Zandvoort and made adding new tracks easier. Cleaned up some code and the file directories for neatness.
+
+2021-06-02|RZ - Resolved the 4 modifiable vars issue. Implemented a max turn angle variable called handling (AI cannot deal with angles less than 180 degrees yet), a simplified downforce coefficient variable, and a max acceleration variable (to be implemented).
