@@ -3,6 +3,7 @@ public class Car{
 	private float xCor;
 	private float yCor;
 	//changeable vars
+	private float wheelLength;
 	private float mass;
 	private float topSpeed;
 	private float handling;//the max degrees you can turn in a frame
@@ -10,6 +11,7 @@ public class Car{
 	private float maxAcceleration;//max magnitude of the acceleration vector
 	//angle and magnitude of vector 1:
 	//the direction the car is trying to go
+	private float frontAngle = 0;
 	private float angle;
 	private float frontForce;
 	//angle and magnitude of vector 2:
@@ -26,6 +28,7 @@ public class Car{
 		*@param h The max turning angle per frame in radians.
 		*@param dF The downforce coefficient of the car.
 		*@param mA The max acceleration of the car.
+		*@param wL Length of car from front to back wheel.
 		*@param a Starting angle of the car in radians.
 		*@param fS Front force of the car.
 		*@param dA moveAngle The starting angle delta.
@@ -33,7 +36,7 @@ public class Car{
 		*@postcondition The instance variables are set.
 	*/
 	public Car(float x, float y, float m,
-						 float tS, float h, float dF, float mA, float a, float fS,
+						 float tS, float h, float dF, float mA, float wL, float a, float fS,
 						 float dA, float dS, boolean skd) {
 		car.resize((int)(0.07*car.width), (int)(0.07*car.height));
 		xCor = x;
@@ -41,6 +44,7 @@ public class Car{
 		mass = m;
 		downForce = dF;
 		maxAcceleration = mA;
+		wheelLength = wL;
 		topSpeed = tS;
 		handling = h;
 		angle = a;
@@ -53,7 +57,7 @@ public class Car{
 	*/
 	public Car() {
 		this(225, 200, 900,
-		     2, radians(360), 1, 2, radians(-50), 0,
+		     2, radians(360), 1, 2, 8, radians(-50), 0,
 				 radians(-50), 0, false);
 	}
 
@@ -124,6 +128,9 @@ public class Car{
 	public float getDownForce() {
 		return downForce;
 	}
+	public float getWheelLength() {
+		return wheelLength;
+	}
 	public float getAngle() {
 		return angle;
 	}
@@ -139,6 +146,10 @@ public class Car{
 
 	public boolean isSkidding() {
 		return skid;
+	}
+	/*set methods*/
+	public void setFrontAngle(float theta) {
+		frontAngle = theta;
 	}
 	/**
 		*prevents car from going off the edge of the screen

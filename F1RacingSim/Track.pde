@@ -32,15 +32,12 @@ public class Track {
 		trackEdge.resize(width, height);
 	}
 
-	public void display() {
-		imageMode(CORNER);
-		image(track, 0, 0);
-	}
+  public void displayEdge() {
+    imageMode(CORNER);
+    image(trackEdge, 0, 0);
+  }
 
-	public void displayEdge() {
-		imageMode(CORNER);
-		image(trackEdge, 0, 0);
-	}
+  /*Get Statements. Self explanatory*/
 
 	/*Get Statements. Self explanatory*/
 

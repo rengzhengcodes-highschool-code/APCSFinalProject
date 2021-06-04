@@ -38,17 +38,17 @@ public class Driver {
 		return car;
 	}
 
-	public String getName() {
-		return name;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public float getTireWear() {
-		return tireWear;
-	}
+  public float getTireWear() {
+    return tireWear;
+  }
 
-	public float getReactionTime() {
-		return reactionTime;
-	}
+  public float getReactionTime() {
+    return reactionTime;
+  }
 
 	public float getConsistency() {
 		return consistency;
