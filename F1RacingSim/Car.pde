@@ -1,4 +1,5 @@
 public class Car{
+  private float wheelLength;
   private boolean skid;
   private float xCor;
   private float yCor;
@@ -6,6 +7,7 @@ public class Car{
   private float topSpeed;
   //angle and magnitude of vector 1:
   //the direction the car is trying to go
+  private float frontAngle;
   private float angle;
   private float frontForce;
   //angle and magnitude of vector 2:
@@ -14,13 +16,12 @@ public class Car{
   private float moveAngle;
   private float velocity;
   private PImage car = loadImage("RaceCar.png");//from https://www.vectorstock.com/royalty-free-vector/top-view-a-racing-car-vector-15938905
-  private PImageProcessor rotateProcess = new PImageProcessor();
   /**
     *@param x X coord of the car.
     *@param y Y coord of the car.
     *@param m Mass of the car.
     *@param tS Top speed of the car.
-    *@param a Starting angle of the car.
+    *@param a Starting angle of the car in radians.
     *@param fS Front force of the car.
     *@param dA moveAngle The starting angle delta.
     *@param dS The starting velocity.
@@ -28,7 +29,9 @@ public class Car{
   */
   public Car(float x, float y, float m,
              float tS, float a, float fS,
-             float dA, float dS, boolean skd) {
+             float dA, float dS, boolean skd, float lth, float fAng) {
+    //car.resize((int)(0.07*car.width), (int)(0.07*car.height));
+    car.resize((int)(0.07*car.width), (int)(0.07*car.height));
     xCor = x;
     yCor = y;
     mass = m;
@@ -38,53 +41,52 @@ public class Car{
     moveAngle = dA;
     velocity = dS;
     skid = skd;
+    wheelLength = lth;
+    frontAngle = fAng;
   }
   /**The default car constructor.
   */
   public Car() {
-    xCor = 200;
-    yCor = 200;
-    mass = 900;
-    topSpeed = 10;
-    angle = 0;
-    frontForce = 0;
-    moveAngle = 0;
-    velocity = 0;
-    skid = false;
+    this(225, 200, 900,
+         1.5, radians(-50), 0,
+         radians(-50), 0, false, 8, 0);
   }
 
-  public void display(float x, float y){}
   public void display() {
-    translate(xCor,yCor);
-    rotate(angle);
-    stroke(0);
-    fill(255,0,0);
-    rect(0, 0, 10,5);
-    //float scalingFactor = 0.2;
-    //imageMode(CENTER);
-    //PImage rotated = rotateProcess.rotate(car, angle + (float)Math.PI/2);
-    //rotated.resize((int)(rotated.width * scalingFactor), (int)(rotated.height * scalingFactor));
-    //image(rotated, xCor, yCor);
+    pushMatrix();
+    translate(xCor, yCor);
+    rotate(angle + (float)Math.PI/2);
+    imageMode(CENTER);
+    image(car, 0, 0);
+    popMatrix();
   }
-
+  /*Set methods. Self explanatory*/
   public void setFrontForce(float acc) {
     frontForce = acc;
   }
 
-<<<<<<< HEAD
   public void setAngle(double theta) {
     angle = (float)theta;
   }
-=======
-	public void setAngle(double theta) {
-		angle = (float)theta;
-	}
->>>>>>> de342deac596150bde63f4c1350570d0cc49584b
-
-  public void shiftAngle(double theta) {
-    angle += (float)theta;
+  
+  public void setFrontAngle(double theta) {
+    frontAngle = (float)theta;
   }
 
+  public void setVelocity(float mag, float theta) {
+    velocity = mag;
+    moveAngle = theta;
+  }
+  /*Movement methods*/
+  /**
+    *@param theta The angle you want to shift the car by in radians.
+  */
+  public void turn(double theta) {
+    frontAngle += (float)theta;
+  }
+  /**
+    *@postcondition Car moves by its given velocity vector.
+  */
   public void move() {
     if(velocity > topSpeed){
       velocity = topSpeed;
@@ -92,34 +94,23 @@ public class Car{
     float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
     xCor += shift[0];
     yCor += shift[1];
-    
-    System.out.println(CartesianPolarMath.cartesianToPolar(shift[0], shift[1])[0]);
+
     screenEdgeDetection();
   }
-
-  public void setVelocity(float mag, float theta) {
-    velocity = mag;
-    moveAngle = theta;
-  }
-
-  public boolean isSkidding(){
-    return skid;
-  }
-<<<<<<< HEAD
-  
+  /**
+    *@param mag The magnitude of the acceleration.
+    *@param theta The direction of the acceleration.
+    *@postcondition Velocity changes according to the acceleration vector.
+  */
   public void accelerate(float mag, float theta) {
     float[] vector = Physics.addVector(velocity, moveAngle, mag, theta);
     this.setVelocity(vector[0], vector[1]);
   }
-=======
-
-	public void accelerate(float mag, float theta) {
-		float[] vector = Physics.addVector(velocity, moveAngle, mag, theta);
-		this.setVelocity(vector[0], vector[1]);
-	}
->>>>>>> de342deac596150bde63f4c1350570d0cc49584b
 
   /*Get Methods. Self explanatory*/
+  public float getWheelLength(){
+    return wheelLength;
+  }
   public float getX() {
     return xCor;
   }
@@ -135,6 +126,9 @@ public class Car{
   public float getAngle() {
     return angle;
   }
+  public float getFrontAngle(){
+    return frontAngle;
+  }
   public float getFrontForce() {
     return frontForce;
   }
@@ -143,6 +137,10 @@ public class Car{
   }
   public float getVelocity() {
     return velocity;
+  }
+
+  public boolean isSkidding() {
+    return skid;
   }
   /**
     *prevents car from going off the edge of the screen
@@ -157,41 +155,24 @@ public class Car{
       onEdge = true;
     }
 
-<<<<<<< HEAD
     if (yCor < 0) {//y axis detection
       yCor = 0;
       onEdge = true;
-    } else if (yCor >= width) {
-      yCor = width - 1;
+    } else if (yCor >= height) {
+      yCor = height - 1;
       onEdge = true;
     }
-=======
-		if (yCor < 0) {//y axis detection
-			yCor = 0;
-			onEdge = true;
-		} else if (yCor >= height) {
-			yCor = height - 1;
-			onEdge = true;
-		}
->>>>>>> de342deac596150bde63f4c1350570d0cc49584b
 
     if (onEdge) {
-      moveAngle = -moveAngle;
+      angle = moveAngle + (float)Math.PI;
+      angle %= 2*Math.PI;
       velocity = 0;
     }
   }
 
-<<<<<<< HEAD
   public String toString() {
     return "Coords: (" + xCor + ", " + yCor + ") | Velocity: ("
             + velocity + ", " + moveAngle + ") | Car Angle: " + angle +
             " frontForce: " + frontForce;
   }
-=======
-	public String toString() {
-		return "Coords: (" + xCor + ", " + yCor + ") | Velocity: ("
-						+ velocity + ", " + moveAngle + ") | Car Angle: " + angle +
-						" frontForce: " + frontForce;
-	}
->>>>>>> de342deac596150bde63f4c1350570d0cc49584b
 }
