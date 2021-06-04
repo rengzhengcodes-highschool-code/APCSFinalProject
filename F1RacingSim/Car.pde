@@ -6,6 +6,7 @@ public class Car{
 	private float mass;
 	private float topSpeed;
 	private float handling;//the max degrees you can turn in a frame
+	private float downForce;//the downforce coefficient.
 	//angle and magnitude of vector 1:
 	//the direction the car is trying to go
 	private float angle;
@@ -22,6 +23,7 @@ public class Car{
 		*@param m Mass of the car.
 		*@param tS Top speed of the car.
 		*@param h The max turning angle per frame in radians.
+		*@param dF The downforce coefficient of the car.
 		*@param a Starting angle of the car in radians.
 		*@param fS Front force of the car.
 		*@param dA moveAngle The starting angle delta.
@@ -29,12 +31,13 @@ public class Car{
 		*@postcondition The instance variables are set.
 	*/
 	public Car(float x, float y, float m,
-						 float tS, float h, float a, float fS,
+						 float tS, float h, float dF, float a, float fS,
 						 float dA, float dS, boolean skd) {
 		car.resize((int)(0.07*car.width), (int)(0.07*car.height));
 		xCor = x;
 		yCor = y;
 		mass = m;
+		downForce = dF;
 		topSpeed = tS;
 		handling = h;
 		angle = a;
@@ -47,7 +50,7 @@ public class Car{
 	*/
 	public Car() {
 		this(225, 200, 900,
-		     2, radians(360), radians(-50), 0,
+		     2, radians(360), 1, radians(-50), 0,
 				 radians(-50), 0, false);
 	}
 
@@ -114,6 +117,9 @@ public class Car{
 	}
 	public float getHandling() {
 		return handling;
+	}
+	public float getDownForce() {
+		return downForce;
 	}
 	public float getAngle() {
 		return angle;

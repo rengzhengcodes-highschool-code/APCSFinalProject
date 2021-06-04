@@ -16,7 +16,7 @@ public static class Physics{
 	*/
 	public static float resolve(Car car, float statGrip, float kenGrip){
 		float acceleration = 0;
-		float normalForce = g * car.getMass();
+		float normalForce = g * car.getMass() + (float)((car.getDownForce()/2) * Math.pow(car.getVelocity(), 2));
 		if(car.getFrontForce() <= normalForce * statGrip){
 			acceleration = car.getFrontForce()/car.getMass();
 		}else{
