@@ -7,9 +7,9 @@ The project will be a simulation of a car’s efficacy on a given F1 track, assu
 ## Instructions for Compiling and Running
 Requires Processing version 3: https://processing.org/download/
 
-Download the contents of the git repo.\
-Open F1RacingSim.pde in Processing 3. Do not move any of the files or subfolders of F1RacingSim.\
-Once open in Processing 3, do not touch any of the code. Simply press ctrl + R to run.\
+1. Download the contents of the git repo.\
+2. Open F1RacingSim.pde in Processing 3. Do not move any of the files or subfolders of F1RacingSim.\
+3. Once open in Processing 3, do not touch any of the code. Simply press ctrl + R to run.\
 Tada! The simulation should be working.
 
 ## Dev Log (YYYY-MM-DD|Initials)
@@ -44,3 +44,5 @@ Tada! The simulation should be working.
 2021-06-01|RZ - Implemented a TrackCamera that follows the car around as it moves. It uses button inputs and scales up the entire screen to make it more focused on the car.
 
 2021-06-02|RZ - Added another track called Zandvoort and made adding new tracks easier. Cleaned up some code and the file directories for neatness.
+
+2021-06-02|RZ - Resolved the 4 modifiable vars issue. Implemented a max turn angle variable called handling (AI cannot deal with angles less than 180 degrees yet), a simplified downforce coefficient variable, and a max acceleration variable (to be implemented).

@@ -3,20 +3,22 @@ public class AIDriver extends Driver {
 	private final boolean DEBUG = false;
 
 	public float findFrontWallDist() {
-		float theta = getCar().getMoveAngle();
-		float[] boundPixelOffset = closestBound(sightRange, theta, t.getTrackEdge());
-		return dist(0, 0, boundPixelOffset[0], boundPixelOffset[1]);
+		return findWallAtAngleDist(0);
 	}
 
 	public float findLeftWallDist() {
-		float theta = getCar().getMoveAngle();
-		float[] boundPixelOffset = closestBound(sightRange, theta - radians(90), t.getTrackEdge());
-		return dist(0, 0, boundPixelOffset[0], boundPixelOffset[1]);
+		return findWallAtAngleDist(-radians(90));
 	}
 
 	public float findRightWallDist() {
+		return findWallAtAngleDist(radians(90));
+	}
+	/**
+		*@param angle Angle offset from move angle in radians.
+	*/
+	private float findWallAtAngleDist(float angle) {
 		float theta = getCar().getMoveAngle();
-		float[] boundPixelOffset = closestBound(sightRange, theta + radians(90), t.getTrackEdge());
+		float[] boundPixelOffset = closestBound(sightRange, theta + angle, t.getTrackEdge());
 		return dist(0, 0, boundPixelOffset[0], boundPixelOffset[1]);
 	}
 
@@ -69,17 +71,28 @@ public class AIDriver extends Driver {
 		if (dL > dR) {//if my default assumption of you need to turn right is wrong, turn left.
 			turnDirection = -1;//multiplier to make it turn the other way
 		}
+
+		boolean turned = false;
+		float nuTheta = theta;
 		if (d != 0) {
-			for (int i = 360; i > 0 && (17 > dist(0, 0, bound[0], bound[1]));//the 17 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
+			for (float i = degrees(c.getHandling()); i > 0 && !turned;//the 17 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
 			    i--) {
-				theta += radians(1) * turnDirection;
-				bound = closestBound(sightRange, theta, t.getTrackEdge());
+				nuTheta += radians(1) * turnDirection;
+				bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
+				if (17 < dist(0, 0, bound[0], bound[1])) {
+					turned = true;
+					theta = nuTheta;
+				}
 			}
 		} else {
-			for (int i = 360; i > 0 && (20 > dist(0, 0, bound[0], bound[1]));//the 20 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
+			for (float i = degrees(c.getHandling()); i > 0 && !turned;//the 20 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
 			    i--) {
-				theta += radians(1) * turnDirection;
-				bound = closestBound(sightRange, theta, t.getTrackEdge());
+				nuTheta += radians(1) * turnDirection;
+				bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
+				if (20 < dist(0, 0, bound[0], bound[1])) {
+					turned = true;
+					theta = nuTheta;
+				}
 			}
 		}
 		//default acceleration speed
@@ -88,12 +101,12 @@ public class AIDriver extends Driver {
 
 		theta %= Math.PI * 2;
 		if (a == 0 && c.getVelocity() == 0) {//if both magnitudes are 0 CartesianPolarMath will return NaN when converting between the two because of how acos and asin work.
-			c.setAngle(theta);
+			c.turn(theta);
 		} else {
 			theta %= 2*Math.PI;
 			float[] newV = Physics.addVector(c.getVelocity(), c.getMoveAngle(), a, theta);
 			c.setVelocity(newV[0], newV[1]);
-			c.setAngle(theta);
+			c.turn(theta);
 		}
 	}
 }

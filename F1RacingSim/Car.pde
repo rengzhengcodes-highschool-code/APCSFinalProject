@@ -2,8 +2,12 @@ public class Car{
 	private boolean skid;
 	private float xCor;
 	private float yCor;
+	//changeable vars
 	private float mass;
 	private float topSpeed;
+	private float handling;//the max degrees you can turn in a frame
+	private float downForce;//the downforce coefficient.
+	private float maxAcceleration;//max magnitude of the acceleration vector
 	//angle and magnitude of vector 1:
 	//the direction the car is trying to go
 	private float angle;
@@ -19,6 +23,9 @@ public class Car{
 		*@param y Y coord of the car.
 		*@param m Mass of the car.
 		*@param tS Top speed of the car.
+		*@param h The max turning angle per frame in radians.
+		*@param dF The downforce coefficient of the car.
+		*@param mA The max acceleration of the car.
 		*@param a Starting angle of the car in radians.
 		*@param fS Front force of the car.
 		*@param dA moveAngle The starting angle delta.
@@ -26,13 +33,16 @@ public class Car{
 		*@postcondition The instance variables are set.
 	*/
 	public Car(float x, float y, float m,
-						 float tS, float a, float fS,
+						 float tS, float h, float dF, float mA, float a, float fS,
 						 float dA, float dS, boolean skd) {
 		car.resize((int)(0.07*car.width), (int)(0.07*car.height));
 		xCor = x;
 		yCor = y;
 		mass = m;
+		downForce = dF;
+		maxAcceleration = mA;
 		topSpeed = tS;
+		handling = h;
 		angle = a;
 		frontForce = fS;
 		moveAngle = dA;
@@ -43,7 +53,7 @@ public class Car{
 	*/
 	public Car() {
 		this(225, 200, 900,
-		     2, radians(-50), 0,
+		     2, radians(360), 1, 2, radians(-50), 0,
 				 radians(-50), 0, false);
 	}
 
@@ -60,20 +70,17 @@ public class Car{
 		frontForce = acc;
 	}
 
-	public void setAngle(double theta) {
-		angle = (float)theta;
-	}
-
 	public void setVelocity(float mag, float theta) {
 		velocity = mag;
 		moveAngle = theta;
 	}
 	/*Movement methods*/
 	/**
-		*@param theta The angle you want to shift the car by in radians.
+		*@param theta The angle you want to shift the car to.
 	*/
-	public void turn(double theta) {
-		angle += (float)theta;
+	public void turn(float theta) {
+		if (Math.abs(theta - angle) > handling) theta = angle + handling * Math.signum(theta - angle);
+		angle = theta;
 	}
 	/**
 		*@postcondition Car moves by its given velocity vector.
@@ -110,6 +117,12 @@ public class Car{
 	}
 	public float getTopSpeed() {
 		return topSpeed;
+	}
+	public float getHandling() {
+		return handling;
+	}
+	public float getDownForce() {
+		return downForce;
 	}
 	public float getAngle() {
 		return angle;
