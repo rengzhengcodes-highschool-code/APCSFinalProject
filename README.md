@@ -39,15 +39,14 @@ Tada! The simulation should be working.
 2021-05-29|RZ - Changed constructors to use constructors with more parameter options to streamline potential changes. Have a working AI with cheats, working on removing cheats and still having the AI follow the track.\
 2021-05-29|JM - Worked out rotation for a rectangle that alligned with the actual car movements, started work on four wheel physics and the necessary rigid body physics.
 
-2021-05-31|RZ - Changed algorithmic edge detection to a manual one because it was easier for the pathfinding to handle compared to the spotty edge detection (manual is using the paintbucket tool in photoshop to make the track and not track parts distinct solid colored blocks). Reworked AI to handle tight corners better so that it can now complete indefinite amounts of laps without error. Added multiple simultaneous drivers.
+2021-05-31|RZ - Changed algorithmic edge detection to a manual one because it was easier for the pathfinding to handle compared to the spotty edge detection (manual is using the paintbucket tool in photoshop to make the track and not track parts distinct solid colored blocks). Reworked AI to handle tight corners better so that it can now complete indefinite amounts of laps without error. Added multiple simultaneous drivers.\
 2021-05-31|JM - Made a watermark-free version of manaco (a bit out of line, will be fixed later). 
 
-2021-06-01|RZ - Implemented a TrackCamera that follows the car around as it moves. It uses button inputs and scales up the entire screen to make it more focused on the car.
+2021-06-01|RZ - Implemented a TrackCamera that follows the car around as it moves. It uses button inputs and scales up the entire screen to make it more focused on the car.\
 2021-06-01|JM - Did some research into F1 stats on Manaco and finalized most of the new physics engine on paper.
 
-2021-06-02|RZ - Added another track called Zandvoort and made adding new tracks easier. Cleaned up some code and the file directories for neatness.
+2021-06-02|RZ - Added another track called Zandvoort and made adding new tracks easier. Cleaned up some code and the file directories for neatness.\
 2021-06-02|JM - did some testing for the new track and the physics so far. Also did pixel measurements for the tracks and cars to try to create a unified scale (not done in the demo, but to be implemented later).
 
-2021-06-03|RZ - Resolved the 4 modifiable vars issue. Implemented a max turn angle variable called handling (AI cannot deal with angles less than 180 degrees yet), a simplified downforce coefficient variable, and a max acceleration variable (to be implemented).
-
+2021-06-03|RZ - Resolved the 4 modifiable vars issue. Implemented a max turn angle variable called handling (AI cannot deal with angles less than 180 degrees yet), a simplified downforce coefficient variable, and a max acceleration variable (to be implemented).\
 2021-06-03|JM - Finished the two point rigid body physics with front wheel turning and accurate car turning. Imtegrated into AIDrover and resolved the many merge issues.
