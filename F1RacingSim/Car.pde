@@ -154,9 +154,6 @@ public class Car{
 	public void setFrontAngle(float theta) {
 		frontAngle = theta;
 	}
-	public void setAngle(float theta) {
-		angle = theta;
-	}
 	/**
 		*prevents car from going off the edge of the screen
 	*/

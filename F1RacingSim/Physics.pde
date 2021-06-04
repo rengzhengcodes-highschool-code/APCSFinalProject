@@ -58,7 +58,7 @@ public static class Physics{
     turnAngle = radians((rotator / (car.getWheelLength() * (float)Math.PI)) * 360);
     centerOfMassMove = addVector(front[0], front[1], back[0], back[1]);
     car.setVelocity(centerOfMassMove[0], centerOfMassMove[1]);
-    car.setAngle(car.getAngle() + turnAngle);
+    car.setFrontAngle(car.getAngle() + turnAngle);
   }
 
   public static float[] frontDrift(Car car, float statGrip, float kenGrip){
