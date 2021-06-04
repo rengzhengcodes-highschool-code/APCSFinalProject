@@ -140,6 +140,9 @@ public class Car{
 	public float getMoveAngle() {
 		return moveAngle;
 	}
+	public float getFrontAngle() {
+		return frontAngle;
+	}
 	public float getVelocity() {
 		return velocity;
 	}
@@ -150,6 +153,9 @@ public class Car{
 	/*set methods*/
 	public void setFrontAngle(float theta) {
 		frontAngle = theta;
+	}
+	public void setAngle(float theta) {
+		angle = theta;
 	}
 	/**
 		*prevents car from going off the edge of the screen

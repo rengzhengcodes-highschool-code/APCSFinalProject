@@ -31,7 +31,10 @@ public class Track {
 		trackEdge = edgeImage.copy();
 		trackEdge.resize(width, height);
 	}
-
+	public void display() {
+		imageMode(CORNER);
+		image(track, 0, 0);
+	}
   public void displayEdge() {
     imageMode(CORNER);
     image(trackEdge, 0, 0);
