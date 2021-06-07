@@ -50,7 +50,7 @@ void defineStartPos() {
 	mapFrictionCoeffs.put("Zandvoort", new float[] {0.8, 0.5});//Zandvoort has high grip due to its turns and the new rebuild of the track.
 
 	mapStartPosses.put("Baku", new float[][] {
-		{800, 400}
+		{875, 300}
 	});
 	mapStartAngles.set("Baku", radians(-10));
 	mapFrictionCoeffs.put("Baku", new float[] {0.7, 0.4});//defaults, have not looked into real Baku grip
