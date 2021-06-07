@@ -1,6 +1,6 @@
 import java.util.Map;
 //map start characteristics
-String map = "Monaco";//the map you load
+String map = "Baku";//the map you load
 HashMap<String, float[][]> mapStartPosses = new HashMap<String, float[][]>();
 FloatDict mapStartAngles = new FloatDict();
 HashMap<String, float[]> mapFrictionCoeffs = new HashMap<String, float[]>();
@@ -48,6 +48,12 @@ void defineStartPos() {
 	});
 	mapStartAngles.set("Zandvoort", radians(-65));
 	mapFrictionCoeffs.put("Zandvoort", new float[] {0.8, 0.5});//Zandvoort has high grip due to its turns and the new rebuild of the track.
+
+	mapStartPosses.put("Baku", new float[][] {
+		{700, 500}
+	});
+	mapStartAngles.set("Baku", radians(-5));
+	mapFrictionCoeffs.put("Baku", new float[] {0.7, 0.4});//defaults, have not looked into real Baku grip
 }
 
 void draw() {
