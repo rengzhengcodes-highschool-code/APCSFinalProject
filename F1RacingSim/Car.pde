@@ -38,7 +38,7 @@ public class Car{
 	public Car(float x, float y, float m,
 						 float tS, float h, float dF, float mA, float wL, float a, float fS,
 						 float dA, float dS, boolean skd) {
-		car.resize((int)(0.07*car.width), (int)(0.07*car.height));
+		car.resize((int)(0.03*car.width), (int)(0.03*car.height));
 		xCor = x;
 		yCor = y;
 		mass = m;
@@ -193,7 +193,7 @@ public class Car{
       velocity = topSpeed;
     }
     for(AIDriver ai : ais){
-      hitCar(ai.getCar());
+      hitCar(ai);
     }
     float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
     xCor += shift[0];
@@ -202,7 +202,8 @@ public class Car{
     screenEdgeDetection();
   }
   
-  public boolean hitCar(Car car){
+  public boolean hitCar(AIDriver ai){
+    Car car = ai.getCar();
     if(car.getX() == xCor && car.getY() == yCor){
       return true;
     }
@@ -213,7 +214,12 @@ public class Car{
     float yDist = Math.abs(car.getY() - y);
     if(Math.sqrt(xDist*xDist+yDist*yDist) < wheelLength/2 + car.getWheelLength()/2){
       velocity /= 2;
-      return hitCar(car);
+      if(ai.findLeftWallDist() < ai.findRightWallDist()){
+        frontAngle += 10;
+      }else{
+        frontAngle -= 10;
+      }
+      return hitCar(ai);
     }
     return false;
   }
