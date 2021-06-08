@@ -187,4 +187,34 @@ public class Car{
 						+ velocity + ", " + moveAngle + ") | Car Angle: " + angle +
 						" frontForce: " + frontForce;
 	}
+
+  public void move(ArrayList<AIDriver> ais) {
+    if(velocity > topSpeed){
+      velocity = topSpeed;
+    }
+    for(AIDriver ai : ais){
+      hitCar(ai.getCar());
+    }
+    float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
+    xCor += shift[0];
+    yCor += shift[1];
+
+    screenEdgeDetection();
+  }
+  
+  public boolean hitCar(Car car){
+    if(car.getX() == xCor && car.getY() == yCor){
+      return true;
+    }
+    float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
+    float x = shift[0] + xCor;
+    float y = shift[1] + yCor;
+    float xDist = Math.abs(car.getX() - x);
+    float yDist = Math.abs(car.getY() - y);
+    if(Math.sqrt(xDist*xDist+yDist*yDist) < wheelLength/2 + car.getWheelLength()/2){
+      velocity /= 2;
+      return hitCar(car);
+    }
+    return false;
+  }
 }
