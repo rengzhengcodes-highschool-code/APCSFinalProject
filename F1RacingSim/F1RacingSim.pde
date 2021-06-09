@@ -70,6 +70,10 @@ void draw() {
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("There is no driver " + cameraMode);
 			cameraMode = 0;
+      for(AIDriver ai : ais){
+        Car c = ai.getCar();
+        c.setSize(0.07);
+      }
 		}
 	}
 
@@ -91,4 +95,8 @@ void draw() {
 */
 void keyPressed() {
 	if (48 <= keyCode && keyCode <= 57) cameraMode = Byte.parseByte("" + key);//if the key pressed is a number, set the cameramode to the key pressed
+  for(AIDriver ai : ais){
+     Car c = ai.getCar();
+     c.setSize(0.03);
+  }
 }
