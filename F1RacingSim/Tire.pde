@@ -46,4 +46,8 @@ public class Tire {
 				throw new IllegalArgumentException("No tire coresponding to " + type);
 		}
 	}
+
+	public String toString() {
+		return "Type: " + type + " | Distance: " + distTraveled + " | Max Distance: " distTraveled;
+	}
 }
