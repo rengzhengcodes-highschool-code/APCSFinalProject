@@ -19,6 +19,7 @@ public class Car{
 	//the velocity in m/s
 	private float moveAngle;
 	private float velocity;
+  //private float picSize = 0.07;
 	private PImage car = loadImage("RaceCar.png");//from https://www.vectorstock.com/royalty-free-vector/top-view-a-racing-car-vector-15938905
 	/**
 		*@param x X coord of the car.
@@ -38,7 +39,7 @@ public class Car{
 	public Car(float x, float y, float m,
 						 float tS, float h, float dF, float mA, float wL, float a, float fS,
 						 float dA, float dS, boolean skd) {
-		car.resize((int)(0.03*car.width), (int)(0.03*car.height));
+		car.resize((int)(0.07*car.width), (int)(0.07*car.height));
 		xCor = x;
 		yCor = y;
 		mass = m;
@@ -78,6 +79,12 @@ public class Car{
 		velocity = mag;
 		moveAngle = theta;
 	}
+
+  public void setSize(float c){
+    car = loadImage("RaceCar.png");
+    car.resize((int)(c*car.width), (int)(c*car.height));
+  }
+    
 	/*Movement methods*/
 	/**
 		*@param theta The angle you want to shift the car to.
@@ -189,8 +196,17 @@ public class Car{
 	}
 
   public void move(ArrayList<AIDriver> ais) {
+    angle %= 2*Math.PI;
+    frontAngle %= 2*Math.PI;
+    moveAngle %= 2*Math.PI;
     if(velocity > topSpeed){
       velocity = topSpeed;
+    }
+    if(frontAngle > angle + radians(6)){
+      frontAngle = angle + radians(6);
+    }
+    if(frontAngle < angle - radians(6)){
+      frontAngle = angle - radians(6);
     }
     for(AIDriver ai : ais){
       hitCar(ai);
@@ -205,7 +221,7 @@ public class Car{
   public boolean hitCar(AIDriver ai){
     Car car = ai.getCar();
     if(car.getX() == xCor && car.getY() == yCor){
-      return true;
+      return false;
     }
     float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
     float x = shift[0] + xCor;
@@ -213,11 +229,13 @@ public class Car{
     float xDist = Math.abs(car.getX() - x);
     float yDist = Math.abs(car.getY() - y);
     if(Math.sqrt(xDist*xDist+yDist*yDist) < wheelLength/2 + car.getWheelLength()/2){
-      velocity /= 2;
+      velocity -= 0.1;
       if(ai.findLeftWallDist() < ai.findRightWallDist()){
-        frontAngle += 10;
+        //if(frontAngle + radians(3)
+        frontAngle += radians(3);
+        
       }else{
-        frontAngle -= 10;
+        frontAngle -= radians(3);
       }
       return hitCar(ai);
     }
