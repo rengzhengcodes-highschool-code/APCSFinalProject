@@ -6,13 +6,35 @@ public class Tire {
 	private float distTraveled = 0;
 
 	public Tire(int type) {
-		if (type == 1) {//super soft tires, going off of this thread: https://www.mytutor.co.uk/answers/9684/A-Level/Physics/The-friction-coefficient-of-Formula-1-car-tyres-are-around-1-7-in-dry-weather-Assuming-sufficient-power-from-the-engine-calculate-the-theoretical-best-0-100-km-h-acceleration-time-in-seconds-neglect-downforce-g-9-81m-s-2/. Assuming this is super soft for now as no tire specs are given in the math and it seems high.
-			this.type = "Super soft";
-			grip = 1.7;
-			kenGrip = 0.97;//derived from the regular static and nonstatic asphalt on rubber coefficients being 4/7 of each other.
-			maxDist = 50.00;//https://sportsdud.com/f1-tire-compound-used-in-2021-season/
-		} else if (type ==2) {
-
+		switch (type) {
+			case 1://ultra soft tires, going off of this thread: https://www.mytutor.co.uk/answers/9684/A-Level/Physics/The-friction-coefficient-of-Formula-1-car-tyres-are-around-1-7-in-dry-weather-Assuming-sufficient-power-from-the-engine-calculate-the-theoretical-best-0-100-km-h-acceleration-time-in-seconds-neglect-downforce-g-9-81m-s-2/. Assuming this is super soft for now as no tire specs are given in the math and it seems high.
+				this.type = "Ultra soft";
+				grip = 1.7;
+				kenGrip = 0.97;//derived from the regular static and nonstatic asphalt on rubber coefficients being 4/7 of each other.
+				maxDist = 50.00;//https://sportsdud.com/f1-tire-compound-used-in-2021-season/
+				break;
+			case 2://super soft
+				this.type = "Super soft";
+				grip = 1.5;//this is just me breaking up the difference between hards, which were determined arbitrarily, and ultra softs, which were determined via forum post, into even sections since Pirelli tires does not release its F1 tire data publically.
+				kenGrip = 0.86;
+				break;
+			case 3://soft
+				this.type = "Soft";
+				grip = 1.3;
+				kenGrip = 0.74;
+				break;
+			case 4://medium
+				this.type = "Medium";
+				grip = 1.1;
+				kenGrip = 0.63;
+				break;
+			case 5://hard
+				this.type = "Hard";
+				grip = 0.9;//Normal tires are 0.2 less hard, this feels right
+				kenGrip = 0.51;
+				break;
+			default:
+				throw new IllegalArgumentException("No tire coresponding to " + type);
 		}
 	}
 }
