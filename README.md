@@ -53,4 +53,6 @@ Tada! The simulation should be working.
 
 2021-06-06|RZ - Implemented Baku track (from Azerbaijan). Inspired by the Baku 2021 race which ended with 2 tire failures and a red flag, which caused Lewis Hamilton to activate Mercedes' tire "magic" and drive off track, a large upset in the race.
 
-2021-06-08|JM - stopped the cars from driving over eachother and updated the devlog with all changes since demo. (those were done on the demo branch, but not in main)
+2021-06-08|JM - stopped the cars from driving over eachother and updated the devlog with all changes since demo. (those were done on the demo branch, but not in main).
+
+2021-06-09|RZ - Implemented tire class instantiation in order to simulate tire wear.
