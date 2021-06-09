@@ -37,7 +37,7 @@ public class Car{
 	*/
 	public Car(float x, float y, float m,
 						 float tS, float h, float dF, float mA, float wL, float a, float fS,
-						 float dA, float dS, boolean skd) {
+						 float dA, float dS, boolean skd, String tireType) {
 		car.resize((int)(0.03*car.width), (int)(0.03*car.height));
 		xCor = x;
 		yCor = y;
@@ -201,7 +201,7 @@ public class Car{
 
     screenEdgeDetection();
   }
-  
+
   public boolean hitCar(AIDriver ai){
     Car car = ai.getCar();
     if(car.getX() == xCor && car.getY() == yCor){
