@@ -21,8 +21,8 @@ public class Car{
 	//the velocity in km/s
 	private float moveAngle;
 	private float velocity;
-
-	private Tire[] tires = new Tire[4];
+	//since the physics engine currently handles tires as an aggregate plus the fact that the physics engine is a large constant time operation, doing cars * 4 operations is very laggy on a sim that already doesn't like zooming in, so until further optimization it'll be 1 tire.
+	private Tire tire;
 
 	private PImage car = loadImage("RaceCar.png");//from https://www.vectorstock.com/royalty-free-vector/top-view-a-racing-car-vector-15938905
 	/**
@@ -58,10 +58,7 @@ public class Car{
 		moveAngle = dA;
 		velocity = dS;
 		skid = skd;
-
-		for (int tire = 0; tire < 4; tire++) {
-			tires[tire] = new Tire(t);
-		}
+		Tire = new Tire(t);
 	}
 	/**The default car constructor.
 	*/
@@ -162,9 +159,11 @@ public class Car{
 	public float getVelocity() {
 		return velocity;
 	}
-
 	public boolean isSkidding() {
 		return skid;
+	}
+	public Tire getTire() {
+		return tire;
 	}
 	/*set methods*/
 	public void setFrontAngle(float theta) {
