@@ -24,10 +24,10 @@ void setup() {
 	defineStartPos();
 	//giving the ais cars lined up at the right position
 	float[][] positions = mapStartPosses.get(map);
-	for (float[] position : positions) {
-		Car c = new Car(position[0], position[1], 900,
+	for (int i = 1; i < positions.length; i++) {
+		Car c = new Car(positions[i][0], positions[i][1], 900,
 		        18, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
-		        mapStartAngles.get(map), 0, false, (int)(Math.random() * 5) + 1);
+		        mapStartAngles.get(map), 0, false, (int)(Math.random() * 5) + 1, false);
 		AIDriver ai = new AIDriver();
 		ai.setCar(c);
 		ais.add(ai);
@@ -38,10 +38,10 @@ void setup() {
 
 void defineStartPos() {
 	mapStartPosses.put("Monaco", new float[][] {
-		{225, 200},
-		{215, 210},
-		{205, 220},
-		{195, 230},
+    {225, 200},
+		//{215, 210},
+		//{205, 220},
+		//{195, 230},
     //{185, 240},
     //{175, 250},
     //{165, 260},
@@ -166,6 +166,13 @@ void mousePressed(){
     if(mouseButton == LEFT){
       if(mouseX >= 20 && mouseX <= 120 && mouseY >= 40 && mouseY <= 90){
         race = true;
+        float[][] positions = mapStartPosses.get(map);
+        Car c = new Car(positions[0][0], positions[0][1], playerMass,
+            playerTopSpeed, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
+            mapStartAngles.get(map), 0, false, (int)(Math.random() * 5) + 1, true);
+        AIDriver ai = new AIDriver();
+        ai.setCar(c);
+        ais.add(ai);
       }
       if(mouseX >= 170 && mouseX <= 220 && mouseY >= 100 && mouseY <= 125 && playerMass < 2000){
         playerMass += 10;
@@ -173,11 +180,11 @@ void mousePressed(){
       if(mouseX >= 170 && mouseX <= 220 && mouseY >= 125 && mouseY <= 150 && playerMass > 900){
         playerMass -= 10;
       }
-      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 150 && mouseY <= 175 && playerTopSpeed < 20){
-        playerTopSpeed += 1;
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 150 && mouseY <= 175 && playerTopSpeed < 300){
+        playerTopSpeed += 5;
       }
       if(mouseX >= 170 && mouseX <= 220 && mouseY >= 175 && mouseY <= 200 && playerTopSpeed > 5){
-        playerTopSpeed -= 1;
+        playerTopSpeed -= 5;
       }
       //if(mouseX >= && mouseX <= && mouseY >= && mouseY <= ){
         
