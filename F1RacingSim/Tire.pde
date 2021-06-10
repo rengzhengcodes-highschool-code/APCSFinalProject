@@ -46,6 +46,37 @@ public class Tire {
 				throw new IllegalArgumentException("No tire coresponding to " + type);
 		}
 	}
+	/**
+		*@param dT The distance the tire traveled.
+		*@postcondition distTraveled increases by dT
+	*/
+	public void wear(float dT) {
+		distTraveled += dT;//for now, we assume tires degrade linearly in all conditions. In real life this is also based on driver style and the weather, however those are not simulated here. We're assuming idealized tire wear, which seems to be linear https://www.formula1.com/en/latest/article.explaining-the-new-tyre-performance-graphics-seen-on-tv.21CVJlHg0St8zrzaaVbU4L.html.
+	}
+	/**
+		*@param trackMod The relative grip of the asphalt on the track.
+		*@return The grip of the tires at their current moment.
+	*/
+	public float grip(float trackMod) {
+		if (distTraveled < maxDist) {
+			float usage = distTraveled / maxDist;//percentage of the tire life left
+			return (grip - (usage * 0.2)) * trackMod;//0.2 represents the tire degrading to the next level of compound. Real tires don't do this, but it's a good approximation given that Pirelli (F1 2021's tire manufacturer) does not release its tire data.
+		} else {
+			return grip - 0.5;//tires degrade heavily outside their lifespan, this represents that.
+		}
+	}
+	/**
+		*@param trackMod The relative grip of the asphalt on the track.
+		*@return The nonstatic grip of the tires at their current moment.
+	*/
+	public float kenGrip(float trackMod) {
+		if (distTraveled < maxDist) {
+			float usage = distTraveled / maxDist;//percentage of the tire life left
+			return (kenGrip - (usage * 0.2)) * trackMod;//0.2 represents the tire degrading to the next level of compound. Real tires don't do this, but it's a good approximation given that Pirelli (F1 2021's tire manufacturer) does not release its tire data.
+		} else {
+			return kenGrip - 0.5 * 4.0/7;//tires degrade heavily outside their lifespan, this represents that. The 4.0/7 is the ratio between regular tires and asphalt's static and nonstatic coefficients of friction, so we're keeping that here.
+		}
+	}
 
 	public String toString() {
 		return "Type: " + type + " | Distance: " + distTraveled + " | Max Distance: " distTraveled;
