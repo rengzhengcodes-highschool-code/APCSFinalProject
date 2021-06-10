@@ -74,14 +74,15 @@ public class Car{
 		rotate(angle + (float)Math.PI/2);
 		imageMode(CENTER);
 		image(car, 0, 0);
+		popMatrix();
 		if (DEBUG) {
 			//establishes background of text
 			rectMode(CORNER);
 			fill(255, 255, 255, 128);
-			int rectHeight = 100;
+			int rectHeight = 50;
 			int fontSize = rectHeight/4 - 1;
-			float textXVal = 15;
-			rect(textXVal, -rectHeight / 2., fontSize * 10, rectHeight);
+			float textXVal = xCor + 15;
+			rect(textXVal, yCor-rectHeight / 2., fontSize * 10, rectHeight);
 			//displays text
 			fill(0, 0, 0, 200);
 			textAlign(LEFT, BOTTOM);
@@ -89,16 +90,15 @@ public class Car{
 			//displays stats
 			float ySpacing = rectHeight/4 - 1;//spacing of text displays
 			text("Tires: " + tire.toString(),
-			textXVal, ySpacing * -1,
+			textXVal, yCor + ySpacing * -1,
 			rectHeight / 4);
 			text("Velocity: " + velocity,
 			textXVal, yCor,
 			rectHeight / 4);
 			text("Angle: " + moveAngle,
-			textXVal, ySpacing,
+			textXVal, yCor + ySpacing,
 			rectHeight/4);
 		}
-		popMatrix();
 	}
 	/*Set methods. Self explanatory*/
 	public void setFrontForce(float acc) {
