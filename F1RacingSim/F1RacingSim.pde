@@ -9,7 +9,7 @@ FloatDict mapStartAngles = new FloatDict();
 FloatDict mapRelGrips = new FloatDict();
 FloatDict mapRelTireWear = new FloatDict();
 final float meterToPixelRatio = 1/0.6;//1 px over 0.6 meter
-final float secondToFrameRatio = 20;// 20 frames over 1s
+final float secondToFrameRatio = 120;// 20 frames over 1s
 //ai Drivers
 ArrayList<AIDriver> ais = new ArrayList<AIDriver>();;
 //active track
