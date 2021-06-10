@@ -1,7 +1,7 @@
 import java.util.Map;
 //map start characteristics
 //String map = "Zandvoort";//the map you load
-String map = "Baku";//the map you load
+String map = "Zandvoort";//the map you load
 HashMap<String, float[][]> mapStartPosses = new HashMap<String, float[][]>();
 FloatDict mapStartAngles = new FloatDict();
 FloatDict mapRelGrips = new FloatDict();
