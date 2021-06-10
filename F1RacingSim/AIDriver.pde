@@ -67,63 +67,69 @@ public class AIDriver extends Driver {
 	}
 
 	public void drive() {
-		/**distance between the car and the wall
-		*/
-		float d = findFrontWallDist();
-		/**distance to leftWall
-		*/
-		float dL = findLeftWallDist();
-		/**distance to rightWall
-		*/
-		float dR = findRightWallDist();
 		Car c = getCar();
 
-		float a = 0;
-		float theta = c.getMoveAngle();
+		if (!(pitting() && t.getTrackEdge().get((int)c.getX(), (int)c.getY()) == color(255, 0, 0))) {//if you're pitting and in the pit lane, AKA getting a tire change
+			/**distance between the car and the wall
+			*/
+			float d = findFrontWallDist();
+			/**distance to leftWall
+			*/
+			float dL = findLeftWallDist();
+			/**distance to rightWall
+			*/
+			float dR = findRightWallDist();
+
+			float a = 0;
+			float theta = c.getMoveAngle();
 
 
-		float[] bound = closestBound(sightRange, theta, t.getTrackEdge());
-		int turnDirection = 1;
+			float[] bound = closestBound(sightRange, theta, t.getTrackEdge());
+			int turnDirection = 1;
 
-		if (dL > dR) {//if my default assumption of you need to turn right is wrong, turn left.
-			turnDirection = -1;//multiplier to make it turn the other way
-		}
+			if (dL > dR) {//if my default assumption of you need to turn right is wrong, turn left.
+				turnDirection = -1;//multiplier to make it turn the other way
+			}
 
-		boolean turned = false;
-		float nuTheta = theta;
-		if (d != 0) {
-			for (float i = degrees(c.getHandling()); i > 0 && !turned;//the 17 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
-			    i--) {
-				nuTheta += radians(1) * turnDirection;
-				bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
-				if (17 < dist(0, 0, bound[0], bound[1])) {
-					turned = true;
-					theta = nuTheta;
+			boolean turned = false;
+			float nuTheta = theta;
+			if (d != 0) {
+				for (float i = degrees(c.getHandling()); i > 0 && !turned;//the 17 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
+				    i--) {
+					nuTheta += radians(1) * turnDirection;
+					bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
+					if (17 < dist(0, 0, bound[0], bound[1])) {
+						turned = true;
+						theta = nuTheta;
+					}
+				}
+			} else {
+				for (float i = degrees(c.getHandling()); i > 0 && !turned;//the 20 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
+				    i--) {
+					nuTheta += radians(1) * turnDirection;
+					bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
+					if (20 < dist(0, 0, bound[0], bound[1])) {
+						turned = true;
+						theta = nuTheta;
+					}
 				}
 			}
-		} else {
-			for (float i = degrees(c.getHandling()); i > 0 && !turned;//the 20 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
-			    i--) {
-				nuTheta += radians(1) * turnDirection;
-				bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
-				if (20 < dist(0, 0, bound[0], bound[1])) {
-					turned = true;
-					theta = nuTheta;
-				}
-			}
-		}
-		//default acceleration speed
-		c.setFrontForce(10);
-		a = Physics.resolve(c, t);
+			//default acceleration speed
+			c.setFrontForce(10);
+			a = Physics.resolve(c, t);
 
-		theta %= Math.PI * 2;
-		if (a == 0 && c.getVelocity() == 0) {//if both magnitudes are 0 CartesianPolarMath will return NaN when converting between the two because of how acos and asin work.
-			c.turn(theta);
+			theta %= Math.PI * 2;
+			if (a == 0 && c.getVelocity() == 0) {//if both magnitudes are 0 CartesianPolarMath will return NaN when converting between the two because of how acos and asin work.
+				c.turn(theta);
+			} else {
+				theta %= 2*Math.PI;
+				float[] newV = Physics.addVector(c.getVelocity(), c.getMoveAngle(), a, theta);
+				c.setVelocity(newV[0], newV[1]);
+				c.turn(theta);
+			}
 		} else {
-			theta %= 2*Math.PI;
-			float[] newV = Physics.addVector(c.getVelocity(), c.getMoveAngle(), a, theta);
-			c.setVelocity(newV[0], newV[1]);
-			c.turn(theta);
+			
 		}
+
 	}
 }
