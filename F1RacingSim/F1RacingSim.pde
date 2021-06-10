@@ -1,6 +1,7 @@
 import java.util.Map;
 boolean race = false;
 float playerMass = 900;
+int playerTopSpeed = 10;
 //map start characteristics
 //String map = "Zandvoort";//the map you load
 String map = "Monaco";//the map you load
@@ -116,6 +117,24 @@ void draw() {
     fill(0);
     textSize(20);
     text("Less",170,142);
+    
+    fill(255);
+    rect(20, 150, 150, 50);
+    fill(0);
+    textSize(20);
+    text("Top Speed: "+playerTopSpeed/10.0,23,180);
+    
+    fill(255);
+    rect(170, 150, 50, 25);
+    fill(0);
+    textSize(20);
+    text("More",170,167);
+    
+    fill(255);
+    rect(170, 175, 50, 25);
+    fill(0);
+    textSize(20);
+    text("Less",170,192);
   }else{
     t.display();
     for(AIDriver ai : ais) {
@@ -153,6 +172,12 @@ void mousePressed(){
       }
       if(mouseX >= 170 && mouseX <= 220 && mouseY >= 125 && mouseY <= 150 && playerMass > 900){
         playerMass -= 10;
+      }
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 150 && mouseY <= 175 && playerTopSpeed < 20){
+        playerTopSpeed += 1;
+      }
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 175 && mouseY <= 200 && playerTopSpeed > 5){
+        playerTopSpeed -= 1;
       }
       //if(mouseX >= && mouseX <= && mouseY >= && mouseY <= ){
         
