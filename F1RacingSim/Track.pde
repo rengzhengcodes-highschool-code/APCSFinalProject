@@ -42,7 +42,7 @@ public class Track {
 	}
 	/**@return The current track tire wear.
 	*/
-	public float tireWear() {
+	public float getTireWear() {
 		return tireWear;
 	}
 	/**@return The track mask that is used for the edge detection in the AI.

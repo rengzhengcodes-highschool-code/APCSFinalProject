@@ -51,7 +51,7 @@ public class Tire {
 		*@postcondition distTraveled increases by dT
 	*/
 	public void wear(float dT) {
-		distTraveled += dT;//for now, we assume tires degrade linearly in all conditions. In real life this is also based on driver style and the weather, however those are not simulated here. We're assuming idealized tire wear, which seems to be linear https://www.formula1.com/en/latest/article.explaining-the-new-tyre-performance-graphics-seen-on-tv.21CVJlHg0St8zrzaaVbU4L.html.
+		distTraveled += dT * t.getTireWear();//for now, we assume tires degrade linearly in all conditions. In real life this is also based on driver style and the weather, however those are not simulated here. We're assuming idealized tire wear, which seems to be linear https://www.formula1.com/en/latest/article.explaining-the-new-tyre-performance-graphics-seen-on-tv.21CVJlHg0St8zrzaaVbU4L.html.
 	}
 	/**
 		*@param trackMod The relative grip of the asphalt on the track.
