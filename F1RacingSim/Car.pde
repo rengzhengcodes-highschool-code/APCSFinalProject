@@ -18,7 +18,7 @@ public class Car{
 
 	//angle and magnitude of vector 2:
 	//the direction the car is actually moving
-	//the velocity in km/s
+	//the velocity in m/s
 	private float moveAngle;
 	private float velocity;
 	//since the physics engine currently handles tires as an aggregate plus the fact that the physics engine is a large constant time operation, doing cars * 4 operations is very laggy on a sim that already doesn't like zooming in, so until further optimization it'll be 1 tire.
