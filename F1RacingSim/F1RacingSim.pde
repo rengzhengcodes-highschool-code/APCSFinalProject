@@ -1,4 +1,5 @@
 import java.util.Map;
+boolean race = false;
 //map start characteristics
 //String map = "Zandvoort";//the map you load
 String map = "Monaco";//the map you load
@@ -90,18 +91,25 @@ void draw() {
       }
 		}
 	}
-
-	t.display();
-	for(AIDriver ai : ais) {
-		Car c = ai.getCar();
-		ai.drive();
-		c.move(ais);
-		c.display();
-		ai.displayLineOfSight();
-		if(c.getVelocity() != 0) {
-			Physics.driftSlow(c, 0.25, 0.10);
-		}
-	}
+  if(!race){
+    fill(255);
+    rect(20, 40, 100, 50);
+    fill(0);
+    textSize(20);
+    text("start race",25,70);
+  }else{
+    t.display();
+    for(AIDriver ai : ais) {
+      Car c = ai.getCar();
+      ai.drive();
+      c.move(ais);
+      c.display();
+      ai.displayLineOfSight();
+      if(c.getVelocity() != 0) {
+        Physics.driftSlow(c, 0.25, 0.10);
+      }
+    }
+  }
 }
 /**
 	*@param c The car being driven.
@@ -112,5 +120,15 @@ void keyPressed() {
   for(AIDriver ai : ais){
      Car c = ai.getCar();
      c.setSize(0.03);
+  }
+}
+
+void mousePressed(){
+  if(!race){
+    if(mouseButton == LEFT){
+      if(mouseX >= 20 && mouseX <= 120 && mouseY >= 40 && mouseY <= 90){
+        race = true;
+      }
+    }
   }
 }
