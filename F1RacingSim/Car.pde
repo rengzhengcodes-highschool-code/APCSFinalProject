@@ -9,17 +9,21 @@ public class Car{
 	private float handling;//the max degrees you can turn in a frame
 	private float downForce;//the downforce coefficient.
 	private float maxAcceleration;//max magnitude of the acceleration vector
+
 	//angle and magnitude of vector 1:
 	//the direction the car is trying to go
 	private float frontAngle = 0;
 	private float angle;
 	private float frontForce;
+
 	//angle and magnitude of vector 2:
 	//the direction the car is actually moving
 	//the velocity in m/s
 	private float moveAngle;
 	private float velocity;
-  //private float picSize = 0.07;
+	//since the physics engine currently handles tires as an aggregate plus the fact that the physics engine is a large constant time operation, doing cars * 4 operations is very laggy on a sim that already doesn't like zooming in, so until further optimization it'll be 1 tire.
+	private Tire tire;
+
 	private PImage car = loadImage("RaceCar.png");//from https://www.vectorstock.com/royalty-free-vector/top-view-a-racing-car-vector-15938905
 	/**
 		*@param x X coord of the car.
@@ -34,11 +38,12 @@ public class Car{
 		*@param fS Front force of the car.
 		*@param dA moveAngle The starting angle delta.
 		*@param dS The starting velocity.
+		*@param t The tire type.
 		*@postcondition The instance variables are set.
 	*/
 	public Car(float x, float y, float m,
 						 float tS, float h, float dF, float mA, float wL, float a, float fS,
-						 float dA, float dS, boolean skd) {
+						 float dA, float dS, boolean skd, int t) {
 		car.resize((int)(0.07*car.width), (int)(0.07*car.height));
 		xCor = x;
 		yCor = y;
@@ -53,13 +58,14 @@ public class Car{
 		moveAngle = dA;
 		velocity = dS;
 		skid = skd;
+		tire = new Tire(t);
 	}
 	/**The default car constructor.
 	*/
 	public Car() {
 		this(225, 200, 900,
 		     2, radians(360), 1, 2, 8, radians(-50), 0,
-				 radians(-50), 0, false);
+				 radians(-50), 0, false, 1);
 	}
 
 	public void display() {
@@ -84,7 +90,7 @@ public class Car{
     car = loadImage("RaceCar.png");
     car.resize((int)(c*car.width), (int)(c*car.height));
   }
-    
+
 	/*Movement methods*/
 	/**
 		*@param theta The angle you want to shift the car to.
@@ -153,9 +159,11 @@ public class Car{
 	public float getVelocity() {
 		return velocity;
 	}
-
 	public boolean isSkidding() {
 		return skid;
+	}
+	public Tire getTire() {
+		return tire;
 	}
 	/*set methods*/
 	public void setFrontAngle(float theta) {
@@ -214,10 +222,12 @@ public class Car{
     float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
     xCor += shift[0];
     yCor += shift[1];
+	tire.wear(velocity);//this is the speed per frame, and thus how much it has moved. This is how much it wears by.
+	System.out.println(tire);
 
     screenEdgeDetection();
   }
-  
+
   public boolean hitCar(AIDriver ai){
     Car car = ai.getCar();
     if(car.getX() == xCor && car.getY() == yCor){
@@ -233,7 +243,7 @@ public class Car{
       if(ai.findLeftWallDist() < ai.findRightWallDist()){
         //if(frontAngle + radians(3)
         frontAngle += radians(3);
-        
+
       }else{
         frontAngle -= radians(3);
       }

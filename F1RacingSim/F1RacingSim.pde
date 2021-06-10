@@ -4,7 +4,8 @@ import java.util.Map;
 String map = "Monaco";//the map you load
 HashMap<String, float[][]> mapStartPosses = new HashMap<String, float[][]>();
 FloatDict mapStartAngles = new FloatDict();
-HashMap<String, float[]> mapFrictionCoeffs = new HashMap<String, float[]>();
+FloatDict mapRelGrips = new FloatDict();
+FloatDict mapRelTireWear = new FloatDict();
 //ai Drivers
 ArrayList<AIDriver> ais = new ArrayList<AIDriver>();;
 //active track
@@ -21,14 +22,13 @@ void setup() {
 	for (float[] position : positions) {
 		Car c = new Car(position[0], position[1], 900,
 										1.1 + (float)Math.random()*0.6, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
-										mapStartAngles.get(map), 0, false);
+										mapStartAngles.get(map), 0, false, (int)(Math.random() * 5) + 1);
 		AIDriver ai = new AIDriver();
 		ai.setCar(c);
 		ais.add(ai);
 	}
 	//creates track
-	float[] frictionCoeffs = mapFrictionCoeffs.get(map);
-	t = new Track(frictionCoeffs[0], frictionCoeffs[1], 0, loadImage(map + ".png"), loadImage(map + "BW.png"));
+	t = new Track(mapRelGrips.get(map), mapRelTireWear.get(map), loadImage(map + ".png"), loadImage(map + "BW.png"));
 }
 
 void defineStartPos() {
@@ -45,7 +45,8 @@ void defineStartPos() {
     //{135, 290}
 	});
 	mapStartAngles.set("Monaco", radians(-50));
-	mapFrictionCoeffs.put("Monaco", new float[] {0.7, 0.4});//0.7 and 0.4 are default tire on asphalt coefficients, Monaco is a low grip track so IRL these are lower. It goes (statGrip, kenGrip)
+	mapRelGrips.set("Monaco", 0.8);//https://www.mclaren.com/racing/2017/monaco-grand-prix/track-tips-and-circuit-stats/. Info from the pirelli site below suggests its the lowest grip of the year, and thus has been docked another 0.1
+	mapRelTireWear.set("Monaco", 0.7);//https://www.pirelli.com/tyres/en-gb/motorsport/f1/calendar-and-circuits/monte-carlo-grandprix
 
 	mapStartPosses.put("Zandvoort", new float[][] {
 		{260, 300},
@@ -54,7 +55,8 @@ void defineStartPos() {
 		{245, 330}
 	});
 	mapStartAngles.set("Zandvoort", radians(-65));
-	mapFrictionCoeffs.put("Zandvoort", new float[] {0.8, 0.5});//Zandvoort has high grip due to its turns and the new rebuild of the track.
+	mapRelGrips.set("Zandvoort", 1);//Zandvoort has high grip due to its turns and the new rebuild of the track. However, actual stats aren't out yet, so for now it remains 1.
+	mapRelTireWear.set("Zandvoort", 1);//https://www.formula1.com/en/latest/article.pirelli-explain-zandvoort-special-tyre-tests-in-barcelona.7l3hXIScig3wVqIxVuydDG.html. Pirelli developed special tires to compensate for Zandvoort's abnormal track conditions, so we're standardizing the dist traveled to assume they compensated for that.
 
 	mapStartPosses.put("Baku", new float[][] {
 		{860, 320},
@@ -63,7 +65,8 @@ void defineStartPos() {
 		{830, 326},
 	});
 	mapStartAngles.set("Baku", radians(-15));
-	mapFrictionCoeffs.put("Baku", new float[] {0.7, 0.4});//defaults, have not looked into real Baku grip
+	mapRelGrips.set("Baku", 0.9);//https://www.mclaren.com/racing/2017/azerbaijan-grand-prix/track-tips-and-circuit-stats/
+	mapRelTireWear.set("Baku", 1.3);//Baku 2021 had explosive tires for 2 people and Hamilton overheating his tires due to a misplay. This means 1) Google SEO makes the info incredibly hard to find the actual tire wear levels since its all speculation as to changes in Baku's condition and 2) High tire wear seems appropriate given this is simulating 2021 rules.
 }
 
 void draw() {
