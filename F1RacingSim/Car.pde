@@ -134,19 +134,6 @@ public class Car{
 		return velocity * meterToPixelRatio / secondToFrameRatio;//velocity is in m/s. mTPR is in px/m. sTFR is in frames/s.
 	}
 	/**
-		*@postcondition Car moves by its given velocity vector.
-	*/
-	public void move() {
-		if(velocity > maxSpeedAtArea){
-			velocity = maxSpeedAtArea;
-		}
-		float[] shift = CartesianPolarMath.polarToCartesian(convertVelocity(), moveAngle);
-		xCor += shift[0];
-		yCor += shift[1];
-
-		screenEdgeDetection();
-	}
-	/**
 		*@param mag The magnitude of the acceleration.
 		*@param theta The direction of the acceleration.
 		*@postcondition Velocity changes according to the acceleration vector.
@@ -268,7 +255,7 @@ public class Car{
     float[] shift = CartesianPolarMath.polarToCartesian(convertVelocity(), moveAngle);
     xCor += shift[0];
     yCor += shift[1];
-	tire.wear(velocity);//this is the speed per frame, and thus how much it has moved. This is how much it wears by.
+	tire.wear(velocity/secondToFrameRatio);//this is the speed per frame, and thus how much it has moved. This is how much it wears by.
 
     screenEdgeDetection();
   }
