@@ -58,7 +58,7 @@ public class Car{
 		moveAngle = dA;
 		velocity = dS;
 		skid = skd;
-		Tire = new Tire(t);
+		tire = new Tire(t);
 	}
 	/**The default car constructor.
 	*/
