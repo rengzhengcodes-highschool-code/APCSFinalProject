@@ -223,6 +223,7 @@ public class Car{
     xCor += shift[0];
     yCor += shift[1];
 	tire.wear(velocity);//this is the speed per frame, and thus how much it has moved. This is how much it wears by.
+	System.out.println(tire);
 
     screenEdgeDetection();
   }
