@@ -7,11 +7,11 @@ public class AIDriver extends Driver {
 	}
 
 	public float findLeftWallDist() {
-		return findWallAtAngleDist(-radians(90));
+		return findWallAtAngleDist(-radians(90)) -1;
 	}
 
 	public float findRightWallDist() {
-		return findWallAtAngleDist(radians(90));
+		return findWallAtAngleDist(radians(90)) -1;
 	}
 	/**
 		*@param angle Angle offset from move angle in radians.
@@ -98,7 +98,7 @@ public class AIDriver extends Driver {
 				    i--) {
 					nuTheta += radians(1) * turnDirection;
 					bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
-					if (11 < dist(0, 0, bound[0], bound[1])) {
+					if (10 < dist(0, 0, bound[0], bound[1])) {
 						turned = true;
 						theta = nuTheta;
 					}
