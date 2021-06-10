@@ -242,7 +242,11 @@ public class Car{
     float xDist = Math.abs(car.getX() - x);
     float yDist = Math.abs(car.getY() - y);
     if(Math.sqrt(xDist*xDist+yDist*yDist) < wheelLength/2 + car.getWheelLength()/2){
-      velocity -= 0.1;
+		if (velocity <= 0.1) {
+			velocity = 0;
+		} else {
+	      velocity -= 0.1;
+		}
       if(ai.findLeftWallDist() < ai.findRightWallDist()){
         //if(frontAngle + radians(3)
         frontAngle += radians(3);
