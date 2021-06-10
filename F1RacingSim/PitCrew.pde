@@ -1,6 +1,7 @@
 public class PitCrew {
 	private float errorRate;
 	private int speed;//in frames, 20 frames = 1 second
+	private int framesElapsed = 0;
 
 	public PitCrew() {
 		errorRate = 0.1;
@@ -17,6 +18,15 @@ public class PitCrew {
 	}
 
 	public boolean timeElapsed() {
-		return false;
+		if (framesElapsed < speed) {
+			framesElapsed++;
+			return false;
+		} else if (errorRate > rng.nextFloat()) {
+			framesElapsed -= rng.nextInt(speed);
+			return false;
+		} else {
+			framesElapsed = 0;
+			return true;
+		}
 	}
 }
