@@ -77,6 +77,7 @@ void defineStartPos() {
 }
 
 void draw() {
+	frameRate(secondToFrameRatio);
 	background(200);
 	fill(0);
 	textSize(20);
