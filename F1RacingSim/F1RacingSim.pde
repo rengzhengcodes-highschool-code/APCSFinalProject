@@ -96,9 +96,9 @@ void draw() {
 		c.move(ais);
 		c.display();
 		ai.displayLineOfSight();
-		//if(c.getVelocity() != 0) {
-		//	Physics.driftSlow(c, 0.25, 0.10);
-		//}
+		if(c.getVelocity() != 0) {
+			Physics.driftSlow(c, 0.25, 0.10);
+		}
 	}
 }
 /**
