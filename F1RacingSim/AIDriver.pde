@@ -32,7 +32,8 @@ public class AIDriver extends Driver {
 			                   	        (int)(c.getY() + yOff));
 			color matching = color(255);
 
-			if (pitting() || t.getTrackEdge().get((int)c.getX(), (int)c.getY()) == color(255, 0, 0)) {
+			if ((pitting() || t.getTrackEdge().get((int)c.getX(), (int)c.getY()) == color(255, 0, 0))
+				&& t.getTrackEdge().get((int)c.getX(), (int)c.getY()) != color(0, 0, 255)) {
 				matching = color(255, 0, 0);
 				boundColor = color(red(boundColor), 0, 0);//checks blue element is 255 to be passable. For pitting because pits are only red, and white has 255 red.
 			} else {
