@@ -21,7 +21,7 @@ public class Tire {
 				this.type = "Super soft";
 				grip = 1.5;//this is just me breaking up the difference between hards, which were determined arbitrarily, and ultra softs, which were determined via forum post, into even sections since Pirelli tires does not release its F1 tire data publically.
 				kenGrip = 0.86;
-				maxDist = 62.5;//C2 so 25 laps.
+				maxDist = 62500;//C2 so 25 laps.
 				break;
 			case 3://soft
 				this.type = "Soft";
