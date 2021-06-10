@@ -8,13 +8,8 @@ public class PitCrew {
 		speed = 2 * 20;
 	}
 
-	public boolean changeTire(Car c) {
-		if (timeElapsed())  {
-			c.changeTire(new Tire(c.getTire().getType()));
-			return true;
-		} else {
-			return false;
-		}
+	public int whichTire(Car c) {
+		return c.getTire().getType();
 	}
 
 	public boolean timeElapsed() {
