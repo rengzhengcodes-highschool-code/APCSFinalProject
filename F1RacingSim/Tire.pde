@@ -77,6 +77,14 @@ public class Tire {
 			return kenGrip - 0.5 * 4.0/7;//tires degrade heavily outside their lifespan, this represents that. The 4.0/7 is the ratio between regular tires and asphalt's static and nonstatic coefficients of friction, so we're keeping that here.
 		}
 	}
+	/*get methods*/
+	public float getMaxDist() {
+		return maxDist;
+	}
+
+	public float getDistTraveled() {
+		return distTraveled;
+	}
 
 	public String toString() {
 		return "Type: " + type + " | Distance: " + distTraveled + "m | Max Distance: " + maxDist + "m";
