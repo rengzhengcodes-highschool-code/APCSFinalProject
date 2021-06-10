@@ -100,13 +100,19 @@ public class Car{
 		angle = theta;
 	}
 	/**
+		*returns the velocity converted to pixels/frame
+	*/
+	public float convertVelocity() {
+		return velocity * meterToPixelRatio / secondToFrameRatio;//velocity is in m/s. mTPR is in px/m. sTFR is in frames/s.
+	}
+	/**
 		*@postcondition Car moves by its given velocity vector.
 	*/
 	public void move() {
 		if(velocity > topSpeed){
 			velocity = topSpeed;
 		}
-		float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
+		float[] shift = CartesianPolarMath.polarToCartesian(convertVelocity(), moveAngle);
 		xCor += shift[0];
 		yCor += shift[1];
 
@@ -219,7 +225,7 @@ public class Car{
     for(AIDriver ai : ais){
 		if (ai.getCar() != this) hitCar(ai);
     }
-    float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
+    float[] shift = CartesianPolarMath.polarToCartesian(convertVelocity(), moveAngle);
     xCor += shift[0];
     yCor += shift[1];
 	tire.wear(velocity);//this is the speed per frame, and thus how much it has moved. This is how much it wears by.
@@ -229,8 +235,8 @@ public class Car{
 
   public boolean hitCar(AIDriver ai){
     Car car = ai.getCar();
-	
-    float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
+
+    float[] shift = CartesianPolarMath.polarToCartesian(convertVelocity(), moveAngle);
     float x = shift[0] + xCor;
     float y = shift[1] + yCor;
     float xDist = Math.abs(car.getX() - x);
