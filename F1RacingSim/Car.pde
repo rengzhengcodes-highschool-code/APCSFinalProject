@@ -74,6 +74,30 @@ public class Car{
 		rotate(angle + (float)Math.PI/2);
 		imageMode(CENTER);
 		image(car, 0, 0);
+		if (DEBUG) {
+			//establishes background of text
+			rectMode(CORNER);
+			fill(255, 255, 255, 128);
+			int rectHeight = 100;
+			int fontSize = rectHeight/4 - 1;
+			float textXVal = 15;
+			rect(textXVal, -rectHeight / 2., fontSize * 10, rectHeight);
+			//displays text
+			fill(0, 0, 0, 200);
+			textAlign(LEFT, BOTTOM);
+			textSize(fontSize);
+			//displays stats
+			float ySpacing = rectHeight/4 - 1;//spacing of text displays
+			text("Tires: " + tire.toString(),
+			textXVal, ySpacing * -1,
+			rectHeight / 4);
+			text("Velocity: " + velocity,
+			textXVal, yCor,
+			rectHeight / 4);
+			text("Angle: " + moveAngle,
+			textXVal, ySpacing,
+			rectHeight/4);
+		}
 		popMatrix();
 	}
 	/*Set methods. Self explanatory*/
@@ -229,7 +253,7 @@ public class Car{
 
   public boolean hitCar(AIDriver ai){
     Car car = ai.getCar();
-	
+
     float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
     float x = shift[0] + xCor;
     float y = shift[1] + yCor;

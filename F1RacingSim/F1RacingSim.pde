@@ -14,6 +14,8 @@ Track t;
 TrackCamera tC = new TrackCamera();
 byte cameraMode = 0;//which car is being followed
 float scaleFactor = 5;//scaling when following a car.
+boolean DEBUG = false;
+
 void setup() {
 	size(1000, 800);
 	defineStartPos();
@@ -106,9 +108,13 @@ void draw() {
 	*@postcondition The car has accelerated and turned.
 */
 void keyPressed() {
-	if (48 <= keyCode && keyCode <= 57) cameraMode = Byte.parseByte("" + key);//if the key pressed is a number, set the cameramode to the key pressed
-  for(AIDriver ai : ais){
-     Car c = ai.getCar();
-     c.setSize(0.03);
-  }
+	if (48 <= keyCode && keyCode <= 57) {
+		cameraMode = Byte.parseByte("" + key);//if the key pressed is a number, set the cameramode to the key pressed
+		for(AIDriver ai : ais){
+			Car c = ai.getCar();
+			c.setSize(0.03);
+		}
+	}
+
+	if (key == 'd') DEBUG = true;
 }
