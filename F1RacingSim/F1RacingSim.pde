@@ -3,7 +3,7 @@ import java.util.Random;
 //map start characteristics
 //String map = "Zandvoort";//the map you load
 Random rng = new Random();
-String map = "Monaco";//the map you load
+String map = "Zandvoort";//the map you load
 HashMap<String, float[][]> mapStartPosses = new HashMap<String, float[][]>();
 FloatDict mapStartAngles = new FloatDict();
 FloatDict mapRelGrips = new FloatDict();
