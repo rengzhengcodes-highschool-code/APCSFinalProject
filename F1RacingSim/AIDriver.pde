@@ -28,8 +28,19 @@ public class AIDriver extends Driver {
 		float yOff = 0;
 
 		for (int i = 0; i < visualRange; i++) {
-			if (color(255) != bound.get((int)(c.getX() + xOff),
-				              	        (int)(c.getY() + yOff))) {
+			color boundColor = bound.get((int)(c.getX() + xOff),
+			                   	        (int)(c.getY() + yOff));
+			color matching = color(255);
+
+			if (pitting()) {
+				matching = color(255, 0, 0);
+				boundColor = color(red(boundColor), 0, 0);//checks blue element is 255 to be passable. For pitting because pits are only red, and white has 255 red.
+			} else {
+				matching = color(0, 0, 255);
+				boundColor = color(0, 0, blue(boundColor));
+			}
+
+			if (matching != boundColor) {
 				return new float[] {xOff, yOff};
 			} else {
 				xOff += cos(angle);
@@ -38,6 +49,11 @@ public class AIDriver extends Driver {
 		}
 
 		return new float[] {xOff, yOff};
+	}
+
+	public boolean pitting() {
+		Tire t = getCar().getTire();
+		return t.getMaxDist() - t.getDistTraveled() < 5000;
 	}
 
 	public void displayLineOfSight() {
