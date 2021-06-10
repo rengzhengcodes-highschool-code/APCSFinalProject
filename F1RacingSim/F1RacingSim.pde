@@ -107,10 +107,7 @@ void draw() {
 		}
 	}
 }
-/**
-	*@param c The car being driven.
-	*@postcondition The car has accelerated and turned.
-*/
+
 void keyPressed() {
 	if (48 <= keyCode && keyCode <= 57) {
 		cameraMode = Byte.parseByte("" + key);//if the key pressed is a number, set the cameramode to the key pressed
