@@ -8,8 +8,8 @@ HashMap<String, float[][]> mapStartPosses = new HashMap<String, float[][]>();
 FloatDict mapStartAngles = new FloatDict();
 FloatDict mapRelGrips = new FloatDict();
 FloatDict mapRelTireWear = new FloatDict();
-final float meterToPixelRatio = 1/0.6;//1 px over 0.6 meter
-final float secondToFrameRatio = 120;// 20 frames over 1s
+//final float meterToPixelRatio = 1/0.6;//1 px over 0.6 meter
+//final float secondToFrameRatio = 120;// 20 frames over 1s
 //ai Drivers
 ArrayList<AIDriver> ais = new ArrayList<AIDriver>();;
 //active track
@@ -21,14 +21,14 @@ float scaleFactor = 5;//scaling when following a car.
 boolean DEBUG = false;
 
 void setup() {
-	frameRate(secondToFrameRatio);
+	frameRate(60);
 	size(1000, 800);
 	defineStartPos();
 	//giving the ais cars lined up at the right position
 	float[][] positions = mapStartPosses.get(map);
 	for (float[] position : positions) {
 		Car c = new Car(position[0], position[1], 900,
-		        50 + rng.nextFloat() * 0.6, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
+		        1.1 + rng.nextFloat() * 0.6, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
 		        mapStartAngles.get(map), 0, false, rng.nextInt(5) + 1);
 		AIDriver ai = new AIDriver();
 		ai.setCar(c);
@@ -77,7 +77,7 @@ void defineStartPos() {
 }
 
 void draw() {
-	frameRate(secondToFrameRatio);
+	frameRate(60);
 	background(200);
 	fill(0);
 	textSize(20);

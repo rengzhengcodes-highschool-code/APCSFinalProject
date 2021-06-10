@@ -98,7 +98,7 @@ public class AIDriver extends Driver {
 				    i--) {
 					nuTheta += radians(1) * turnDirection;
 					bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
-					if (10 < dist(0, 0, bound[0], bound[1])) {
+					if (17 < dist(0, 0, bound[0], bound[1])) {
 						turned = true;
 						theta = nuTheta;
 					}
@@ -108,7 +108,7 @@ public class AIDriver extends Driver {
 				    i--) {
 					nuTheta += radians(1) * turnDirection;
 					bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
-					if (15 < dist(0, 0, bound[0], bound[1])) {
+					if (20 < dist(0, 0, bound[0], bound[1])) {
 						turned = true;
 						theta = nuTheta;
 					}

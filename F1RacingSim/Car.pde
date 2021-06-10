@@ -131,7 +131,7 @@ public class Car{
 		*returns the velocity converted to pixels/frame
 	*/
 	public float convertVelocity() {
-		return velocity * meterToPixelRatio / secondToFrameRatio;//velocity is in m/s. mTPR is in px/m. sTFR is in frames/s.
+		return velocity; //* meterToPixelRatio / secondToFrameRatio;//velocity is in m/s. mTPR is in px/m. sTFR is in frames/s.
 	}
 	/**
 		*@param mag The magnitude of the acceleration.
@@ -255,7 +255,7 @@ public class Car{
     float[] shift = CartesianPolarMath.polarToCartesian(convertVelocity(), moveAngle);
     xCor += shift[0];
     yCor += shift[1];
-	tire.wear(velocity/secondToFrameRatio);//this is the speed per frame, and thus how much it has moved. This is how much it wears by.
+	tire.wear(velocity);//secondToFrameRatio);//this is the speed per frame, and thus how much it has moved. This is how much it wears by.
 
     screenEdgeDetection();
   }
