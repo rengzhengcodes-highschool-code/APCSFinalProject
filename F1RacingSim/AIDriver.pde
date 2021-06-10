@@ -90,22 +90,12 @@ public class AIDriver extends Driver {
 
 		boolean turned = false;
 		float nuTheta = theta;
-		if (d != 0) {
+		if (d < 6) {
 			for (float i = degrees(c.getHandling()); i > 0 && !turned;//the 17 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
 			    i--) {
 				nuTheta += radians(1) * turnDirection;
 				bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
-				if (17 < dist(0, 0, bound[0], bound[1])) {
-					turned = true;
-					theta = nuTheta;
-				}
-			}
-		} else {
-			for (float i = degrees(c.getHandling()); i > 0 && !turned;//the 20 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
-			    i--) {
-				nuTheta += radians(1) * turnDirection;
-				bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
-				if (20 < dist(0, 0, bound[0], bound[1])) {
+				if (12 < dist(0, 0, bound[0], bound[1])) {
 					turned = true;
 					theta = nuTheta;
 				}

@@ -6,6 +6,8 @@ HashMap<String, float[][]> mapStartPosses = new HashMap<String, float[][]>();
 FloatDict mapStartAngles = new FloatDict();
 FloatDict mapRelGrips = new FloatDict();
 FloatDict mapRelTireWear = new FloatDict();
+final float meterToPixelRatio = 1/0.6;//1 px over 0.6 meter
+final float secondToFrameRatio = 20;// 20 frames over 1s
 //ai Drivers
 ArrayList<AIDriver> ais = new ArrayList<AIDriver>();;
 //active track
@@ -21,7 +23,7 @@ void setup() {
 	float[][] positions = mapStartPosses.get(map);
 	for (float[] position : positions) {
 		Car c = new Car(position[0], position[1], 900,
-		        1.1 + (float)Math.random()*0.6, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
+		        18, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
 		        mapStartAngles.get(map), 0, false, (int)(Math.random() * 5) + 1);
 		AIDriver ai = new AIDriver();
 		ai.setCar(c);
