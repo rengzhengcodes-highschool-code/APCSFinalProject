@@ -128,7 +128,7 @@ public class AIDriver extends Driver {
 				c.turn(theta);
 			}
 		} else {
-			
+			c.changeTire();
 		}
 
 	}

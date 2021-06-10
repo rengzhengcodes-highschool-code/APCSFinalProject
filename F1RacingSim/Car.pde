@@ -6,6 +6,7 @@ public class Car{
 	private float wheelLength;
 	private float mass;
 	private float topSpeed;
+	private float maxSpeedAtArea;//how fast you can go right now
 	private float handling;//the max degrees you can turn in a frame
 	private float downForce;//the downforce coefficient.
 	private float maxAcceleration;//max magnitude of the acceleration vector
@@ -23,6 +24,7 @@ public class Car{
 	private float velocity;
 	//since the physics engine currently handles tires as an aggregate plus the fact that the physics engine is a large constant time operation, doing cars * 4 operations is very laggy on a sim that already doesn't like zooming in, so until further optimization it'll be 1 tire.
 	private Tire tire;
+	private PitCrew crew;
 
 	private PImage car = loadImage("RaceCar.png");//from https://www.vectorstock.com/royalty-free-vector/top-view-a-racing-car-vector-15938905
 	/**
@@ -52,6 +54,7 @@ public class Car{
 		maxAcceleration = mA;
 		wheelLength = wL;
 		topSpeed = tS;
+		maxSpeedAtArea = tS;
 		handling = h;
 		angle = a;
 		frontForce = fS;
@@ -59,6 +62,7 @@ public class Car{
 		velocity = dS;
 		skid = skd;
 		tire = new Tire(t);
+		crew = new PitCrew();
 	}
 	/**The default car constructor.
 	*/
@@ -127,8 +131,8 @@ public class Car{
 		*@postcondition Car moves by its given velocity vector.
 	*/
 	public void move() {
-		if(velocity > topSpeed){
-			velocity = topSpeed;
+		if(velocity > maxSpeedAtArea){
+			velocity = maxSpeedAtArea;
 		}
 		float[] shift = CartesianPolarMath.polarToCartesian(velocity, moveAngle);
 		xCor += shift[0];
@@ -156,8 +160,8 @@ public class Car{
 	public float getMass() {
 		return mass;
 	}
-	public float getTopSpeed() {
-		return topSpeed;
+	public float getmaxSpeedAtArea() {
+		return maxSpeedAtArea;
 	}
 	public float getHandling() {
 		return handling;
@@ -194,10 +198,16 @@ public class Car{
 		frontAngle = theta;
 	}
 
-	public Tire changeTire(Tire t) {
-		Tire oldTire = tire;
-		tire = t;
-		return oldTire;
+	public void changeTire() {
+		maxSpeedAtArea = 0;
+		changeTire(crew.whichTire(this));
+	}
+
+	private void changeTire(int type) {
+		if (crew.timeElapsed()) {
+			tire = new Tire(type);
+			maxSpeedAtArea = topSpeed;
+		}
 	}
 	/**
 		*prevents car from going off the edge of the screen
@@ -237,8 +247,8 @@ public class Car{
     angle %= 2*Math.PI;
     frontAngle %= 2*Math.PI;
     moveAngle %= 2*Math.PI;
-    if(velocity > topSpeed){
-      velocity = topSpeed;
+    if(velocity > maxSpeedAtArea){
+      velocity = maxSpeedAtArea;
     }
     if(frontAngle > angle + radians(6)){
       frontAngle = angle + radians(6);
