@@ -1,4 +1,5 @@
 public class Car{
+  private boolean player;
 	private boolean skid;
 	private float xCor;
 	private float yCor;
@@ -43,7 +44,7 @@ public class Car{
 	*/
 	public Car(float x, float y, float m,
 						 float tS, float h, float dF, float mA, float wL, float a, float fS,
-						 float dA, float dS, boolean skd, int t) {
+						 float dA, float dS, boolean skd, int t, boolean play) {
 		car.resize((int)(0.07*car.width), (int)(0.07*car.height));
 		xCor = x;
 		yCor = y;
@@ -59,13 +60,14 @@ public class Car{
 		velocity = dS;
 		skid = skd;
 		tire = new Tire(t);
+    player = play;
 	}
 	/**The default car constructor.
 	*/
 	public Car() {
 		this(225, 200, 900,
 		     2, radians(360), 1, 2, 8, radians(-50), 0,
-				 radians(-50), 0, false, 1);
+				 radians(-50), 0, false, 1, false);
 	}
 
 	public void display() {
@@ -75,6 +77,11 @@ public class Car{
 		imageMode(CENTER);
 		image(car, 0, 0);
 		popMatrix();
+    if(player){
+      fill(0);
+      textSize(20);
+      text("topspeed: "+topSpeed,xCor+5, yCor+5);
+    }
 	}
 	/*Set methods. Self explanatory*/
 	public void setFrontForce(float acc) {
@@ -129,6 +136,9 @@ public class Car{
 	}
 
 	/*Get Methods. Self explanatory*/
+  public boolean getPlayer(){
+    return player;
+  }
 	public float getX() {
 		return xCor;
 	}
@@ -242,11 +252,13 @@ public class Car{
     float xDist = Math.abs(car.getX() - x);
     float yDist = Math.abs(car.getY() - y);
     if(Math.sqrt(xDist*xDist+yDist*yDist) < wheelLength/2 + car.getWheelLength()/2){
-      velocity -= 0.1;
+      if(velocity <= 0.1){
+        velocity = 0;
+      }else{
+        velocity -= 0.1;
+      }
       if(ai.findLeftWallDist() < ai.findRightWallDist()){
-        //if(frontAngle + radians(3)
         frontAngle += radians(3);
-
       }else{
         frontAngle -= radians(3);
       }
