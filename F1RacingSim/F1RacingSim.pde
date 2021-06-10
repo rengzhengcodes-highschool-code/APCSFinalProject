@@ -4,7 +4,7 @@ import java.util.Map;
 String map = "Monaco";//the map you load
 HashMap<String, float[][]> mapStartPosses = new HashMap<String, float[][]>();
 FloatDict mapStartAngles = new FloatDict();
-HashMap<String, float[]> mapFrictionCoeffs = new HashMap<String, float[]>();
+FloatDict mapRelGrips = new FloatDict();
 //ai Drivers
 ArrayList<AIDriver> ais = new ArrayList<AIDriver>();;
 //active track
@@ -27,8 +27,7 @@ void setup() {
 		ais.add(ai);
 	}
 	//creates track
-	float[] frictionCoeffs = mapFrictionCoeffs.get(map);
-	t = new Track(frictionCoeffs[0], frictionCoeffs[1], 0, loadImage(map + ".png"), loadImage(map + "BW.png"));
+	t = new Track(mapRelGrips.get(map), 0, loadImage(map + ".png"), loadImage(map + "BW.png"));
 }
 
 void defineStartPos() {
@@ -45,7 +44,7 @@ void defineStartPos() {
     //{135, 290}
 	});
 	mapStartAngles.set("Monaco", radians(-50));
-	mapFrictionCoeffs.put("Monaco", new float[] {0.7, 0.4});//0.7 and 0.4 are default tire on asphalt coefficients, Monaco is a low grip track so IRL these are lower. It goes (statGrip, kenGrip)
+	mapRelGrips.set("Monaco", 0.9);https://www.mclaren.com/racing/2017/monaco-grand-prix/track-tips-and-circuit-stats/
 
 	mapStartPosses.put("Zandvoort", new float[][] {
 		{260, 300},
@@ -54,7 +53,7 @@ void defineStartPos() {
 		{245, 330}
 	});
 	mapStartAngles.set("Zandvoort", radians(-65));
-	mapFrictionCoeffs.put("Zandvoort", new float[] {0.8, 0.5});//Zandvoort has high grip due to its turns and the new rebuild of the track.
+	mapRelGrips.set("Zandvoort", 1);//Zandvoort has high grip due to its turns and the new rebuild of the track. However, actual stats aren't out yet, so for now it remains 1.
 
 	mapStartPosses.put("Baku", new float[][] {
 		{860, 320},
@@ -63,7 +62,7 @@ void defineStartPos() {
 		{830, 326},
 	});
 	mapStartAngles.set("Baku", radians(-15));
-	mapFrictionCoeffs.put("Baku", new float[] {0.7, 0.4});//defaults, have not looked into real Baku grip
+	mapRelGrips.set("Baku", 0.9);//https://www.mclaren.com/racing/2017/azerbaijan-grand-prix/track-tips-and-circuit-stats/
 }
 
 void draw() {
