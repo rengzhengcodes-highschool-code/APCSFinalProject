@@ -24,8 +24,8 @@ void setup() {
 	float[][] positions = mapStartPosses.get(map);
 	for (float[] position : positions) {
 		Car c = new Car(position[0], position[1], 900,
-		        1.1 + (float)Math.random()*0.6, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
-		        mapStartAngles.get(map), 0, false, (int)(Math.random() * 5) + 1);
+		        1.1 + rng.nextFloat() * 0.6, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
+		        mapStartAngles.get(map), 0, false, rng.nextInt(5) + 1);
 		AIDriver ai = new AIDriver();
 		ai.setCar(c);
 		ais.add(ai);
