@@ -3,7 +3,7 @@ import java.util.Random;
 //map start characteristics
 //String map = "Zandvoort";//the map you load
 Random rng = new Random();
-String map = "Zandvoort";//the map you load
+String map = "Monaco";//the map you load
 HashMap<String, float[][]> mapStartPosses = new HashMap<String, float[][]>();
 FloatDict mapStartAngles = new FloatDict();
 FloatDict mapRelGrips = new FloatDict();
@@ -28,7 +28,7 @@ void setup() {
 	float[][] positions = mapStartPosses.get(map);
 	for (float[] position : positions) {
 		Car c = new Car(position[0], position[1], 900,
-		        83 + rng.nextFloat() * 0.6, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
+		        50 + rng.nextFloat() * 0.6, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
 		        mapStartAngles.get(map), 0, false, rng.nextInt(5) + 1);
 		AIDriver ai = new AIDriver();
 		ai.setCar(c);
