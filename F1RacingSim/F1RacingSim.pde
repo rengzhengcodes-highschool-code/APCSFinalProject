@@ -44,7 +44,7 @@ void defineStartPos() {
     //{135, 290}
 	});
 	mapStartAngles.set("Monaco", radians(-50));
-	mapRelGrips.set("Monaco", 0.9);https://www.mclaren.com/racing/2017/monaco-grand-prix/track-tips-and-circuit-stats/
+	mapRelGrips.set("Monaco", 0.9);//https://www.mclaren.com/racing/2017/monaco-grand-prix/track-tips-and-circuit-stats/
 
 	mapStartPosses.put("Zandvoort", new float[][] {
 		{260, 300},
