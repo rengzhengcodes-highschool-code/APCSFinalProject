@@ -1,12 +1,7 @@
 public class Track {
 	/** The static friction coefficient of the track.
 	*/
-	final private float trackGrip;
-	/** The nonstatic friction coefficient of the track.
-	*/
-	final private float trackSlideGrip;
-	/** The rate tires degrade in the track.
-	*/
+	final private float trackGripMod;
 	final private float tireWear;
 	/** The image that represents the track.
 	*/
@@ -15,16 +10,14 @@ public class Track {
 	*/
 	final private PImage trackEdge;
 	/**
-		*@param grip Track static friction coefficient.
-		*@param slideGrip Track nonstatic friction coefficient.
+		*@param tGP The track grip coefficient, relative to what the FIA considers "standard". Based off creater interpretation of each deviation from normal being 0.1.
 		*@param wear Tire wear of the track.
 		*@param display The image that will be displayed as the track.
 		*@param edgeImage The image that has already been edgeDetected.
 		*@postcondition All the constants for this track are set.
 	*/
-	public Track (float grip, float slideGrip, float wear, PImage display, PImage edgeImage) {
-		trackGrip = grip;
-		trackSlideGrip = slideGrip;
+	public Track (float tGrip, float wear, PImage display, PImage edgeImage) {
+		trackGripMod = tGrip;
 		tireWear = wear;
 		track = display;
 		track.resize(width, height);
@@ -40,19 +33,12 @@ public class Track {
     image(trackEdge, 0, 0);
   }
 
-  /*Get Statements. Self explanatory*/
-
 	/*Get Statements. Self explanatory*/
 
-	/**@return The track static friction coefficient.
+	/**@return The track's relative grip'.
 	*/
-	public float getTrackGrip() {
-		return trackGrip;
-	}
-	/**@return The track nonstatic friction coefficient.
-	*/
-	public float getTrackSlideGrip() {
-		return trackSlideGrip;
+	public float getTrackRelGrip() {
+		return trackGripMod;
 	}
 	/**@return The current track tire wear.
 	*/
