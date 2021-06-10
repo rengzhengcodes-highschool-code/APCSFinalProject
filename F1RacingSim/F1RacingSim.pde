@@ -1,4 +1,5 @@
-import java.util.Map;
+import java.util.HashMap;
+import java.util.Random;
 //map start characteristics
 //String map = "Zandvoort";//the map you load
 Random rng = new Random(42);
