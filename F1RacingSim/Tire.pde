@@ -4,6 +4,7 @@ public class Tire {
 	private float grip;
 	private float kenGrip;
 	private float distTraveled = 0;
+	private int type;
 	/**
 		*@param type The C number of the tires, based on 2021 Pirelli specs.
 		*@postcondition Tires set to the right instance variables for the type.
@@ -45,6 +46,8 @@ public class Tire {
 			default:
 				throw new IllegalArgumentException("No tire coresponding to " + type);
 		}
+
+		this.type = type;
 	}
 	/**
 		*@param dT The distance the tire traveled.
@@ -84,6 +87,10 @@ public class Tire {
 
 	public float getDistTraveled() {
 		return distTraveled;
+	}
+
+	public int getType() {
+		return type;
 	}
 
 	public String toString() {

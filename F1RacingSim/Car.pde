@@ -193,6 +193,12 @@ public class Car{
 	public void setFrontAngle(float theta) {
 		frontAngle = theta;
 	}
+
+	public Tire changeTire(Tire t) {
+		Tire oldTire = tire;
+		tire = t;
+		return oldTire;
+	}
 	/**
 		*prevents car from going off the edge of the screen
 	*/
