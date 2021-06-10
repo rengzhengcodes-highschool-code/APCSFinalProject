@@ -79,6 +79,6 @@ public class Tire {
 	}
 
 	public String toString() {
-		return "Type: " + type + " | Distance: " + distTraveled + " | Max Distance: " distTraveled;
+		return "Type: " + type + " | Distance: " + distTraveled + " | Max Distance: " + maxDist;
 	}
 }
