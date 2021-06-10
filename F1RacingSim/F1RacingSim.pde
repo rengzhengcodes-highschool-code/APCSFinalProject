@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Random;
 //map start characteristics
 //String map = "Zandvoort";//the map you load
-Random rng = new Random(42);
+Random rng = new Random();
 String map = "Zandvoort";//the map you load
 HashMap<String, float[][]> mapStartPosses = new HashMap<String, float[][]>();
 FloatDict mapStartAngles = new FloatDict();
@@ -120,5 +120,5 @@ void keyPressed() {
 		}
 	}
 
-	if (key == 'd') DEBUG = true;
+	if (key == 'd') DEBUG = !DEBUG;
 }
