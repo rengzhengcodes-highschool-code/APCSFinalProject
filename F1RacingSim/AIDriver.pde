@@ -52,8 +52,9 @@ public class AIDriver extends Driver {
 	}
 
 	public boolean pitting() {
-		Tire t = getCar().getTire();
-		return t.getMaxDist() - t.getDistTraveled() < 5000 || t.getTrackEdge().get(getCar().getX(), getCar.getY());
+		Car c = getCar();
+		Tire tire = c.getTire();
+		return tire.getMaxDist() - tire.getDistTraveled() < 5000 || t.getTrackEdge().get((int)c.getX(), (int)c.getY()) == color(255, 0, 0);
 	}
 
 	public void displayLineOfSight() {
