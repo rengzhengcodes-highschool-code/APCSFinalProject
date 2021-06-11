@@ -21,7 +21,7 @@ float scaleFactor = 5;//scaling when following a car.
 boolean DEBUG = false;
 
 void setup() {
-	frameRate(60);
+	frameRate(120);
 	size(1000, 800);
 	defineStartPos();
 	//giving the ais cars lined up at the right position
@@ -77,7 +77,7 @@ void defineStartPos() {
 }
 
 void draw() {
-	frameRate(60);
+	frameRate(120);
 	background(200);
 	fill(0);
 	textSize(20);

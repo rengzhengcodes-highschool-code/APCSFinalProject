@@ -95,6 +95,10 @@ public class Tire {
 		return type;
 	}
 
+	public float getWear() {
+		return 1 - distTraveled/maxDist;
+	}
+
 	public String toString() {
 		return "Type: " + name + " | Distance: " + distTraveled + "m | Max Distance: " + maxDist + "m";
 	}

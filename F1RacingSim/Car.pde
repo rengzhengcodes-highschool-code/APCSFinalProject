@@ -192,7 +192,7 @@ public class Car{
 	}
 
 	public void changeTire() {
-		maxSpeedAtArea = 0;
+		maxSpeedAtArea = topSpeed/2;
 		changeTire(crew.whichTire(this));
 	}
 

@@ -4,7 +4,7 @@ public class PitCrew {
 	private int framesElapsed = 0;
 
 	public PitCrew() {
-		errorRate = 0.1;
+		errorRate = 0.05;
 		speed = 2 * 20;
 	}
 
