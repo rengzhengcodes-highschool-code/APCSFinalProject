@@ -53,7 +53,7 @@ Tada! The simulation should be working.
 2021-06-02|JM - did some testing for the new track and the physics so far. Also did pixel measurements for the tracks and cars to try to create a unified scale (not done in the demo, but to be implemented later).
 
 2021-06-03|RZ - Resolved the 4 modifiable vars issue. Implemented a max turn angle variable called handling (AI cannot deal with angles less than 180 degrees yet), a simplified downforce coefficient variable, and a max acceleration variable (to be implemented).\
-2021-06-03|JM - Finished the two point rigid body physics with front wheel turning and accurate car turning. Imtegrated into AIDrover and resolved the many merge issues.
+2021-06-03|JM - Finished the two point rigid body physics with front wheel turning and accurate car turning. Integrated into AIDrover and resolved the many merge issues.
 
 2021-06-06|RZ - Implemented Baku track (from Azerbaijan). Inspired by the Baku 2021 race which ended with 2 tire failures and a red flag, which caused Lewis Hamilton to activate Mercedes' tire "magic" and drive off track, a large upset in the race.
 
