@@ -49,7 +49,7 @@ public class Tire {
 				throw new IllegalArgumentException("No tire coresponding to " + type);
 		}
 
-		maxDist *= 0.1;
+		maxDist *= 0.2;
 
 		this.type = type;
 		car = c;
