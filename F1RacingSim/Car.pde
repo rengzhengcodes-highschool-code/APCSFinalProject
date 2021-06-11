@@ -62,7 +62,7 @@ public class Car{
 		moveAngle = dA;
 		velocity = dS;
 		skid = skd;
-		tire = new Tire(t);
+		tire = new Tire(t, this);
 		crew = new PitCrew();
 		driver = ai;
 	}
