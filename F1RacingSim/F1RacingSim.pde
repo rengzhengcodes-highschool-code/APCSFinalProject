@@ -104,6 +104,9 @@ void draw() {
 		ai.drive();
 		c.move(ais);
 		c.display();
+		if (DEBUG != 0) {
+			c.displayDEBUG();
+		}
 		ai.displayLineOfSight();
 		if(c.getVelocity() != 0) {
 			Physics.driftSlow(c, 0.25, 0.10);

@@ -81,8 +81,11 @@ public class Car{
 		imageMode(CENTER);
 		image(car, 0, 0);
 		popMatrix();
-		//establishes background of text
+	}
+
+	public void displayDEBUG() {
 		if (DEBUG != 0) {
+			//establishes background of text
 			rectMode(CORNER);
 			fill(255, 255, 255, 128);
 			int rectHeight = 50;
@@ -99,18 +102,18 @@ public class Car{
 			switch (DEBUG) {
 				case 1:
 					text(driver.toStringDisplayed(),
-					    textXVal, yCor + ySpacing * 2,
-					    rectHeight);
+						textXVal, yCor + ySpacing * 2,
+						rectHeight);
 					break;
 				case 2:
 					text(this.toStringDisplayed(),
-					    textXVal, yCor + ySpacing * 2,
-					    rectHeight);
+						textXVal, yCor + ySpacing * 2,
+						rectHeight);
 					break;
 				case 3:
 					text(tire.toStringDisplayed(),
-					    textXVal, yCor + ySpacing * 2,
-					    rectHeight);
+						textXVal, yCor + ySpacing * 2,
+						rectHeight);
 					break;
 				default: break;
 			}
