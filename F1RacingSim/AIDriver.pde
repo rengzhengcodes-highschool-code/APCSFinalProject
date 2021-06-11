@@ -7,11 +7,11 @@ public class AIDriver extends Driver {
 	}
 
 	public float findLeftWallDist() {
-		return findWallAtAngleDist(-radians(90));
+		return findWallAtAngleDist(-radians(90)) -1;
 	}
 
 	public float findRightWallDist() {
-		return findWallAtAngleDist(radians(90));
+		return findWallAtAngleDist(radians(90)) -1;
 	}
 	/**
 		*@param angle Angle offset from move angle in radians.
@@ -32,7 +32,8 @@ public class AIDriver extends Driver {
 			                   	        (int)(c.getY() + yOff));
 			color matching = color(255);
 
-			if (pitting()) {
+			if ((pitting() || t.getTrackEdge().get((int)c.getX(), (int)c.getY()) == color(255, 0, 0))
+				&& t.getTrackEdge().get((int)c.getX(), (int)c.getY()) != color(0, 0, 255)) {
 				matching = color(255, 0, 0);
 				boundColor = color(red(boundColor), 0, 0);//checks blue element is 255 to be passable. For pitting because pits are only red, and white has 255 red.
 			} else {
@@ -52,8 +53,9 @@ public class AIDriver extends Driver {
 	}
 
 	public boolean pitting() {
-		Tire t = getCar().getTire();
-		return t.getMaxDist() - t.getDistTraveled() < 5000;
+		Car c = getCar();
+		Tire tire = c.getTire();
+		return tire.getMaxDist() - tire.getDistTraveled() < 5000;
 	}
 
 	public void displayLineOfSight() {
@@ -65,7 +67,26 @@ public class AIDriver extends Driver {
 		}
 	}
 
+	public boolean pitLane() {
+		Car c = getCar();
+
+		for (int xOff = -1; xOff <= 1; xOff++) {
+			for (int yOff = -1; yOff <= 1; yOff++) {
+				color trackColor = t.getTrackEdge().get((int)(c.getX()) + xOff,
+														(int)(c.getY()) + yOff);
+				if (trackColor == color(255, 0, 0)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	public void drive() {
+		Car c = getCar();
+		if (pitLane() && pitting()) {
+			c.changeTire();
+		}//if you're pitting and in the pit lane, AKA getting a tire change
 		/**distance between the car and the wall
 		*/
 		float d = findFrontWallDist();
@@ -75,7 +96,6 @@ public class AIDriver extends Driver {
 		/**distance to rightWall
 		*/
 		float dR = findRightWallDist();
-		Car c = getCar();
 
 		float a = 0;
 		float theta = c.getMoveAngle();
@@ -90,12 +110,22 @@ public class AIDriver extends Driver {
 
 		boolean turned = false;
 		float nuTheta = theta;
-		if (d < 6) {
+		if (d != 0) {
 			for (float i = degrees(c.getHandling()); i > 0 && !turned;//the 17 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
 			    i--) {
 				nuTheta += radians(1) * turnDirection;
 				bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
-				if (12 < dist(0, 0, bound[0], bound[1])) {
+				if (17 < dist(0, 0, bound[0], bound[1])) {
+					turned = true;
+					theta = nuTheta;
+				}
+			}
+		} else {
+			for (float i = degrees(c.getHandling()); i > 0 && !turned;//the 20 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
+			    i--) {
+				nuTheta += radians(1) * turnDirection;
+				bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
+				if (20 < dist(0, 0, bound[0], bound[1])) {
 					turned = true;
 					theta = nuTheta;
 				}
@@ -114,5 +144,6 @@ public class AIDriver extends Driver {
 			c.setVelocity(newV[0], newV[1]);
 			c.turn(theta);
 		}
+
 	}
 }

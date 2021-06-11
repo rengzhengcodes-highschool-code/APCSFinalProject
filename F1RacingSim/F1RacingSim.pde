@@ -1,17 +1,19 @@
-import java.util.Map;
+import java.util.HashMap;
+import java.util.Random;
 boolean race = false;
 float playerMass = 900;
 int playerTopSpeed = 10;
 float playerWheelLength = 8;
 //map start characteristics
 //String map = "Zandvoort";//the map you load
-String map = "Monaco";//the map you load
+Random rng = new Random();
+String map = "Zandvoort";//the map you load
 HashMap<String, float[][]> mapStartPosses = new HashMap<String, float[][]>();
 FloatDict mapStartAngles = new FloatDict();
 FloatDict mapRelGrips = new FloatDict();
 FloatDict mapRelTireWear = new FloatDict();
-final float meterToPixelRatio = 1/0.6;//1 px over 0.6 meter
-final float secondToFrameRatio = 20;// 20 frames over 1s
+//final float meterToPixelRatio = 1/0.6;//1 px over 0.6 meter
+//final float secondToFrameRatio = 120;// 20 frames over 1s
 //ai Drivers
 ArrayList<AIDriver> ais = new ArrayList<AIDriver>();;
 //active track
@@ -20,7 +22,10 @@ Track t;
 TrackCamera tC = new TrackCamera();
 byte cameraMode = 0;//which car is being followed
 float scaleFactor = 5;//scaling when following a car.
+boolean DEBUG = false;
+
 void setup() {
+	frameRate(120);
 	size(1000, 800);
 	defineStartPos();
 	//giving the ais cars lined up at the right position
@@ -28,7 +33,7 @@ void setup() {
 	for (int i = 1; i < positions.length; i++) {
 		Car c = new Car(positions[i][0], positions[i][1], 900,
 		        18, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
-		        mapStartAngles.get(map), 0, false, (int)(Math.random() * 5) + 1, false);
+		        mapStartAngles.get(map), 0, false, rng.nextInt(5) + 1, false);
 		AIDriver ai = new AIDriver();
 		ai.setCar(c);
 		ais.add(ai);
@@ -76,6 +81,7 @@ void defineStartPos() {
 }
 
 void draw() {
+	frameRate(120);
 	background(200);
 	fill(0);
 	textSize(20);
@@ -100,55 +106,55 @@ void draw() {
     fill(0);
     textSize(20);
     text("start race",25,70);
-    
+
     fill(255);
     rect(20, 100, 150, 50);
     fill(0);
     textSize(20);
     text("Mass: "+playerMass,25,130);
-    
+
     fill(255);
     rect(170, 100, 50, 25);
     fill(0);
     textSize(20);
     text("More",170,117);
-    
+
     fill(255);
     rect(170, 125, 50, 25);
     fill(0);
     textSize(20);
     text("Less",170,142);
-    
+
     fill(255);
     rect(20, 160, 150, 50);
     fill(0);
     textSize(20);
     text("Top Speed: "+playerTopSpeed/10.0,23,190);
-    
+
     fill(255);
     rect(170, 160, 50, 25);
     fill(0);
     textSize(20);
     text("More",170,177);
-    
+
     fill(255);
     rect(170, 185, 50, 25);
     fill(0);
     textSize(20);
     text("Less",170,202);
-    
+
     fill(255);
     rect(20, 220, 150, 50);
     fill(0);
     textSize(20);
     text("Car Length: "+playerWheelLength,23,250);
-    
+
     fill(255);
     rect(170, 220, 50, 25);
     fill(0);
     textSize(20);
     text("More",170,237);
-    
+
     fill(255);
     rect(170, 245, 50, 25);
     fill(0);
@@ -168,16 +174,17 @@ void draw() {
     }
   }
 }
-/**
-	*@param c The car being driven.
-	*@postcondition The car has accelerated and turned.
-*/
+
 void keyPressed() {
-	if (48 <= keyCode && keyCode <= 57) cameraMode = Byte.parseByte("" + key);//if the key pressed is a number, set the cameramode to the key pressed
-  for(AIDriver ai : ais){
-     Car c = ai.getCar();
-     c.setSize(0.03);
-  }
+	if (48 <= keyCode && keyCode <= 57) {
+		cameraMode = Byte.parseByte("" + key);//if the key pressed is a number, set the cameramode to the key pressed
+		for(AIDriver ai : ais){
+			Car c = ai.getCar();
+			c.setSize(0.03);
+		}
+	}
+
+	if (key == 'd') DEBUG = !DEBUG;
 }
 
 void mousePressed(){
@@ -212,7 +219,7 @@ void mousePressed(){
         playerWheelLength -= 1;
       }
       //if(mouseX >= && mouseX <= && mouseY >= && mouseY <= ){
-        
+
       //}
     }
   }
