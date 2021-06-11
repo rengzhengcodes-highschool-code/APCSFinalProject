@@ -72,6 +72,10 @@ void mousePressed(){
             map = "Baku";
             ais.clear();
             setup();
+          }else{
+            map = "Zandvoort";
+            ais.clear();
+            setup();
           }
         }
       }
