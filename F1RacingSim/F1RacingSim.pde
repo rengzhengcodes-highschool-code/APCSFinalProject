@@ -283,7 +283,7 @@ void draw() {
 				}
 			}
 		}
-		
+
 		t.display();
 		for(AIDriver ai : ais) {
 			Car c = ai.getCar();
@@ -293,7 +293,7 @@ void draw() {
 			if (DEBUG != 0 && (cameraMode > ais.size() || cameraMode == 0)) {
 				c.displayDEBUG();
 			}
-			ai.displayLineOfSight();
+			if (DEBUG != 0) ai.displayLineOfSight();
 		}
 		popMatrix();
 

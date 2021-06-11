@@ -10,6 +10,7 @@ Requires Processing version 3: https://processing.org/download/
 1. Download the contents of the git repo.\
 2. Open F1RacingSim.pde in Processing 3. Do not move any of the files or subfolders of F1RacingSim.\
 3. Once open in Processing 3, do not touch any of the code. Simply press ctrl + R to run.\
+4. Set the variables you want your car to have. 
 Tada! The simulation should be working.
 
 ## Dev Log (YYYY-MM-DD|Initials)
