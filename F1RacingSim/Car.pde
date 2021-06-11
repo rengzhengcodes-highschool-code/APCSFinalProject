@@ -252,7 +252,7 @@ public class Car{
       frontAngle = angle - radians(6);
     }
     for(AIDriver ai : ais){
-		if (ai.getCar() != this) hitCar(ai);
+		if (ai != driver) hitCar(ai);
     }
     float[] shift = CartesianPolarMath.polarToCartesian(convertVelocity(), moveAngle);
     xCor += shift[0];
