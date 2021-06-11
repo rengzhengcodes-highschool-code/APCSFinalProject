@@ -1,4 +1,5 @@
 public class Car{
+  private boolean player;
 	private boolean skid;
 	private float xCor;
 	private float yCor;
@@ -42,11 +43,13 @@ public class Car{
 		*@param dA moveAngle The starting angle delta.
 		*@param dS The starting velocity.
 		*@param t The tire type.
+		*@param ai The driver
+		*@param play is it the player
 		*@postcondition The instance variables are set.
 	*/
 	public Car(float x, float y, float m,
 						 float tS, float h, float dF, float mA, float wL, float a, float fS,
-						 float dA, float dS, boolean skd, int t, AIDriver ai) {
+						 float dA, float dS, boolean skd, int t, AIDriver ai, boolean play) {
 		car.resize((int)(0.07*car.width), (int)(0.07*car.height));
 		xCor = x;
 		yCor = y;
@@ -63,15 +66,16 @@ public class Car{
 		velocity = dS;
 		skid = skd;
 		tire = new Tire(t, this);
+		player = play;
 		crew = new PitCrew();
 		driver = ai;
 	}
 	/**The default car constructor.
 	*/
 	public Car() {
-		this(225, 200, 900,
+		this(1.25, 225, 200, 900,
 		     2, radians(360), 1, 2, 8, radians(-50), 0,
-				 radians(-50), 0, false, 1, null);
+				 radians(-50), 0, false, 1, null, false);
 	}
 
 	public void display() {
@@ -81,6 +85,11 @@ public class Car{
 		imageMode(CENTER);
 		image(car, 0, 0);
 		popMatrix();
+		if(player){
+	      fill(0);
+	      textSize(20);
+	      text("topspeed: "+topSpeed,xCor+5, yCor+5);
+	    }
 	}
 
 	public void displayDEBUG() {//overrides regular xCor yCor for protection of thsoe vars
@@ -176,6 +185,9 @@ public class Car{
 	}
 
 	/*Get Methods. Self explanatory*/
+  public boolean getPlayer(){
+    return player;
+  }
 	public float getX() {
 		return xCor;
 	}
@@ -310,11 +322,11 @@ public class Car{
     float xDist = Math.abs(car.getX() - x);
     float yDist = Math.abs(car.getY() - y);
     if(Math.sqrt(xDist*xDist+yDist*yDist) < wheelLength/2 + car.getWheelLength()/2){
-		if (velocity <= 0.1) {
-			velocity = 0;
-		} else {
-	      velocity -= 0.1;
-		}
+      if(velocity <= 0.1){
+        velocity = 0;
+      }else{
+        velocity -= 0.1;
+      }
       if(ai.findLeftWallDist() < ai.findRightWallDist()){
         //if(frontAngle + radians(3)
         frontAngle += radians(driver.getAggressiveness());

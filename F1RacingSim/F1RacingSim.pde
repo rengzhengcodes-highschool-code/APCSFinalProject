@@ -1,5 +1,11 @@
 import java.util.HashMap;
 import java.util.Random;
+int playerTire = 1;
+int playerAgro = 10;
+boolean race = false;
+float playerMass = 900;
+int playerTopSpeed = 10;
+float playerWheelLength = 8;
 //map start characteristics
 //String map = "Zandvoort";//the map you load
 Random rng = new Random();
@@ -20,17 +26,83 @@ byte cameraMode = 0;//which car is being followed
 float scaleFactor = 5;//scaling when following a car.
 int DEBUG = 0;
 
+void mousePressed(){
+  if(!race){
+    if(mouseButton == LEFT){
+      if(mouseX >= 20 && mouseX <= 120 && mouseY >= 40 && mouseY <= 90){
+        race = true;
+        float[][] positions = mapStartPosses.get(map);
+        Car c = new Car(playerAgro/10.0, positions[0][0], positions[0][1], playerMass,
+            playerTopSpeed/10.0, radians(360), 1, 2, playerWheelLength, mapStartAngles.get(map), 0,
+            mapStartAngles.get(map), 0, false, playerTire, true);
+        AIDriver ai = new AIDriver();
+        ai.setCar(c);
+        ais.add(ai);
+      }
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 100 && mouseY <= 125 && playerMass < 2000){
+        playerMass += 10;
+      }
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 125 && mouseY <= 150 && playerMass > 900){
+        playerMass -= 10;
+      }
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 160 && mouseY <= 185 && playerTopSpeed < 15){
+        playerTopSpeed += 1;
+      }
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 185 && mouseY <= 210 && playerTopSpeed > 5){
+        playerTopSpeed -= 1;
+      }
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 220 && mouseY <= 245 && playerWheelLength < 16){
+        playerWheelLength += 1;
+      }
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 245 && mouseY <= 270 && playerWheelLength > 3){
+        playerWheelLength -= 1;
+      }
+      if(mouseX >= 170+70 && mouseX <= 290 && mouseY >= 280 && mouseY <= 305 && playerAgro < 50){
+        playerAgro += 1;
+      }
+      if(mouseX >= 170+70 && mouseX <= 290 && mouseY >= 305 && mouseY <= 330 && playerAgro > 7){
+        playerAgro -= 1;
+      }
+      if(mouseX >= 400 && mouseX <= 700 && mouseY >= 50 && mouseY <= 100){
+        if(map.equals("Zandvoort")){
+          map = "Monaco";
+          ais.clear();
+          setup();
+        }else{
+          if(map.equals("Monaco")){
+            map = "Baku";
+            ais.clear();
+            setup();
+          }else{
+            map = "Zandvoort";
+            ais.clear();
+            setup();
+          }
+        }
+      }
+      if(mouseX >= 20 && mouseX <= 170 && mouseY >= 400 && mouseY <= 450){
+        if(playerTire != 5){
+          playerTire++;
+        }else{
+          playerTire = 1;
+        }
+      }
+      //rect(20, 400, 150, 50);
+    }
+  }
+}
+
 void setup() {
 	frameRate(120);
 	size(1000, 800);
 	defineStartPos();
 	//giving the ais cars lined up at the right position
 	float[][] positions = mapStartPosses.get(map);
-	for (float[] position : positions) {
+	for (int i = 1; i < positions.length; i++) {
 		AIDriver ai = new AIDriver();
-		Car c = new Car(position[0], position[1], 900,
-		        1.5, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
-		        mapStartAngles.get(map), 0, false, rng.nextInt(5) + 1, ai);
+		Car c = new Car(1, positions[i][0], positions[i][1], 900,
+		        1.1 + (float)(Math.random()*0.4), radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
+		        mapStartAngles.get(map), 0, false, rng.nextInt(5) + 1, ai, false);
 		ai.setCar(c);
 		ais.add(ai);
 	}
@@ -40,7 +112,7 @@ void setup() {
 
 void defineStartPos() {
 	mapStartPosses.put("Monaco", new float[][] {
-		{225, 200},
+    {225, 200},
 		{215, 210},
 		{205, 220},
 		{195, 230},
@@ -95,34 +167,150 @@ void draw() {
       }
 		}
 	}
+  if(!race){
+    fill(255);
+    rect(20, 40, 100, 50);
+    fill(0);
+    textSize(20);
+    text("start race",25,70);
 
-	t.display();
-	for(AIDriver ai : ais) {
-		Car c = ai.getCar();
-		ai.drive();
-		c.move(ais);
-		c.display();
-		if (DEBUG != 0 && (cameraMode > ais.size() || cameraMode == 0)) {
-			c.displayDEBUG();
-		}
-		ai.displayLineOfSight();
-	}
-	popMatrix();
+    fill(255);
+    rect(20, 100, 150, 50);
+    fill(0);
+    textSize(20);
+    text("Mass: "+playerMass,25,130);
 
-	textSize(20);
-	textAlign(LEFT, TOP);
-	text("FPS: "+frameRate,0,0);
+    fill(255);
+    rect(170, 100, 50, 25);
+    fill(0);
+    textSize(20);
+    text("More",170,117);
 
-	if (tracked != null) {
-		tracked.focusDEBUG();
-	}
+    fill(255);
+    rect(170, 125, 50, 25);
+    fill(0);
+    textSize(20);
+    text("Less",170,142);
 
-	for (AIDriver ai : ais) {
-		Car c = ai.getCar();
-		if(c.getVelocity() != 0) {
-			Physics.driftSlow(c, 0.25, 0.10);
-		}
-	}
+    fill(255);
+    rect(20, 160, 150, 50);
+    fill(0);
+    textSize(20);
+    text("Top Speed: "+playerTopSpeed/10.0,23,190);
+
+    fill(255);
+    rect(170, 160, 50, 25);
+    fill(0);
+    textSize(20);
+    text("More",170,177);
+
+    fill(255);
+    rect(170, 185, 50, 25);
+    fill(0);
+    textSize(20);
+    text("Less",170,202);
+
+    fill(255);
+    rect(20, 220, 150, 50);
+    fill(0);
+    textSize(20);
+    text("Car Length: "+playerWheelLength,23,250);
+
+    fill(255);
+    rect(170, 220, 50, 25);
+    fill(0);
+    textSize(20);
+    text("More",170,237);
+
+    fill(255);
+    rect(170, 245, 50, 25);
+    fill(0);
+    textSize(20);
+    text("Less",170,262);
+
+    fill(255);
+    rect(20, 220+60, 150+70, 50);
+    fill(0);
+    textSize(20);
+    text("Driver agression: "+playerAgro/10.0,23,250+60);
+
+    fill(255);
+    rect(170+70, 220+60, 50, 25);
+    fill(0);
+    textSize(20);
+    text("More",170+70,237+60);
+
+    fill(255);
+    rect(170+70, 245+60, 50, 25);
+    fill(0);
+    textSize(20);
+    text("Less",170+70,262+60);
+
+    fill(255);
+    rect(400, 50, 300, 50);
+    fill(0);
+    textSize(20);
+    text("Track: "+map, 405, 85);
+
+    fill(0);
+    textSize(20);
+    text("Top Speed controls the maximum output of your car. \nMass is the car's mass in kg."+
+    " \nLength controlls how the physics engine sees your car."+
+    "\nThe longer it is, the less manuverable it is,"+
+    "\nbut it is also less likely to get run off the track."+
+    "\nYou can click on the tires or the track to cycle through them."+
+    "\nThe softer the tires are, the less distance they can handle,"+"\nbut they have more grip.", 350, 200);
+
+    fill(255);
+    rect(20, 400, 150, 50);
+    fill(0);
+    textSize(20);
+    if(playerTire == 1){
+      text("Tire: ultra soft",23,430);
+    }else{
+      if(playerTire == 2){
+        text("Tire: super soft",23,430);
+      }else{
+        if(playerTire == 3){
+          text("Tire: Soft",23,430);
+        }else{
+          if(playerTire == 4){
+            text("Tire: Medium",23,430);
+          }else{
+            text("Tire: Hard", 23, 430);
+          }
+        }
+      }
+    }
+  }else{
+	  t.display();
+	  for(AIDriver ai : ais) {
+		  Car c = ai.getCar();
+		  ai.drive();
+		  c.move(ais);
+		  c.display();
+		  if (DEBUG != 0 && (cameraMode > ais.size() || cameraMode == 0)) {
+			  c.displayDEBUG();
+		  }
+		  ai.displayLineOfSight();
+	  }
+	  popMatrix();
+
+	  textSize(20);
+	  textAlign(LEFT, TOP);
+	  text("FPS: "+frameRate,0,0);
+
+	  if (tracked != null) {
+		  tracked.focusDEBUG();
+	  }
+
+	  for (AIDriver ai : ais) {
+		  Car c = ai.getCar();
+		  if(c.getVelocity() != 0) {
+			  Physics.driftSlow(c, 0.25, 0.10);
+		  }
+	  }
+  }
 }
 
 void keyPressed() {
