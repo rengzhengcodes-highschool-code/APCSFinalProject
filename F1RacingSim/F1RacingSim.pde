@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Random;
+int playerAgro = 10;
 boolean race = false;
 float playerMass = 900;
 int playerTopSpeed = 10;
@@ -31,8 +32,8 @@ void setup() {
 	//giving the ais cars lined up at the right position
 	float[][] positions = mapStartPosses.get(map);
 	for (int i = 1; i < positions.length; i++) {
-		Car c = new Car(positions[i][0], positions[i][1], 900,
-		        18, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
+		Car c = new Car(1.25, positions[i][0], positions[i][1], 900,
+		        1.1 + (float)(Math.random()*0.4), radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
 		        mapStartAngles.get(map), 0, false, rng.nextInt(5) + 1, false);
 		AIDriver ai = new AIDriver();
 		ai.setCar(c);
@@ -160,6 +161,24 @@ void draw() {
     fill(0);
     textSize(20);
     text("Less",170,262);
+    
+    fill(255);
+    rect(20, 220+60, 150+70, 50);
+    fill(0);
+    textSize(20);
+    text("Driver agression: "+playerAgro/10.0,23,250+60);
+    
+    fill(255);
+    rect(170+70, 220+60, 50, 25);
+    fill(0);
+    textSize(20);
+    text("More",170+70,237+60);
+    
+    fill(255);
+    rect(170+70, 245+60, 50, 25);
+    fill(0);
+    textSize(20);
+    text("Less",170+70,262+60);
   }else{
     t.display();
     for(AIDriver ai : ais) {
@@ -193,7 +212,7 @@ void mousePressed(){
       if(mouseX >= 20 && mouseX <= 120 && mouseY >= 40 && mouseY <= 90){
         race = true;
         float[][] positions = mapStartPosses.get(map);
-        Car c = new Car(positions[0][0], positions[0][1], playerMass,
+        Car c = new Car(playerAgro/10.0, positions[0][0], positions[0][1], playerMass,
             playerTopSpeed/10.0, radians(360), 1, 2, playerWheelLength, mapStartAngles.get(map), 0,
             mapStartAngles.get(map), 0, false, (int)(Math.random() * 5) + 1, true);
         AIDriver ai = new AIDriver();
@@ -206,11 +225,11 @@ void mousePressed(){
       if(mouseX >= 170 && mouseX <= 220 && mouseY >= 125 && mouseY <= 150 && playerMass > 900){
         playerMass -= 10;
       }
-      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 160 && mouseY <= 185 && playerTopSpeed < 300){
-        playerTopSpeed += 5;
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 160 && mouseY <= 185 && playerTopSpeed < 15){
+        playerTopSpeed += 1;
       }
       if(mouseX >= 170 && mouseX <= 220 && mouseY >= 185 && mouseY <= 210 && playerTopSpeed > 5){
-        playerTopSpeed -= 5;
+        playerTopSpeed -= 1;
       }
       if(mouseX >= 170 && mouseX <= 220 && mouseY >= 220 && mouseY <= 245 && playerWheelLength < 16){
         playerWheelLength += 1;
@@ -218,9 +237,26 @@ void mousePressed(){
       if(mouseX >= 170 && mouseX <= 220 && mouseY >= 245 && mouseY <= 270 && playerWheelLength > 3){
         playerWheelLength -= 1;
       }
+      if(mouseX >= 170+70 && mouseX <= 290 && mouseY >= 280 && mouseY <= 305 && playerAgro < 50){
+        playerAgro += 1;
+      }
+      if(mouseX >= 170+70 && mouseX <= 290 && mouseY >= 305 && mouseY <= 330 && playerAgro > 7){
+        playerAgro -= 1;
+      }
       //if(mouseX >= && mouseX <= && mouseY >= && mouseY <= ){
 
       //}
+    //fill(255);
+    //rect(170+70, 220+60, 50, 25);
+    //fill(0);
+    //textSize(20);
+    //text("More",170+70,237+60);
+    
+    //fill(255);
+    //rect(170+70, 245+60, 50, 25);
+    //fill(0);
+    //textSize(20);
+    //text("Less",170+70,262+60);
     }
   }
 }
