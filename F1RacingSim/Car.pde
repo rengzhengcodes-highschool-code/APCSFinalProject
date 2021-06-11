@@ -114,6 +114,9 @@ public class Car{
 					break;
 				default: break;
 			}
+
+			textAlign(LEFT, TOP);
+			text(t.toString(), 0, 20);
 		}
 	}
 	/*Set methods. Self explanatory*/

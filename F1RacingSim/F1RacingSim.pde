@@ -81,7 +81,8 @@ void draw() {
 	background(200);
 	fill(0);
 	textSize(20);
-	text("FPS: "+frameRate,0,20);
+	textAlign(LEFT, TOP);
+	text("FPS: "+frameRate,0,0);
 
 	if (cameraMode != 0) {//If camera is not in default track view.
 		try {
