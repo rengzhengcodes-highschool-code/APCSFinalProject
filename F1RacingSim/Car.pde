@@ -188,6 +188,9 @@ public class Car{
 	public Tire getTire() {
 		return tire;
 	}
+	public getDriver() {
+		return driver;
+	}
 	/*set methods*/
 	public void setFrontAngle(float theta) {
 		frontAngle = theta;
