@@ -87,6 +87,7 @@ void draw() {
 	if (cameraMode != 0) {//If camera is not in default track view.
 		try {
 			Car tracked = ais.get(cameraMode - 1).getCar();
+			tracked.focusDEBUG();
 			tC.trackCar(tracked);
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("There is no driver " + cameraMode);

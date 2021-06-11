@@ -128,6 +128,12 @@ public class Car{
 	}
 
 	public void focusDEBUG() {
+		if (DEBUG != 0) {
+			rectMode(CORNER);
+			fill(255, 255, 255, 128);
+			int rectHeight = 100;
+			displayDEBUGContents(rectHeight, width - (rectHeight/5 - 1) * 20, rectHeight / 2. + 2);
+		}
 	}
 
 	/*Set methods. Self explanatory*/
