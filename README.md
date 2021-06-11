@@ -60,6 +60,7 @@ Tada! The simulation should be working.
 2021-06-08|JM - stopped the cars from driving over eachother and updated the devlog with all changes since demo. (those were done on the demo branch, but not in main).
 
 2021-06-09|RZ - Implemented tire class instantiation in order to simulate tire wear.
+2021-06-09|JM - make the cars change their apparent size based on the camera. smoothed out the passing code
 
 2021-06-10|RZ - Integrated tire code completely and implenented pit crews to complement them. Introduced a driver aggressiveness rating that would affect overtake rates. Merged code, everything works as far as 30 minutes of testing each says.
 2021-06-10|JM - Made the User Interface and the user car. Did final debugging, modifications to AI, resolved merge conflicts, worked on all the final things.
