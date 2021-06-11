@@ -244,6 +244,13 @@ void draw() {
     fill(0);
     textSize(20);
     text("Track: "+map, 405, 85);
+    
+    fill(0); 
+    textSize(20);
+    text("Top Speed controls the maximum output of your car. \nMass is the car's mass in kg."+
+    " \nLength controlls how the physics engine sees your car."+
+    "\nThe longer it is, the less manuverable it is,"+
+    "\nbut it is also less likely to get run off the track", 350, 200);
   }else{
     t.display();
     for(AIDriver ai : ais) {
