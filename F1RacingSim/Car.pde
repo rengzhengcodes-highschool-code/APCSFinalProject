@@ -273,7 +273,7 @@ public class Car{
 
 	public String toStringDisplayed() {
 		return "~~Car~~\nCoords: (" + xCor + ", " + yCor + ")\nVelocity: ("
-						+ velocity + ", " + degrees(moveAngle) + ")\nCar Angle: " + angle +
+						+ velocity + ", " + degrees(moveAngle) + ")\nTop Speed: " + topSpeed +
 						"\nfrontForce: " + frontForce;
 	}
 
