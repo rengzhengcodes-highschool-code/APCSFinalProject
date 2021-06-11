@@ -128,7 +128,7 @@ public class Car{
 	}
 
 	public void focusDEBUG() {
-
+		displayDEBUG(0, 50);
 	}
 
 	/*Set methods. Self explanatory*/

@@ -104,7 +104,7 @@ void draw() {
 		ai.drive();
 		c.move(ais);
 		c.display();
-		if (DEBUG != 0) {
+		if (DEBUG != 0 && (cameraMode > ais.size() || cameraMode == 0)) {
 			c.displayDEBUG();
 		}
 		ai.displayLineOfSight();
