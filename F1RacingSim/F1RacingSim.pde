@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Random;
+int playerTire = 1;
 int playerAgro = 10;
 boolean race = false;
 float playerMass = 900;
@@ -33,7 +34,7 @@ void mousePressed(){
         float[][] positions = mapStartPosses.get(map);
         Car c = new Car(playerAgro/10.0, positions[0][0], positions[0][1], playerMass,
             playerTopSpeed/10.0, radians(360), 1, 2, playerWheelLength, mapStartAngles.get(map), 0,
-            mapStartAngles.get(map), 0, false, (int)(Math.random() * 5) + 1, true);
+            mapStartAngles.get(map), 0, false, playerTire, true);
         AIDriver ai = new AIDriver();
         ai.setCar(c);
         ais.add(ai);
@@ -79,7 +80,14 @@ void mousePressed(){
           }
         }
       }
-      //400, 50, 300, 50
+      if(mouseX >= 20 && mouseX <= 170 && mouseY >= 400 && mouseY <= 450){
+        if(playerTire != 5){
+          playerTire++;
+        }else{
+          playerTire = 1;
+        }
+      }
+      //rect(20, 400, 150, 50);
     }
   }
 }
@@ -251,6 +259,28 @@ void draw() {
     " \nLength controlls how the physics engine sees your car."+
     "\nThe longer it is, the less manuverable it is,"+
     "\nbut it is also less likely to get run off the track", 350, 200);
+    
+    fill(255);
+    rect(20, 400, 150, 50);
+    fill(0);
+    textSize(20);
+    if(playerTire == 1){
+      text("Tire: ultra soft",23,430);
+    }else{
+      if(playerTire == 2){
+        text("Tire: super soft",23,430);
+      }else{
+        if(playerTire == 3){
+          text("Tire: Soft",23,430);
+        }else{
+          if(playerTire == 4){
+            text("Tire: Medium",23,430);
+          }else{
+            text("Tire: Hard", 23, 430);
+          }
+        }
+      }
+    }
   }else{
     t.display();
     for(AIDriver ai : ais) {
