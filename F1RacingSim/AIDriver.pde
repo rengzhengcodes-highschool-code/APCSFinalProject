@@ -84,9 +84,9 @@ public class AIDriver extends Driver {
 
 	public void drive() {
 		Car c = getCar();
-		if (pitLane()) {
+		if (pitLane() && pitting()) {
 			c.changeTire();
-			System.out.println("PIT LANE");
+			System.out.println("TIRE CHANGE");
 		}//if you're pitting and in the pit lane, AKA getting a tire change
 		/**distance between the car and the wall
 		*/

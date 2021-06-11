@@ -5,7 +5,7 @@ public class PitCrew {
 
 	public PitCrew() {
 		errorRate = 0.05;
-		speed = 2 * 20;
+		speed = 2 * 60;
 	}
 
 	public int whichTire(Car c) {
