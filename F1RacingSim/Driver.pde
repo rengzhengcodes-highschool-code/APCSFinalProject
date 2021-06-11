@@ -7,31 +7,22 @@ public class Driver {
 	private String name;
 	/**How light/heavy people go on the tires.
 	*/
-	private float tireWear;
-	/**The reaction time/handling bonus of the driver.
-	*/
-	private float reactionTime;
-	/**How consistent is their good performance? How bad are their off days?
-	*/
-	private float consistency;
+	private float aggressiveness;
 	/**
 		*@param c The car the driver drives.
 		*@param aName The name of the driver.
-		*@param tW The tear wear coefficient of the driver.
-		*@param rT The reaction time of the driver.
-		*@param consist The consistency of the driver.
+		*@param aggro How hard the driver tries to overtake
 	*/
-	public Driver(Car c, String aName, float tW, float rT, float consist) {
+	public Driver(Car c, String aName, float aggro) {
 		car = c;
 		name = aName;
-		reactionTime = rT;
-		consistency = consist;
+		aggressiveness = aggro;
 	}
 	/**
 		*@postcondition A driver with the stats of a perfect default driver.
 	*/
 	public Driver() {
-		this(new Car(), "Default", 0, 1, 1);
+		this(new Car(), "Default" + ais.size(), rng.nextFloat() * 3);
 	}
 	/*Get Methods. Self explanatory*/
 	public Car getCar() {
@@ -42,16 +33,8 @@ public class Driver {
     return name;
   }
 
-  public float getTireWear() {
-    return tireWear;
-  }
-
-  public float getReactionTime() {
-    return reactionTime;
-  }
-
-	public float getConsistency() {
-		return consistency;
+	public float getAggressiveness() {
+		return aggressiveness;
 	}
 	/*Set methods. Self explanatory.*/
 	public void setCar(Car c) {
