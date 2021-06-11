@@ -86,9 +86,9 @@ public class Car{
 		image(car, 0, 0);
 		popMatrix();
 		if(player) {
-				fill(0);
+				fill(255,0,0);
 				textSize(20);
-				text("topspeed: "+topSpeed,xCor+5, yCor+5);
+				text("You",xCor-50, yCor+5);
 		}
 	}
 
