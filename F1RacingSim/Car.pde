@@ -84,6 +84,10 @@ public class Car{
 	}
 
 	public void displayDEBUG() {
+		displayDEBUG(xCor, yCor);
+	}
+
+	private void displayDEBUG(float xCor, float yCor) {//overrides regular xCor yCor for protection of thsoe vars
 		if (DEBUG != 0) {
 			//establishes background of text
 			rectMode(CORNER);
@@ -122,6 +126,11 @@ public class Car{
 			text(t.toString(), 0, 20);
 		}
 	}
+
+	public void focusDEBUG() {
+
+	}
+
 	/*Set methods. Self explanatory*/
 	public void setFrontForce(float acc) {
 		frontForce = acc;
