@@ -80,14 +80,11 @@ void draw() {
 	frameRate(120);
 	background(200);
 	fill(0);
-	textSize(20);
-	textAlign(LEFT, TOP);
-	text("FPS: "+frameRate,0,0);
-
+	pushMatrix();
+	Car tracked = null;
 	if (cameraMode != 0) {//If camera is not in default track view.
 		try {
-			Car tracked = ais.get(cameraMode - 1).getCar();
-			tracked.focusDEBUG();
+			tracked = ais.get(cameraMode - 1).getCar();
 			tC.trackCar(tracked);
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("There is no driver " + cameraMode);
@@ -109,6 +106,19 @@ void draw() {
 			c.displayDEBUG();
 		}
 		ai.displayLineOfSight();
+	}
+	popMatrix();
+
+	textSize(20);
+	textAlign(LEFT, TOP);
+	text("FPS: "+frameRate,0,0);
+
+	if (tracked != null) {
+		tracked.focusDEBUG();
+	}
+
+	for (AIDriver ai : ais) {
+		Car c = ai.getCar();
 		if(c.getVelocity() != 0) {
 			Physics.driftSlow(c, 0.25, 0.10);
 		}
