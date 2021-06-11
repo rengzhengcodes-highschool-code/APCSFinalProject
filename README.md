@@ -60,4 +60,4 @@ Tada! The simulation should be working.
 
 2021-06-09|RZ - Implemented tire class instantiation in order to simulate tire wear.
 
-2021-06-10|RZ - Integrated tire code completely and implenented pit crews to complement them. Introduced a driver aggressiveness rating that would affect overtake rates.
+2021-06-10|RZ - Integrated tire code completely and implenented pit crews to complement them. Introduced a driver aggressiveness rating that would affect overtake rates. Merged code, everything works as far as 30 minutes of testing each says.
