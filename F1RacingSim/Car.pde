@@ -83,52 +83,51 @@ public class Car{
 		popMatrix();
 	}
 
-	public void displayDEBUG() {
-		displayDEBUG(xCor, yCor);
-	}
-
-	private void displayDEBUG(float xCor, float yCor) {//overrides regular xCor yCor for protection of thsoe vars
+	public void displayDEBUG() {//overrides regular xCor yCor for protection of thsoe vars
 		if (DEBUG != 0) {
 			//establishes background of text
 			rectMode(CORNER);
 			fill(255, 255, 255, 128);
 			int rectHeight = 50;
-			int fontSize = rectHeight/5 - 1;
-			float textXVal = xCor + 15;
-			rect(textXVal, yCor-rectHeight / 2. - 2, fontSize * 20, rectHeight + 4);
-			//displays text
-			fill(0, 0, 0, 200);
-			textAlign(LEFT, BOTTOM);
-			textSize(fontSize);
-			//displays stats
-			float ySpacing = rectHeight/5 - 1;//spacing of text displays
-			textLeading(fontSize);
-			switch (DEBUG) {
-				case 1:
-					text(driver.toStringDisplayed(),
-						textXVal, yCor + ySpacing * 2,
-						rectHeight);
-					break;
-				case 2:
-					text(this.toStringDisplayed(),
-						textXVal, yCor + ySpacing * 2,
-						rectHeight);
-					break;
-				case 3:
-					text(tire.toStringDisplayed(),
-						textXVal, yCor + ySpacing * 2,
-						rectHeight);
-					break;
-				default: break;
-			}
-
-			textAlign(LEFT, TOP);
-			text(t.toString(), 0, 20);
+			displayDEBUGContents(rectHeight, xCor + 15, yCor);
 		}
 	}
 
+	private void displayDEBUGContents(int rectHeight, float xCor, float yCor) {//xCor and yCor are to protect actual xCor yCor vals
+		int fontSize = rectHeight/5 - 1;
+		float textXVal = xCor;
+		rect(textXVal, yCor-rectHeight / 2. - 2, fontSize * 20, rectHeight + 4);
+		//displays text
+		fill(0, 0, 0, 200);
+		textAlign(LEFT, BOTTOM);
+		textSize(fontSize);
+		//displays stats
+		float ySpacing = rectHeight/5 - 1;//spacing of text displays
+		textLeading(fontSize);
+		switch (DEBUG) {
+			case 1:
+				text(driver.toStringDisplayed(),
+					textXVal, yCor + ySpacing * 2,
+					rectHeight);
+				break;
+			case 2:
+				text(this.toStringDisplayed(),
+					textXVal, yCor + ySpacing * 2,
+					rectHeight);
+				break;
+			case 3:
+				text(tire.toStringDisplayed(),
+					textXVal, yCor + ySpacing * 2,
+					rectHeight);
+				break;
+			default: break;
+		}
+
+		textAlign(LEFT, TOP);
+		text(t.toString(), 0, 20);
+	}
+
 	public void focusDEBUG() {
-		displayDEBUG(0, 50);
 	}
 
 	/*Set methods. Self explanatory*/
