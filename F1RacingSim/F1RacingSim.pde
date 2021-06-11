@@ -258,7 +258,9 @@ void draw() {
     text("Top Speed controls the maximum output of your car. \nMass is the car's mass in kg."+
     " \nLength controlls how the physics engine sees your car."+
     "\nThe longer it is, the less manuverable it is,"+
-    "\nbut it is also less likely to get run off the track", 350, 200);
+    "\nbut it is also less likely to get run off the track."+
+    "\nYou can click on the tires or the track to cycle through them."+
+    "\nThe softer the tires are, the less distance they can handle,"+"\nbut they have more grip.", 350, 200);
     
     fill(255);
     rect(20, 400, 150, 50);
