@@ -1,4 +1,5 @@
 public class Car{
+  private float agro;
   private boolean player;
 	private boolean skid;
 	private float xCor;
@@ -44,10 +45,11 @@ public class Car{
 		*@param t The tire type.
 		*@postcondition The instance variables are set.
 	*/
-	public Car(float x, float y, float m,
+	public Car(float ag, float x, float y, float m,
 						 float tS, float h, float dF, float mA, float wL, float a, float fS,
 						 float dA, float dS, boolean skd, int t, boolean play) {
 		car.resize((int)(0.07*car.width), (int)(0.07*car.height));
+    agro = ag;
 		xCor = x;
 		yCor = y;
 		mass = m;
@@ -69,7 +71,7 @@ public class Car{
 	/**The default car constructor.
 	*/
 	public Car() {
-		this(225, 200, 900,
+		this(1.25, 225, 200, 900,
 		     2, radians(360), 1, 2, 8, radians(-50), 0,
 				 radians(-50), 0, false, 1, false);
 	}
@@ -288,9 +290,9 @@ public class Car{
         velocity -= 0.1;
       }
       if(ai.findLeftWallDist() < ai.findRightWallDist()){
-        frontAngle += radians(3);
+        frontAngle += radians(agro);
       }else{
-        frontAngle -= radians(3);
+        frontAngle -= radians(agro);
       }
       return hitCar(ai);
     }
