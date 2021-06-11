@@ -44,7 +44,7 @@ Tada! The simulation should be working.
 2021-05-29|JM - Worked out rotation for a rectangle that aligned with the actual car movements, started work on four wheel physics and the necessary rigid body physics.
 
 2021-05-31|RZ - Changed algorithmic edge detection to a manual one because it was easier for the pathfinding to handle compared to the spotty edge detection (manual is using the paint bucket tool in photoshop to make the track and not track parts distinct solid colored blocks). Reworked AI to handle tight corners better so that it can now complete indefinite amounts of laps without error. Added multiple simultaneous drivers.\
-2021-05-31|JM - Made a watermark-free version of manaco (a bit out of line, will be fixed later).
+2021-05-31|JM - Made a watermark-free version of Monaco (a bit out of line, will be fixed later).
 
 2021-06-01|RZ - Implemented a TrackCamera that follows the car around as it moves. It uses button inputs and scales up the entire screen to make it more focused on the car.\
 2021-06-01|JM - Did some research into F1 stats on Manaco and finalized most of the new physics engine on paper.
