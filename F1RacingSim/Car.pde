@@ -88,13 +88,14 @@ public class Car{
 			int rectHeight = 50;
 			int fontSize = rectHeight/5 - 1;
 			float textXVal = xCor + 15;
-			rect(textXVal, yCor-rectHeight / 2., fontSize * 10, rectHeight);
+			rect(textXVal, yCor-rectHeight / 2. - 2, fontSize * 20, rectHeight + 4);
 			//displays text
 			fill(0, 0, 0, 200);
 			textAlign(LEFT, BOTTOM);
 			textSize(fontSize);
 			//displays stats
 			float ySpacing = rectHeight/5 - 1;//spacing of text displays
+			textLeading(fontSize);
 			switch (DEBUG) {
 				case 1:
 					text(driver.toStringDisplayed(),
