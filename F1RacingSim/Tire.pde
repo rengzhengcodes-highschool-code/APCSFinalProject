@@ -8,9 +8,10 @@ public class Tire {
 	private Car car;
 	/**
 		*@param type The C number of the tires, based on 2021 Pirelli specs.
+		*@param c The car the tire belongs to.
 		*@postcondition Tires set to the right instance variables for the type.
 	*/
-	public Tire(int type, Car car) {
+	public Tire(int type, Car c) {
 		switch (type) {
 			case 1://ultra soft tires, going off of this thread: https://www.mytutor.co.uk/answers/9684/A-Level/Physics/The-friction-coefficient-of-Formula-1-car-tyres-are-around-1-7-in-dry-weather-Assuming-sufficient-power-from-the-engine-calculate-the-theoretical-best-0-100-km-h-acceleration-time-in-seconds-neglect-downforce-g-9-81m-s-2/. Assuming this is super soft for now as no tire specs are given in the math and it seems high.
 				name = "Ultra soft";
@@ -51,13 +52,14 @@ public class Tire {
 		maxDist *= 0.1;
 
 		this.type = type;
+		car = c;
 	}
 	/**
 		*@param dT The distance the tire traveled.
 		*@postcondition distTraveled increases by dT
 	*/
 	public void wear(float dT) {
-		distTraveled += dT * t.getTireWear();//for now, we assume tires degrade linearly in all conditions. In real life this is also based on driver style and the weather, however those are not simulated here. We're assuming idealized tire wear, which seems to be linear https://www.formula1.com/en/latest/article.explaining-the-new-tyre-performance-graphics-seen-on-tv.21CVJlHg0St8zrzaaVbU4L.html.
+		distTraveled += dT * t.getTireWear() * car.getDriver().getSmoothness();//for now, we assume tires degrade linearly in all conditions. In real life this is also based on driver style and the weather, however those are not simulated here. We're assuming idealized tire wear, which seems to be linear https://www.formula1.com/en/latest/article.explaining-the-new-tyre-performance-graphics-seen-on-tv.21CVJlHg0St8zrzaaVbU4L.html.
 	}
 	/**
 		*@param trackMod The relative grip of the asphalt on the track.
