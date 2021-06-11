@@ -81,12 +81,12 @@ public class Car{
 		imageMode(CENTER);
 		image(car, 0, 0);
 		popMatrix();
-		if (DEBUG) {
-			//establishes background of text
+		//establishes background of text
+		if (DEBUG != 0) {
 			rectMode(CORNER);
 			fill(255, 255, 255, 128);
 			int rectHeight = 50;
-			int fontSize = rectHeight/4 - 1;
+			int fontSize = rectHeight/5 - 1;
 			float textXVal = xCor + 15;
 			rect(textXVal, yCor-rectHeight / 2., fontSize * 10, rectHeight);
 			//displays text
@@ -94,16 +94,25 @@ public class Car{
 			textAlign(LEFT, BOTTOM);
 			textSize(fontSize);
 			//displays stats
-			float ySpacing = rectHeight/4 - 1;//spacing of text displays
-			text("Tires: " + tire.toString(),
-			textXVal, yCor + ySpacing * -1,
-			rectHeight / 4);
-			text("Velocity: " + velocity,
-			textXVal, yCor,
-			rectHeight / 4);
-			text("Angle: " + moveAngle,
-			textXVal, yCor + ySpacing,
-			rectHeight/4);
+			float ySpacing = rectHeight/5 - 1;//spacing of text displays
+			switch (DEBUG) {
+				case 1:
+					text(driver.toStringDisplayed(),
+					    textXVal, yCor + ySpacing * 2,
+					    rectHeight);
+					break;
+				case 2:
+					text(this.toStringDisplayed(),
+					    textXVal, yCor + ySpacing * 2,
+					    rectHeight);
+					break;
+				case 3:
+					text(tire.toStringDisplayed(),
+					    textXVal, yCor + ySpacing * 2,
+					    rectHeight);
+					break;
+				default: break;
+			}
 		}
 	}
 	/*Set methods. Self explanatory*/
@@ -239,6 +248,12 @@ public class Car{
 		return "Coords: (" + xCor + ", " + yCor + ") | Velocity: ("
 						+ velocity + ", " + moveAngle + ") | Car Angle: " + angle +
 						" frontForce: " + frontForce;
+	}
+
+	public String toStringDisplayed() {
+		return "~~Car~~\nCoords: (" + xCor + ", " + yCor + ")\nVelocity: ("
+						+ velocity + ", " + moveAngle + ")\nCar Angle: " + angle +
+						"\nfrontForce: " + frontForce;
 	}
 
   public void move(ArrayList<AIDriver> ais) {

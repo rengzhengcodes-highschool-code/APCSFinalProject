@@ -18,7 +18,7 @@ Track t;
 TrackCamera tC = new TrackCamera();
 byte cameraMode = 0;//which car is being followed
 float scaleFactor = 5;//scaling when following a car.
-boolean DEBUG = false;
+int DEBUG = 0;
 
 void setup() {
 	frameRate(120);
@@ -119,5 +119,5 @@ void keyPressed() {
 		}
 	}
 
-	if (key == 'd') DEBUG = !DEBUG;
+	if (key == 'd') DEBUG = (DEBUG + 1) % 4;
 }
