@@ -32,10 +32,10 @@ void mousePressed(){
       if(mouseX >= 20 && mouseX <= 120 && mouseY >= 40 && mouseY <= 90){
         race = true;
         float[][] positions = mapStartPosses.get(map);
-        Car c = new Car(playerAgro/10.0, positions[0][0], positions[0][1], playerMass,
+		AIDriver ai = new AIDriver(playerAgro/10.0);
+        Car c = new Car(positions[0][0], positions[0][1], playerMass,
             playerTopSpeed/10.0, radians(360), 1, 2, playerWheelLength, mapStartAngles.get(map), 0,
-            mapStartAngles.get(map), 0, false, playerTire, true);
-        AIDriver ai = new AIDriver();
+            mapStartAngles.get(map), 0, false, playerTire, ai, true);
         ai.setCar(c);
         ais.add(ai);
       }
@@ -100,7 +100,7 @@ void setup() {
 	float[][] positions = mapStartPosses.get(map);
 	for (int i = 1; i < positions.length; i++) {
 		AIDriver ai = new AIDriver();
-		Car c = new Car(1, positions[i][0], positions[i][1], 900,
+		Car c = new Car(positions[i][0], positions[i][1], 900,
 		        1.1 + (float)(Math.random()*0.4), radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
 		        mapStartAngles.get(map), 0, false, rng.nextInt(5) + 1, ai, false);
 		ai.setCar(c);

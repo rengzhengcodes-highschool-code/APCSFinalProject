@@ -1,5 +1,11 @@
 public class AIDriver extends Driver {
 	private float sightRange = 50;
+	public AIDriver() {
+		super();
+	}
+	public AIDriver(float aggro) {
+		super(aggro);
+	}
 
 	public float findFrontWallDist() {
 		return findWallAtAngleDist(0);

@@ -27,6 +27,11 @@ public class Driver {
 	public Driver() {
 		this(new Car(), "Default" + ais.size(), rng.nextFloat() * 3, 0.8 + rng.nextFloat() * 0.2);
 	}
+
+	public Driver(float aggro) {
+		this(new Car(), "Default" + ais.size(), aggro, 0.8 + rng.nextFloat() * 0.2);
+	}
+
 	/*Get Methods. Self explanatory*/
 	public Car getCar() {
 		return car;

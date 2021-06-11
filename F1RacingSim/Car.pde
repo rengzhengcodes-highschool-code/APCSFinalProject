@@ -73,7 +73,7 @@ public class Car{
 	/**The default car constructor.
 	*/
 	public Car() {
-		this(1.25, 225, 200, 900,
+		this(225, 200, 900,
 		     2, radians(360), 1, 2, 8, radians(-50), 0,
 				 radians(-50), 0, false, 1, null, false);
 	}
