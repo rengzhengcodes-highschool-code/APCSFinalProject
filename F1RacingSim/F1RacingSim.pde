@@ -27,10 +27,10 @@ void setup() {
 	//giving the ais cars lined up at the right position
 	float[][] positions = mapStartPosses.get(map);
 	for (float[] position : positions) {
+		AIDriver ai = new AIDriver();
 		Car c = new Car(position[0], position[1], 900,
 		        1.5, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
-		        mapStartAngles.get(map), 0, false, rng.nextInt(5) + 1);
-		AIDriver ai = new AIDriver();
+		        mapStartAngles.get(map), 0, false, rng.nextInt(5) + 1, ai);
 		ai.setCar(c);
 		ais.add(ai);
 	}

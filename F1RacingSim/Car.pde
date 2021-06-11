@@ -25,6 +25,7 @@ public class Car{
 	//since the physics engine currently handles tires as an aggregate plus the fact that the physics engine is a large constant time operation, doing cars * 4 operations is very laggy on a sim that already doesn't like zooming in, so until further optimization it'll be 1 tire.
 	private Tire tire;
 	private PitCrew crew;
+	private AIDriver driver;
 
 	private PImage car = loadImage("RaceCar.png");//from https://www.vectorstock.com/royalty-free-vector/top-view-a-racing-car-vector-15938905
 	/**
@@ -45,7 +46,7 @@ public class Car{
 	*/
 	public Car(float x, float y, float m,
 						 float tS, float h, float dF, float mA, float wL, float a, float fS,
-						 float dA, float dS, boolean skd, int t) {
+						 float dA, float dS, boolean skd, int t, AIDriver ai) {
 		car.resize((int)(0.07*car.width), (int)(0.07*car.height));
 		xCor = x;
 		yCor = y;
@@ -63,13 +64,14 @@ public class Car{
 		skid = skd;
 		tire = new Tire(t);
 		crew = new PitCrew();
+		driver = ai;
 	}
 	/**The default car constructor.
 	*/
 	public Car() {
 		this(225, 200, 900,
 		     2, radians(360), 1, 2, 8, radians(-50), 0,
-				 radians(-50), 0, false, 1);
+				 radians(-50), 0, false, 1, null);
 	}
 
 	public void display() {
