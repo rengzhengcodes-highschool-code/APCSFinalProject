@@ -9,7 +9,7 @@ float playerWheelLength = 8;
 //map start characteristics
 //String map = "Zandvoort";//the map you load
 Random rng = new Random();
-String map = "Zandvoort";//the map you load
+String map = "Baku";//the map you load
 HashMap<String, float[][]> mapStartPosses = new HashMap<String, float[][]>();
 FloatDict mapStartAngles = new FloatDict();
 FloatDict mapRelGrips = new FloatDict();
@@ -24,7 +24,7 @@ Track t;
 TrackCamera tC = new TrackCamera();
 byte cameraMode = 0;//which car is being followed
 float scaleFactor = 5;//scaling when following a car.
-boolean DEBUG = false;
+int DEBUG = 0;
 
 void mousePressed(){
   if(!race){
@@ -99,10 +99,10 @@ void setup() {
 	//giving the ais cars lined up at the right position
 	float[][] positions = mapStartPosses.get(map);
 	for (int i = 1; i < positions.length; i++) {
+		AIDriver ai = new AIDriver();
 		Car c = new Car(1, positions[i][0], positions[i][1], 900,
 		        1.1 + (float)(Math.random()*0.4), radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
-		        mapStartAngles.get(map), 0, false, rng.nextInt(5) + 1, false);
-		AIDriver ai = new AIDriver();
+		        mapStartAngles.get(map), 0, false, rng.nextInt(5) + 1, ai, false);
 		ai.setCar(c);
 		ais.add(ai);
 	}
@@ -152,12 +152,11 @@ void draw() {
 	frameRate(120);
 	background(200);
 	fill(0);
-	textSize(20);
-	text("FPS: "+frameRate,0,20);
-
+	pushMatrix();
+	Car tracked = null;
 	if (cameraMode != 0) {//If camera is not in default track view.
 		try {
-			Car tracked = ais.get(cameraMode - 1).getCar();
+			tracked = ais.get(cameraMode - 1).getCar();
 			tC.trackCar(tracked);
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("There is no driver " + cameraMode);
@@ -228,32 +227,32 @@ void draw() {
     fill(0);
     textSize(20);
     text("Less",170,262);
-    
+
     fill(255);
     rect(20, 220+60, 150+70, 50);
     fill(0);
     textSize(20);
     text("Driver agression: "+playerAgro/10.0,23,250+60);
-    
+
     fill(255);
     rect(170+70, 220+60, 50, 25);
     fill(0);
     textSize(20);
     text("More",170+70,237+60);
-    
+
     fill(255);
     rect(170+70, 245+60, 50, 25);
     fill(0);
     textSize(20);
     text("Less",170+70,262+60);
-    
+
     fill(255);
     rect(400, 50, 300, 50);
     fill(0);
     textSize(20);
     text("Track: "+map, 405, 85);
-    
-    fill(0); 
+
+    fill(0);
     textSize(20);
     text("Top Speed controls the maximum output of your car. \nMass is the car's mass in kg."+
     " \nLength controlls how the physics engine sees your car."+
@@ -261,7 +260,7 @@ void draw() {
     "\nbut it is also less likely to get run off the track."+
     "\nYou can click on the tires or the track to cycle through them."+
     "\nThe softer the tires are, the less distance they can handle,"+"\nbut they have more grip.", 350, 200);
-    
+
     fill(255);
     rect(20, 400, 150, 50);
     fill(0);
@@ -284,17 +283,33 @@ void draw() {
       }
     }
   }else{
-    t.display();
-    for(AIDriver ai : ais) {
-      Car c = ai.getCar();
-      ai.drive();
-      c.move(ais);
-      c.display();
-      ai.displayLineOfSight();
-      if(c.getVelocity() != 0) {
-        Physics.driftSlow(c, 0.25, 0.10);
-      }
-    }
+	  t.display();
+	  for(AIDriver ai : ais) {
+		  Car c = ai.getCar();
+		  ai.drive();
+		  c.move(ais);
+		  c.display();
+		  if (DEBUG != 0 && (cameraMode > ais.size() || cameraMode == 0)) {
+			  c.displayDEBUG();
+		  }
+		  ai.displayLineOfSight();
+	  }
+	  popMatrix();
+
+	  textSize(20);
+	  textAlign(LEFT, TOP);
+	  text("FPS: "+frameRate,0,0);
+
+	  if (tracked != null) {
+		  tracked.focusDEBUG();
+	  }
+
+	  for (AIDriver ai : ais) {
+		  Car c = ai.getCar();
+		  if(c.getVelocity() != 0) {
+			  Physics.driftSlow(c, 0.25, 0.10);
+		  }
+	  }
   }
 }
 
@@ -307,5 +322,5 @@ void keyPressed() {
 		}
 	}
 
-	if (key == 'd') DEBUG = !DEBUG;
+	if (key == 'd') DEBUG = (DEBUG + 1) % 4;
 }

@@ -1,6 +1,5 @@
 public class AIDriver extends Driver {
 	private float sightRange = 50;
-	private final boolean DEBUG = false;
 
 	public float findFrontWallDist() {
 		return findWallAtAngleDist(0);
@@ -144,6 +143,13 @@ public class AIDriver extends Driver {
 			c.setVelocity(newV[0], newV[1]);
 			c.turn(theta);
 		}
+	}
 
+	public String toString() {
+		return "Vision: " + sightRange + " | Name: " + getName() + " | Tire wear effect: " + getSmoothness() + " | Aggressiveness: " + getAggressiveness();
+	}
+
+	public String toStringDisplayed() {
+		return "--Driver--\nVision: " + sightRange + " \nName: " + getName() + "\nSmoothness: " + getSmoothness() + " \nAggressiveness: " + getAggressiveness();
 	}
 }

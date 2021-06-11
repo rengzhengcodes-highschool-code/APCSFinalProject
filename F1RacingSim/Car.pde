@@ -1,5 +1,4 @@
 public class Car{
-  private float agro;
   private boolean player;
 	private boolean skid;
 	private float xCor;
@@ -27,6 +26,7 @@ public class Car{
 	//since the physics engine currently handles tires as an aggregate plus the fact that the physics engine is a large constant time operation, doing cars * 4 operations is very laggy on a sim that already doesn't like zooming in, so until further optimization it'll be 1 tire.
 	private Tire tire;
 	private PitCrew crew;
+	private AIDriver driver;
 
 	private PImage car = loadImage("RaceCar.png");//from https://www.vectorstock.com/royalty-free-vector/top-view-a-racing-car-vector-15938905
 	/**
@@ -43,13 +43,14 @@ public class Car{
 		*@param dA moveAngle The starting angle delta.
 		*@param dS The starting velocity.
 		*@param t The tire type.
+		*@param ai The driver
+		*@param play is it the player
 		*@postcondition The instance variables are set.
 	*/
-	public Car(float ag, float x, float y, float m,
+	public Car(float x, float y, float m,
 						 float tS, float h, float dF, float mA, float wL, float a, float fS,
-						 float dA, float dS, boolean skd, int t, boolean play) {
+						 float dA, float dS, boolean skd, int t, AIDriver ai, boolean play) {
 		car.resize((int)(0.07*car.width), (int)(0.07*car.height));
-    agro = ag;
 		xCor = x;
 		yCor = y;
 		mass = m;
@@ -64,16 +65,17 @@ public class Car{
 		moveAngle = dA;
 		velocity = dS;
 		skid = skd;
-		tire = new Tire(t);
-    player = play;
+		tire = new Tire(t, this);
+		player = play;
 		crew = new PitCrew();
+		driver = ai;
 	}
 	/**The default car constructor.
 	*/
 	public Car() {
 		this(1.25, 225, 200, 900,
 		     2, radians(360), 1, 2, 8, radians(-50), 0,
-				 radians(-50), 0, false, 1, false);
+				 radians(-50), 0, false, 1, null, false);
 	}
 
 	public void display() {
@@ -83,39 +85,66 @@ public class Car{
 		imageMode(CENTER);
 		image(car, 0, 0);
 		popMatrix();
+		if(player){
+	      fill(0);
+	      textSize(20);
+	      text("topspeed: "+topSpeed,xCor+5, yCor+5);
+	    }
+	}
 
-    if(player){
-      fill(0);
-      textSize(20);
-      text("topspeed: "+topSpeed,xCor+5, yCor+5);
-    }
-
-		if (DEBUG) {
+	public void displayDEBUG() {//overrides regular xCor yCor for protection of thsoe vars
+		if (DEBUG != 0) {
 			//establishes background of text
 			rectMode(CORNER);
 			fill(255, 255, 255, 128);
 			int rectHeight = 50;
-			int fontSize = rectHeight/4 - 1;
-			float textXVal = xCor + 15;
-			rect(textXVal, yCor-rectHeight / 2., fontSize * 10, rectHeight);
-			//displays text
-			fill(0, 0, 0, 200);
-			textAlign(LEFT, BOTTOM);
-			textSize(fontSize);
-			//displays stats
-			float ySpacing = rectHeight/4 - 1;//spacing of text displays
-			text("Tires: " + tire.toString(),
-			textXVal, yCor + ySpacing * -1,
-			rectHeight / 4);
-			text("Velocity: " + velocity,
-			textXVal, yCor,
-			rectHeight / 4);
-			text("Angle: " + moveAngle,
-			textXVal, yCor + ySpacing,
-			rectHeight/4);
+			displayDEBUGContents(rectHeight, xCor + 15, yCor);
+		}
+	}
+
+	private void displayDEBUGContents(int rectHeight, float xCor, float yCor) {//xCor and yCor are to protect actual xCor yCor vals
+		int fontSize = rectHeight/5 - 1;
+		float textXVal = xCor;
+		rect(textXVal, yCor-rectHeight / 2. - 2, fontSize * 20, rectHeight + 4);
+		//displays text
+		fill(0, 0, 0, 200);
+		textAlign(LEFT, BOTTOM);
+		textSize(fontSize);
+		//displays stats
+		float ySpacing = rectHeight/5 - 1;//spacing of text displays
+		textLeading(fontSize);
+		switch (DEBUG) {
+			case 1:
+				text(driver.toStringDisplayed(),
+					textXVal, yCor + ySpacing * 2,
+					rectHeight);
+				break;
+			case 2:
+				text(this.toStringDisplayed(),
+					textXVal, yCor + ySpacing * 2,
+					rectHeight);
+				break;
+			case 3:
+				text(tire.toStringDisplayed(),
+					textXVal, yCor + ySpacing * 2,
+					rectHeight);
+				break;
+			default: break;
 		}
 
+		textAlign(LEFT, TOP);
+		text(t.toString(), 0, 20);
 	}
+
+	public void focusDEBUG() {
+		if (DEBUG != 0) {
+			rectMode(CORNER);
+			fill(255, 255, 255, 128);
+			int rectHeight = 100;
+			displayDEBUGContents(rectHeight, width - (rectHeight/5 - 1) * 20, rectHeight / 2. + 2);
+		}
+	}
+
 	/*Set methods. Self explanatory*/
 	public void setFrontForce(float acc) {
 		frontForce = acc;
@@ -201,6 +230,9 @@ public class Car{
 	public Tire getTire() {
 		return tire;
 	}
+	public AIDriver getDriver() {
+		return driver;
+	}
 	/*set methods*/
 	public void setFrontAngle(float theta) {
 		frontAngle = theta;
@@ -213,7 +245,7 @@ public class Car{
 
 	private void changeTire(int type) {
 		if (crew.timeElapsed()) {
-			tire = new Tire(type);
+			tire = new Tire(type, this);
 			maxSpeedAtArea = topSpeed;
 		}
 	}
@@ -251,6 +283,12 @@ public class Car{
 						" frontForce: " + frontForce;
 	}
 
+	public String toStringDisplayed() {
+		return "~~Car~~\nCoords: (" + xCor + ", " + yCor + ")\nVelocity: ("
+						+ velocity + ", " + degrees(moveAngle) + ")\nTop Speed: " + topSpeed +
+						"\nfrontForce: " + frontForce;
+	}
+
   public void move(ArrayList<AIDriver> ais) {
     angle %= 2*Math.PI;
     frontAngle %= 2*Math.PI;
@@ -265,7 +303,7 @@ public class Car{
       frontAngle = angle - radians(6);
     }
     for(AIDriver ai : ais){
-		if (ai.getCar() != this) hitCar(ai);
+		if (ai != driver) hitCar(ai);
     }
     float[] shift = CartesianPolarMath.polarToCartesian(convertVelocity(), moveAngle);
     xCor += shift[0];
@@ -290,9 +328,11 @@ public class Car{
         velocity -= 0.1;
       }
       if(ai.findLeftWallDist() < ai.findRightWallDist()){
-        frontAngle += radians(agro);
+        //if(frontAngle + radians(3)
+        frontAngle += radians(driver.getAggressiveness());
+
       }else{
-        frontAngle -= radians(agro);
+        frontAngle -= radians(driver.getAggressiveness());
       }
       return hitCar(ai);
     }

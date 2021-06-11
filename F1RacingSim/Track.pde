@@ -50,4 +50,8 @@ public class Track {
 	public PImage getTrackEdge() {
 		return trackEdge;
 	}
+
+	public String toString() {
+		return "Track Stats > Grip Mod: " + trackGripMod + " | Wear Mod: " + tireWear;
+	}
 }
