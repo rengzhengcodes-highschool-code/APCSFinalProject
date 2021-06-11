@@ -144,6 +144,9 @@ public class AIDriver extends Driver {
 			c.setVelocity(newV[0], newV[1]);
 			c.turn(theta);
 		}
+	}
 
+	public String toString() {
+		return "Vision: " + sightRange + " | Name: " + getName() + " | Tire wear effect: " + getSmoothness() + " | Aggressiveness: " + getAggressiveness();
 	}
 }
