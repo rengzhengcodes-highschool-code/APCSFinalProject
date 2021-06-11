@@ -1,5 +1,9 @@
 import java.util.HashMap;
 import java.util.Random;
+boolean race = false;
+float playerMass = 900;
+int playerTopSpeed = 10;
+float playerWheelLength = 8;
 //map start characteristics
 //String map = "Zandvoort";//the map you load
 Random rng = new Random();
@@ -26,10 +30,10 @@ void setup() {
 	defineStartPos();
 	//giving the ais cars lined up at the right position
 	float[][] positions = mapStartPosses.get(map);
-	for (float[] position : positions) {
-		Car c = new Car(position[0], position[1], 900,
-		        1.5, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
-		        mapStartAngles.get(map), 0, false, rng.nextInt(5) + 1);
+	for (int i = 1; i < positions.length; i++) {
+		Car c = new Car(positions[i][0], positions[i][1], 900,
+		        18, radians(360), 1, 2, 8, mapStartAngles.get(map), 0,
+		        mapStartAngles.get(map), 0, false, rng.nextInt(5) + 1, false);
 		AIDriver ai = new AIDriver();
 		ai.setCar(c);
 		ais.add(ai);
@@ -40,10 +44,10 @@ void setup() {
 
 void defineStartPos() {
 	mapStartPosses.put("Monaco", new float[][] {
-		{225, 200},
-		{215, 210},
-		{205, 220},
-		{195, 230},
+    {225, 200},
+		//{215, 210},
+		//{205, 220},
+		//{195, 230},
     //{185, 240},
     //{175, 250},
     //{165, 260},
@@ -96,18 +100,79 @@ void draw() {
       }
 		}
 	}
+  if(!race){
+    fill(255);
+    rect(20, 40, 100, 50);
+    fill(0);
+    textSize(20);
+    text("start race",25,70);
 
-	t.display();
-	for(AIDriver ai : ais) {
-		Car c = ai.getCar();
-		ai.drive();
-		c.move(ais);
-		c.display();
-		ai.displayLineOfSight();
-		if(c.getVelocity() != 0) {
-			Physics.driftSlow(c, 0.25, 0.10);
-		}
-	}
+    fill(255);
+    rect(20, 100, 150, 50);
+    fill(0);
+    textSize(20);
+    text("Mass: "+playerMass,25,130);
+
+    fill(255);
+    rect(170, 100, 50, 25);
+    fill(0);
+    textSize(20);
+    text("More",170,117);
+
+    fill(255);
+    rect(170, 125, 50, 25);
+    fill(0);
+    textSize(20);
+    text("Less",170,142);
+
+    fill(255);
+    rect(20, 160, 150, 50);
+    fill(0);
+    textSize(20);
+    text("Top Speed: "+playerTopSpeed/10.0,23,190);
+
+    fill(255);
+    rect(170, 160, 50, 25);
+    fill(0);
+    textSize(20);
+    text("More",170,177);
+
+    fill(255);
+    rect(170, 185, 50, 25);
+    fill(0);
+    textSize(20);
+    text("Less",170,202);
+
+    fill(255);
+    rect(20, 220, 150, 50);
+    fill(0);
+    textSize(20);
+    text("Car Length: "+playerWheelLength,23,250);
+
+    fill(255);
+    rect(170, 220, 50, 25);
+    fill(0);
+    textSize(20);
+    text("More",170,237);
+
+    fill(255);
+    rect(170, 245, 50, 25);
+    fill(0);
+    textSize(20);
+    text("Less",170,262);
+  }else{
+    t.display();
+    for(AIDriver ai : ais) {
+      Car c = ai.getCar();
+      ai.drive();
+      c.move(ais);
+      c.display();
+      ai.displayLineOfSight();
+      if(c.getVelocity() != 0) {
+        Physics.driftSlow(c, 0.25, 0.10);
+      }
+    }
+  }
 }
 
 void keyPressed() {
@@ -120,4 +185,42 @@ void keyPressed() {
 	}
 
 	if (key == 'd') DEBUG = !DEBUG;
+}
+
+void mousePressed(){
+  if(!race){
+    if(mouseButton == LEFT){
+      if(mouseX >= 20 && mouseX <= 120 && mouseY >= 40 && mouseY <= 90){
+        race = true;
+        float[][] positions = mapStartPosses.get(map);
+        Car c = new Car(positions[0][0], positions[0][1], playerMass,
+            playerTopSpeed/10.0, radians(360), 1, 2, playerWheelLength, mapStartAngles.get(map), 0,
+            mapStartAngles.get(map), 0, false, (int)(Math.random() * 5) + 1, true);
+        AIDriver ai = new AIDriver();
+        ai.setCar(c);
+        ais.add(ai);
+      }
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 100 && mouseY <= 125 && playerMass < 2000){
+        playerMass += 10;
+      }
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 125 && mouseY <= 150 && playerMass > 900){
+        playerMass -= 10;
+      }
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 160 && mouseY <= 185 && playerTopSpeed < 300){
+        playerTopSpeed += 5;
+      }
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 185 && mouseY <= 210 && playerTopSpeed > 5){
+        playerTopSpeed -= 5;
+      }
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 220 && mouseY <= 245 && playerWheelLength < 16){
+        playerWheelLength += 1;
+      }
+      if(mouseX >= 170 && mouseX <= 220 && mouseY >= 245 && mouseY <= 270 && playerWheelLength > 3){
+        playerWheelLength -= 1;
+      }
+      //if(mouseX >= && mouseX <= && mouseY >= && mouseY <= ){
+
+      //}
+    }
+  }
 }
