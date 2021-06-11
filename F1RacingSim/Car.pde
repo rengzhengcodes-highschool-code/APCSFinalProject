@@ -188,7 +188,7 @@ public class Car{
 	public Tire getTire() {
 		return tire;
 	}
-	public getDriver() {
+	public AIDriver getDriver() {
 		return driver;
 	}
 	/*set methods*/
@@ -203,7 +203,7 @@ public class Car{
 
 	private void changeTire(int type) {
 		if (crew.timeElapsed()) {
-			tire = new Tire(type);
+			tire = new Tire(type, this);
 			maxSpeedAtArea = topSpeed;
 		}
 	}
