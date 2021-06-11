@@ -278,10 +278,10 @@ public class Car{
 		}
       if(ai.findLeftWallDist() < ai.findRightWallDist()){
         //if(frontAngle + radians(3)
-        frontAngle += radians(3);
+        frontAngle += radians(driver.getAggressiveness());
 
       }else{
-        frontAngle -= radians(3);
+        frontAngle -= radians(driver.getAggressiveness());
       }
       return hitCar(ai);
     }
