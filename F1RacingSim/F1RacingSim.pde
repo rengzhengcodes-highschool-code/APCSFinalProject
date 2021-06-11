@@ -149,24 +149,6 @@ void defineStartPos() {
 }
 
 void draw() {
-	frameRate(120);
-	background(200);
-	fill(0);
-	pushMatrix();
-	Car tracked = null;
-	if (cameraMode != 0) {//If camera is not in default track view.
-		try {
-			tracked = ais.get(cameraMode - 1).getCar();
-			tC.trackCar(tracked);
-		} catch (IndexOutOfBoundsException e) {
-			System.out.println("There is no driver " + cameraMode);
-			cameraMode = 0;
-      for(AIDriver ai : ais){
-        Car c = ai.getCar();
-        c.setSize(0.07);
-      }
-		}
-	}
   if(!race){
     fill(255);
     rect(20, 40, 100, 50);
@@ -283,6 +265,25 @@ void draw() {
       }
     }
   }else{
+
+	  	frameRate(120);
+	  	background(200);
+	  	fill(0);
+	  	pushMatrix();
+	  	Car tracked = null;
+	  	if (cameraMode != 0) {//If camera is not in default track view.
+	  		try {
+	  			tracked = ais.get(cameraMode - 1).getCar();
+	  			tC.trackCar(tracked);
+	  		} catch (IndexOutOfBoundsException e) {
+	  			System.out.println("There is no driver " + cameraMode);
+	  			cameraMode = 0;
+	        for(AIDriver ai : ais){
+	          Car c = ai.getCar();
+	          c.setSize(0.07);
+	        }
+	  		}
+	  	}
 	  t.display();
 	  for(AIDriver ai : ais) {
 		  Car c = ai.getCar();
