@@ -47,7 +47,7 @@ Tada! The simulation should be working.
 2021-05-31|JM - Made a watermark-free version of Monaco (a bit out of line, will be fixed later).
 
 2021-06-01|RZ - Implemented a TrackCamera that follows the car around as it moves. It uses button inputs and scales up the entire screen to make it more focused on the car.\
-2021-06-01|JM - Did some research into F1 stats on Manaco and finalized most of the new physics engine on paper.
+2021-06-01|JM - Did some research into F1 stats on Monaco and finalized most of the new physics engine on paper.
 
 2021-06-02|RZ - Added another track called Zandvoort and made adding new tracks easier. Cleaned up some code and the file directories for neatness.\
 2021-06-02|JM - did some testing for the new track and the physics so far. Also did pixel measurements for the tracks and cars to try to create a unified scale (not done in the demo, but to be implemented later).
