@@ -10,7 +10,7 @@ Requires Processing version 3: https://processing.org/download/
 1. Download the contents of the git repo.
 2. Open F1RacingSim.pde in Processing 3. Do not move any of the files or subfolders of F1RacingSim.
 3. Once open in Processing 3, do not touch any of the code. Simply press ctrl + R to run.
-4. Set the variables you want your car to have. There are some bounds, some variables do not play nice. Like a real F1 car, if you get your variables wrong, stuff will break.
+4. Set the variables you want your car to have. There are some bounds, some variables do not play nice. Like a real F1 car, if you get your variables wrong, stuff will break. WARNING: Because the AI is randomly generated, there are some scenarios where the AI will go off the track. This is a known issue, and it is because of the aforementioned variable interactions.
 5. Press 'd' to enable the debug modes. There's 3, they always display the AI visual lines and the track stats, but cycle between the car's Driver, stats, and Tire.
 6. Press 1-4 to switch to the car at that position in the array -1. It zooms in and slows down the simulation so you can see the details of the car driving. If you have issues seeing the debug screen, pressing a button will enlarge it and put it in the top right corner of your screen.
 
