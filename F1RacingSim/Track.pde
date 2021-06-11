@@ -28,10 +28,10 @@ public class Track {
 		imageMode(CORNER);
 		image(track, 0, 0);
 	}
-  public void displayEdge() {
-    imageMode(CORNER);
-    image(trackEdge, 0, 0);
-  }
+	public void displayEdge() {
+		imageMode(CORNER);
+		image(trackEdge, 0, 0);
+	}
 
 	/*Get Statements. Self explanatory*/
 

@@ -34,7 +34,7 @@ public class AIDriver extends Driver {
 
 		for (int i = 0; i < visualRange; i++) {
 			color boundColor = bound.get((int)(c.getX() + xOff),
-			                   	        (int)(c.getY() + yOff));
+			                             (int)(c.getY() + yOff));
 			color matching = color(255);
 
 			if ((pitting() || t.getTrackEdge().get((int)c.getX(), (int)c.getY()) == color(255, 0, 0))
@@ -78,7 +78,7 @@ public class AIDriver extends Driver {
 		for (int xOff = -1; xOff <= 1; xOff++) {
 			for (int yOff = -1; yOff <= 1; yOff++) {
 				color trackColor = t.getTrackEdge().get((int)(c.getX()) + xOff,
-														(int)(c.getY()) + yOff);
+				                                        (int)(c.getY()) + yOff);
 				if (trackColor == color(255, 0, 0)) {
 					return true;
 				}
@@ -117,7 +117,7 @@ public class AIDriver extends Driver {
 		float nuTheta = theta;
 		if (d != 0) {
 			for (float i = degrees(c.getHandling()); i > 0 && !turned;//the 17 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
-			    i--) {
+					i--) {
 				nuTheta += radians(1) * turnDirection;
 				bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
 				if (17 < dist(0, 0, bound[0], bound[1])) {
@@ -127,7 +127,7 @@ public class AIDriver extends Driver {
 			}
 		} else {
 			for (float i = degrees(c.getHandling()); i > 0 && !turned;//the 20 is SUPER important. It was 10 originally and we had a lot of understeer. The i = 360 is to make sure it sweeps all 360 degrees.
-			    i--) {
+					i--) {
 				nuTheta += radians(1) * turnDirection;
 				bound = closestBound(sightRange, nuTheta, t.getTrackEdge());
 				if (20 < dist(0, 0, bound[0], bound[1])) {

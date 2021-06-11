@@ -1,5 +1,5 @@
 public class Car{
-  private boolean player;
+	private boolean player;
 	private boolean skid;
 	private float xCor;
 	private float yCor;
@@ -48,8 +48,8 @@ public class Car{
 		*@postcondition The instance variables are set.
 	*/
 	public Car(float x, float y, float m,
-						 float tS, float h, float dF, float mA, float wL, float a, float fS,
-						 float dA, float dS, boolean skd, int t, AIDriver ai, boolean play) {
+	           float tS, float h, float dF, float mA, float wL, float a, float fS,
+	           float dA, float dS, boolean skd, int t, AIDriver ai, boolean play) {
 		car.resize((int)(0.07*car.width), (int)(0.07*car.height));
 		xCor = x;
 		yCor = y;
@@ -75,7 +75,7 @@ public class Car{
 	public Car() {
 		this(225, 200, 900,
 		     2, radians(360), 1, 2, 8, radians(-50), 0,
-				 radians(-50), 0, false, 1, null, false);
+		     radians(-50), 0, false, 1, null, false);
 	}
 
 	public void display() {
@@ -85,11 +85,11 @@ public class Car{
 		imageMode(CENTER);
 		image(car, 0, 0);
 		popMatrix();
-		if(player){
-	      fill(0);
-	      textSize(20);
-	      text("topspeed: "+topSpeed,xCor+5, yCor+5);
-	    }
+		if(player) {
+				fill(0);
+				textSize(20);
+				text("topspeed: "+topSpeed,xCor+5, yCor+5);
+		}
 	}
 
 	public void displayDEBUG() {//overrides regular xCor yCor for protection of thsoe vars
@@ -155,10 +155,10 @@ public class Car{
 		moveAngle = theta;
 	}
 
-  public void setSize(float c){
-    car = loadImage("RaceCar.png");
-    car.resize((int)(c*car.width), (int)(c*car.height));
-  }
+	public void setSize(float c){
+		car = loadImage("RaceCar.png");
+		car.resize((int)(c*car.width), (int)(c*car.height));
+	}
 
 	/*Movement methods*/
 	/**
@@ -185,9 +185,9 @@ public class Car{
 	}
 
 	/*Get Methods. Self explanatory*/
-  public boolean getPlayer(){
-    return player;
-  }
+	public boolean getPlayer(){
+		return player;
+	}
 	public float getX() {
 		return xCor;
 	}
@@ -279,63 +279,63 @@ public class Car{
 
 	public String toString() {
 		return "Coords: (" + xCor + ", " + yCor + ") | Velocity: ("
-						+ velocity + ", " + moveAngle + ") | Car Angle: " + angle +
-						" frontForce: " + frontForce;
+		        + velocity + ", " + moveAngle + ") | Car Angle: " + angle +
+		        " frontForce: " + frontForce;
 	}
 
 	public String toStringDisplayed() {
 		return "~~Car~~\nCoords: (" + xCor + ", " + yCor + ")\nVelocity: ("
-						+ velocity + ", " + degrees(moveAngle) + ")\nTop Speed: " + topSpeed +
-						"\nfrontForce: " + frontForce;
+		        + velocity + ", " + degrees(moveAngle) + ")\nTop Speed: " + topSpeed +
+		        "\nfrontForce: " + frontForce;
 	}
 
-  public void move(ArrayList<AIDriver> ais) {
-    angle %= 2*Math.PI;
-    frontAngle %= 2*Math.PI;
-    moveAngle %= 2*Math.PI;
-    if(velocity > maxSpeedAtArea){
-      velocity = maxSpeedAtArea;
-    }
-    if(frontAngle > angle + radians(6)){
-      frontAngle = angle + radians(6);
-    }
-    if(frontAngle < angle - radians(6)){
-      frontAngle = angle - radians(6);
-    }
-    for(AIDriver ai : ais){
-		if (ai != driver) hitCar(ai);
-    }
-    float[] shift = CartesianPolarMath.polarToCartesian(convertVelocity(), moveAngle);
-    xCor += shift[0];
-    yCor += shift[1];
-	tire.wear(velocity);//secondToFrameRatio);//this is the speed per frame, and thus how much it has moved. This is how much it wears by.
+	public void move(ArrayList<AIDriver> ais) {
+		angle %= 2*Math.PI;
+		frontAngle %= 2*Math.PI;
+		moveAngle %= 2*Math.PI;
+		if(velocity > maxSpeedAtArea){
+			velocity = maxSpeedAtArea;
+		}
+		if(frontAngle > angle + radians(6)){
+			frontAngle = angle + radians(6);
+		}
+		if(frontAngle < angle - radians(6)){
+			frontAngle = angle - radians(6);
+		}
+		for(AIDriver ai : ais){
+			if (ai != driver) hitCar(ai);
+		}
+		float[] shift = CartesianPolarMath.polarToCartesian(convertVelocity(), moveAngle);
+		xCor += shift[0];
+		yCor += shift[1];
+		tire.wear(velocity);//secondToFrameRatio);//this is the speed per frame, and thus how much it has moved. This is how much it wears by.
 
-    screenEdgeDetection();
-  }
+		screenEdgeDetection();
+	}
 
-  public boolean hitCar(AIDriver ai){
-    Car car = ai.getCar();
+	public boolean hitCar(AIDriver ai) {
+		Car car = ai.getCar();
 
-    float[] shift = CartesianPolarMath.polarToCartesian(convertVelocity(), moveAngle);
-    float x = shift[0] + xCor;
-    float y = shift[1] + yCor;
-    float xDist = Math.abs(car.getX() - x);
-    float yDist = Math.abs(car.getY() - y);
-    if(Math.sqrt(xDist*xDist+yDist*yDist) < wheelLength/2 + car.getWheelLength()/2){
-      if(velocity <= 0.1){
-        velocity = 0;
-      }else{
-        velocity -= 0.1;
-      }
-      if(ai.findLeftWallDist() < ai.findRightWallDist()){
-        //if(frontAngle + radians(3)
-        frontAngle += radians(driver.getAggressiveness());
+		float[] shift = CartesianPolarMath.polarToCartesian(convertVelocity(), moveAngle);
+		float x = shift[0] + xCor;
+		float y = shift[1] + yCor;
+		float xDist = Math.abs(car.getX() - x);
+		float yDist = Math.abs(car.getY() - y);
+		if(Math.sqrt(xDist*xDist+yDist*yDist) < wheelLength/2 + car.getWheelLength()/2) {
+			if(velocity <= 0.1) {
+				velocity = 0;
+			}else {
+				velocity -= 0.1;
+			}
+			if(ai.findLeftWallDist() < ai.findRightWallDist()){
+				//if(frontAngle + radians(3)
+				frontAngle += radians(driver.getAggressiveness());
 
-      }else{
-        frontAngle -= radians(driver.getAggressiveness());
-      }
-      return hitCar(ai);
-    }
-    return false;
-  }
+			}else{
+				frontAngle -= radians(driver.getAggressiveness());
+			}
+			return hitCar(ai);
+		}
+		return false;
+	}
 }

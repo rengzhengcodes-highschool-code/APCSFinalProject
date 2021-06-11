@@ -37,9 +37,9 @@ public class Driver {
 		return car;
 	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
 	public float getAggressiveness() {
 		return aggressiveness;
